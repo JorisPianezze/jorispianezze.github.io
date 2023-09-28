@@ -6,7 +6,7 @@
 body {
   font-family: 'Manrope', sans-serif;
   font-size: 1em;
-  background-color: #1f2039;
+  background-color: white;
 }
 
 a {
@@ -20,34 +20,35 @@ em {
 }
 
 h1 {
-  font-size: 3.5em;
-  color: #a5b4fc;
+  font-size: 3.0em;
+  color:  #17202a;
   font-family: 'Montserrat', sans-serif;
 }
 
 h2 {
-  color: #f9f8ff;
+  color: #2c3e50;
 }
 
 p {
   font-size: 1.1em;
-  color: #f9f8ff;
+  color: #2c3e50;
 }
 
 header {
-  background-color: white;
+  background-color: #d4e6f1;
   display: flex;
   flex-direction: row;
-  width: 100%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 footer {
-  background-color: white;
+  background-color:  #d4e6f1;
+  padding: 20px 50px;        /* height and width around text */
+  margin-left: 20%;
+  margin-right: 20%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: right;
-  padding: 20px 50px;
+  justify-content: space-between;  
 }
 
 a:hover {
@@ -57,17 +58,6 @@ a:hover {
 section {
   padding: 80px;
 }
-
-/*nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-nav a {
-  margin-left: 30px;
-}*/
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* https://www.codeur.com/tuto/css/creer-menu-deroulant-css/  */
@@ -91,14 +81,14 @@ nav ul {
 }
 
 nav > ul > li {
-  background-color: white;
+  background-color: #d4e6f1;
   position: relative;
   height: 100%;
   flex: 1;
 }
 
 nav > ul > li:hover > a{
-  color: #2169EC;
+  color:  #8e44ad;
 }
 
 nav > ul > li > a {
@@ -113,18 +103,18 @@ li a {
   color: black;
 }
 
-.menu-deroulant > a:after{
+.drop-down-menu > a:after{
   content: '>';
   font-size: 15px;
   margin-left: 0px;
   display: inline-block;
 }
 
-.menu-deroulant:hover > a:after{
-  animation: rotationFleche 0.2s linear forwards;
+.drop-down-menu:hover > a:after{
+  animation: rotation-arrow 0.2s linear forwards;
 }
 
-@keyframes rotationFleche {
+@keyframes rotation-arrow {
   0% {
     transform: rotate(0deg);
   }
@@ -136,21 +126,21 @@ li a {
   }
 }
 
-.sous-menu {
+.sub-menu {
   margin-top: 50px;
   width: 100%;
-  text-align: left;
+  text-align: center;
   overflow: hidden;
   max-height: 0;
   border-radius: 2px;
-  background-color: white;
+  background-color: #d4e6f1;
 }
 
-.menu-deroulant:hover > .sous-menu {
-  animation: apparitionSousMenu 1s forwards;
+.drop-down-menu:hover > .sub-menu {
+  animation: animate-sub-menu 1s forwards;
 }
 
-@keyframes apparitionSousMenu {
+@keyframes animate-sub-menu {
   0% {
     box-shadow: 0px 3px 3px 1px rgba(0,0,0,0);
     border-top: 3px solid #2169EC;
@@ -165,24 +155,20 @@ li a {
   }
 }
 
-.sous-menu > li:hover {
-  background-color: rgba(33, 105, 236, 0.3);
-}
-
-.sous-menu > li > a {
+.sub-menu > li > a {
   align-items: center;
+  justify-content: center;
   display: flex;
   height: 50px;
-  padding-left: 20px;
   width: 100%;
 }
 
-.sous-menu > li:hover > a {
-  color: white;
+.sub-menu > li:hover > a {
+  color: #8e44ad;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.accueil-introduction {
+.home-introduction {
   display: flex;
   flex-direction: row;
   width: 60%;
@@ -191,14 +177,15 @@ li a {
   margin: auto;
 }
 
-.accueil-introduction h1 {
+.home-introduction h1 {
   margin-bottom: 15px;
 }
 
-.accueil-introduction p {
+.home-introduction p {
   margin-bottom: 30px;
 }
 
-.accueil-introduction div {
+.home-introduction div {
   padding-right: 80px;
 }
+
