@@ -20,7 +20,7 @@ em {
 }
 
 h1 {
-  font-size: 3.0em;
+  font-size: 2.5em;
   color:  #17202a;
   font-family: 'Montserrat', sans-serif;
 }
@@ -187,5 +187,9 @@ li a {
 
 .home-introduction div {
   padding-right: 80px;
+  width: 50%;
 }
 
+.contact {
+  color: #808b96;
+}
