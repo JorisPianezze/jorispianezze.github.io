@@ -38,15 +38,15 @@ header {
   background-color: #d4e6f1;
   display: flex;
   flex-direction: row;
-  /* margin-left: 20%; */
-  /* margin-right: 20%; */
+  /* margin-left: 20%; */    /* comment because not web-responsive */
+  /* margin-right: 20%; */   /* comment because not web-responsive */
 }
 
 footer {
   background-color:  #d4e6f1;
   padding: 20px 50px;        /* height and width around text */
-  /* margin-left: 20%; */
-  /* margin-right: 20%; */
+  /* margin-left: 20%; */    /* comment because not web-responsive */
+  /* margin-right: 20%; */   /* comment because not web-responsive */
   display: flex;
   justify-content: space-between;  
 }
@@ -171,7 +171,7 @@ li a {
 .home-introduction {
   display: flex;
   flex-direction: row;
-  /*width: 80%;*/
+  /*width: 80%;*/             /* comment because not web-responsive */
   align-items: center;
   justify-content: center;
   margin: auto;
