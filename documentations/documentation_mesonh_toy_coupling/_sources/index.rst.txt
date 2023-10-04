@@ -1,0 +1,30 @@
+Welcome to the Meso-NH / Toy coupling's documentation
+======================================================
+
+
+This documentation is intended for `Meso-NH <http://mesonh.aero.obs-mip.fr/>`_ users who are interested to learn how to couple it with a toy model using the `OASIS <https://oasis.cerfacs.fr/en/home/>`_ coupler.
+
+.. note::
+
+   This documentation is subject to change, so don't hesitate to `send me <joris.pianezze@aero.obs-mip.fr>`_ your improvements, corrections, etc ...
+
+Contents
+********
+
+.. toctree::
+   :maxdepth: 3
+   :numbered:
+
+   introduction/introduction
+   requirements/requirements
+   installation/installation
+   compilation/compilation
+   verification/verification
+   examples/examples
+   quickstart/quickstart
+   togofurther/togofurther   
+
+References
+**********
+
+.. bibliography::

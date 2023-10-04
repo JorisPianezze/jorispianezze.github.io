@@ -1,0 +1,313 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>6. Examples &#8212; Meso-NH/Toy coupling 5.7.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. Quickstart" href="../quickstart/quickstart.html" />
+    <link rel="prev" title="5. Verification - ktest" href="../verification/verification.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../quickstart/quickstart.html" title="7. Quickstart"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../verification/verification.html" title="5. Verification - ktest"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Meso-NH/Toy coupling 5.7.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">6. </span>Examples</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="examples">
+<span id="rst-examples"></span><h1><span class="section-number">6. </span>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h1>
+<p>In this section, some applications of the toy model are presented. Don’t hesitate to send me your applications to complete this section.</p>
+<section id="iroise-sea-ktest">
+<span id="rst-examples-iroise-sea"></span><h2><span class="section-number">6.1. </span>Iroise sea - ktest<a class="headerlink" href="#iroise-sea-ktest" title="Permalink to this heading">¶</a></h2>
+<p>The aim of this ktest is to test the coupling for Meso-NH. The coupled simulation corresponds to a real case in the Iroise Sea. The simulation lasts 360 seconds and the fields are exchanged every 60 seconds.
+Only two fields are exchanged. 10m u-wind speed is send by Meso-NH to the toy model using bilinear interpolation method (<strong class="command">SCRIPR BILINEAR LR SCALAR LATLON 1</strong>).
+Toy model model send to Meso-NH an analytical field based on a sinusoidal function using distance weight interpolation method using 4 neighboors (<strong class="command">SCRIPR DISTWGT LR SCALAR LATLON 1 4</strong>).</p>
+<p>In the ktest MY_RUN/KTEST/013_Iroise_OASIS_coupling/ the following structure has been chosen to separate the different steps as much as possible :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">├── 1_input_mnh   : preparation of the input files for Meso-NH model</span>
+<span class="go">├── 2_input_toy   : preparation of the input files for toy model</span>
+<span class="go">├── 3_input_oasis : preparation of the input file  for OASIS</span>
+<span class="go">└── A_cpl_mnh_toy : simulation&#39;s directory</span>
+</pre></div>
+</div>
+<p>To launch the KTEST:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./run_013_Iroise_OASIS_coupling
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is also possible to execute step by step by going to each folder and executing the run_* scripts.</p>
+</div>
+<section id="preparation-of-the-input-files-for-meso-nh-model">
+<h3><span class="section-number">6.1.1. </span>Preparation of the input files for Meso-NH model<a class="headerlink" href="#preparation-of-the-input-files-for-meso-nh-model" title="Permalink to this heading">¶</a></h3>
+<p>To prepare the input files for Meso-NH model, go to 1_input_mnh directory.
+PREP_PGD and PREP_IDEAL_CASE steps are identical to an uncoupled simulation (without OASIS).</p>
+<p>Run the following script to create the PGD and PREP_IDEAL_CASE files :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>run_prep_mesonh_xyz
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It could be necessary to rearrange the cover by suppressing town points using :</p>
+<p>&amp;NAM_PGD_ARRANGE_COVER LWATER_TO_NATURE = .FALSE., LTOWN_TO_ROCK = .TRUE. /</p>
+</div>
+<p>At the end of run_prep_mesonh_xyz script, a rstrt_MNH.nc file is generated using the python script <strong class="command">create_restart_file_from_PREP_IDEAL_CASE.py</strong>.
+This file contains the fields from the PREP_IDEAL_CASE file that will be sent to the toy model. It is essential to OASIS in order to start the coupled simulation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The namelist EXSEG1.nam is also present in the 1_input_mnh directory. This namelist is used in the A_cpl_mnh_toy directory.</p>
+</div>
+</section>
+<section id="preparation-of-the-input-files-for-toy-model">
+<h3><span class="section-number">6.1.2. </span>Preparation of the input files for toy model<a class="headerlink" href="#preparation-of-the-input-files-for-toy-model" title="Permalink to this heading">¶</a></h3>
+<p>To prepare the input files for toy model, go to 2_input_toy directory. A python script create_grid_and_restart_files_for_TOY.py is used to generate a grid file read by the toy model. from the etopo2.nc file. You need to enter the coordinates at the start of the script to get the <em>grid_toy_model.nc</em> file to create, which will be read by the toy model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lon_domain</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">6.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.0</span><span class="p">]</span>
+<span class="n">lat_domain</span> <span class="o">=</span> <span class="p">[</span><span class="mf">47.0</span><span class="p">,</span> <span class="mf">49.5</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Run the following script to initialise the toy:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>run_prep_toy
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>This script can also be used to generate a grid from a Meso-NH output, so that the toy model can have the same grid as Meso-NH.</p></li>
+<li><p>This folder contains the namelists TOYNAMELIST.nam, which will be used in the A_cpl_mnh_toy directory. Go to the section about <a class="reference internal" href="../togofurther/togofurther.html#rst-toy"><span class="std std-ref">Toy model</span></a> for more information.</p></li>
+</ul>
+</div>
+</section>
+<section id="preparation-of-the-input-files-for-oasis">
+<h3><span class="section-number">6.1.3. </span>Preparation of the input files for OASIS<a class="headerlink" href="#preparation-of-the-input-files-for-oasis" title="Permalink to this heading">¶</a></h3>
+<p>To prepare the input files for toy model, go to 3_input_oasis directory.
+This folder contains the namelist for OASIS, namcouple file.
+Information relating to the coupling is contained within this namelist. Go to the section about <a class="reference internal" href="../togofurther/togofurther.html#rst-oasis"><span class="std std-ref">OASIS</span></a> coupler for more information.</p>
+</section>
+<section id="summary-of-necessary-files-for-the-coupled-simulation">
+<h3><span class="section-number">6.1.4. </span>Summary of necessary files for the coupled simulation<a class="headerlink" href="#summary-of-necessary-files-for-the-coupled-simulation" title="Permalink to this heading">¶</a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model/Coupler</p></th>
+<th class="head"><p>List of necessary files</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>OASIS</p></td>
+<td><p>namcouple</p></td>
+</tr>
+<tr class="row-odd"><td><p>TOY</p></td>
+<td><p>TOYNAMELIST.nam, grid_toy_model.nc, rstrt_TOY.nc</p></td>
+</tr>
+<tr class="row-even"><td><p>Meso-NH</p></td>
+<td><p>EXSEG1.nam, PGD and PREP_IDEAL_CASE files, rstrt_MNH.nc</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="launch-the-coupled-simulation">
+<h3><span class="section-number">6.1.5. </span>Launch the coupled simulation<a class="headerlink" href="#launch-the-coupled-simulation" title="Permalink to this heading">¶</a></h3>
+<p>To launch the simulation go to A_cpl_mnh_toy directory and do :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>run_mesonh_xyz
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This simulation take less than 20 seconds on a Linux laptot with a processor <a class="reference external" href="https://ark.intel.com/content/www/fr/fr/ark/products/208662/intel-core-i71165g7-processor-12m-cache-up-to-4-70-ghz.html">Intel Core i7</a> at 2.8 Ghz.</p>
+</div>
+<p>This script is described below :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nb">echo</span> <span class="s1">&#39;--------------------------------------&#39;</span>
+<span class="nb">echo</span> <span class="s1">&#39;    Run Meso-NH coupling              &#39;</span>
+<span class="nb">echo</span> <span class="s1">&#39;--------------------------------------&#39;</span>
+
+<span class="nb">export</span> <span class="nv">PATH_EXETOY</span><span class="o">=</span><span class="si">${</span><span class="nv">SRC_MESONH</span><span class="si">}</span>/src/LIB/toy_1.0/
+
+<span class="c1">#~~~~~ MESONH</span>
+ln -sf ../1_input_mnh/IROISE_5KM* .
+ln -sf ../1_input_mnh/EXSEG1.nam .
+cp     ../1_input_mnh/rstrt_MNH.nc rst_A.nc
+
+<span class="c1">#~~~~~ TOY</span>
+ln -sf ../2_input_toy/grid_toy_model.nc .
+ln -sf ../2_input_toy/TOYNAMELIST.nam .
+cp     ../2_input_toy/rstrt_TOY.nc rst_T.nc
+
+<span class="c1">#~~~~~ OASIS</span>
+ln -fs ../3_input_oasis/namcouple .
+
+<span class="c1"># ------------------------------------------</span>
+<span class="nb">time</span> mpirun -np <span class="m">1</span> <span class="nv">$PATH_EXETOY</span>/toy_model : -np <span class="m">1</span> MESONH<span class="si">${</span><span class="nv">XYZ</span><span class="si">}</span>
+<span class="c1"># ------------------------------------------</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Following files are created during the simulation :</p>
+<ul class="simple">
+<li><p>OASIS: debug.01.000000, debug.02.000000, nout.000000, grids.nc, masks.nc, areas.nc, MNH__U10_mesonh_01.nc, MNH__CHA_mesonh_02.nc, VARRCV01_toyexe_01.nc, VARSIN01_toyexe_02.nc, rmp_ssea_to_toyt_BILINEAR.nc, rmp_toyt_to_ssea_DISTWGT_4.nc</p></li>
+<li><p>TOY: OUTPUT_TOY.txt</p></li>
+<li><p>Meso-NH/SurfEX: OUTPUT_LISTING0, OUTPUT_LISTING1, IROIS.1.00-01.000.des, IROIS.1.00-01.000.nc, IROIS.1.00-01.001.des, IROIS.1.00-01.001.nc</p></li>
+</ul>
+</div>
+<p>And this figure needs to be plotted (MY_RUN/KTEST/013_Iroise_OASIS_coupling/A_cpl_mnh_toy/U10_CHA/U10_CHA.png):</p>
+<figure class="align-default" id="id1">
+<img alt="../_images/U10_CHA.png" src="../_images/U10_CHA.png" />
+<figcaption>
+<p><span class="caption-text">The first line corresponds to the 10m u-wind speed sent from Meso-NH (a) to the toy model (b). The second line corresponds to the Charnock coefficient sent by the toy model (c) to Meso-NH (d).
+Differences are due to the interpolation method (<strong class="command">SCRIPR BILINEAR LR SCALAR LATLON 1</strong> for first line, <strong class="command">SCRIPR DISTWGT LR SCALAR LATLON 1 4</strong> for second line).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements/requirements.html">2. Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation/compilation.html">4. Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../verification/verification.html">5. Verification - ktest</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#iroise-sea-ktest">6.1. Iroise sea - ktest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#preparation-of-the-input-files-for-meso-nh-model">6.1.1. Preparation of the input files for Meso-NH model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preparation-of-the-input-files-for-toy-model">6.1.2. Preparation of the input files for toy model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preparation-of-the-input-files-for-oasis">6.1.3. Preparation of the input files for OASIS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary-of-necessary-files-for-the-coupled-simulation">6.1.4. Summary of necessary files for the coupled simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-the-coupled-simulation">6.1.5. Launch the coupled simulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/quickstart.html">7. Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../togofurther/togofurther.html">8. To go further</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/examples/examples.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../quickstart/quickstart.html" title="7. Quickstart"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../verification/verification.html" title="5. Verification - ktest"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Meso-NH/Toy coupling 5.7.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">6. </span>Examples</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, J. Pianezze.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,27 @@
+Compilation
+*********************************************************
+
+To compile Meso-NH's package with OASIS (oasis3-mct_5.0) and the toy model (toy_1.0), do :
+
+.. code-block:: bash
+
+   cd src/
+   
+   export VER_MPI=MPIAUTO
+   export VER_CDF=CDFAUTO
+   export VER_OASIS=OASISAUTO
+
+   ./configure
+   . ../conf/profile_mesonh
+   make
+   make installmaster
+  
+.. note::
+   
+   * By setting VER_CDF=CDFAUTO and VER_OASIS=OASISAUTO, you chose to install and compile NetCDF and OASIS libraries provided in the Meso-NH's package. Toy model is also installed and compiled when OASISAUTO is defined. These libraries are located in src/LIB directory.
+   
+   * :command:`./configure` command extracts tar.gz archives. NetCDF and OASIS libraries and the toy model are compiled at the beginning of the Meso-NH compilation (during :command:`make`).
+   
+   * You can use your own NETCDF and OASIS libraries by setting VER_CDF=CDFPERSO and VER_OASIS=OASISPERSO and define NETCDF_CONFIG and OASISDIR environment variables. NETCDF_CONFIG must point to the nf-config file. OASISDIR must point to the OASIS build directory.
+   
+  * :command:`make` command call different files: Makefile (compile libraries), Rules.\$ARCH\$(F).mk (options of compilation), Makefile.MESONH.mk (link to the compiled libraries)

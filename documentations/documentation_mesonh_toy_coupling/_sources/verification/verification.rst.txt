@@ -1,0 +1,35 @@
+Verification - ktest
+*********************************************************
+
+To check that Meso-NH has been successfully installed and compiled with OASIS, you can run the ktest 013_Iroise_OASIS_coupling. It corresponds to a coupled simulation between Meso-NH and toy model with OASIS. 
+
+To launch this ktest, do : 
+
+.. code-block:: bash
+
+   cd MY_RUN/KTEST/013_Iroise_OASIS_coupling
+   ./run_013_Iroise_OASIS_coupling  
+
+.. note::
+
+   Don't forget to load conf/profile_mesonh before launching the ktest.
+
+
+At the end of the simulation, you need to find at the end of the debug.XX.000000 files in A_cpl_mnh_toy directory : 
+
+.. code-block:: bash
+
+   (oasis_terminate) SUCCESSFUL RUN
+   -- EXIT  (oasis_terminate)
+
+
+And this figure needs to be plotted (MY_RUN/KTEST/013_Iroise_OASIS_coupling/A_cpl_mnh_toy/U10_CHA/U10_CHA.png): 
+
+.. figure:: U10_CHA.png
+
+   The first line corresponds to the 10m u-wind speed sent from Meso-NH (a) to the toy model (b). The second line corresponds to the Charnock coefficient sent by the toy model (c) to Meso-NH (d).
+   Differences are due to the interpolation method (:command:`SCRIPR BILINEAR LR SCALAR LATLON 1` for first line, :command:`SCRIPR DISTWGT LR SCALAR LATLON 1 4` for second line).
+
+.. note::
+   
+   If you want to understand what is done in this ktest, go to :ref:`RST Examples_Iroise_sea` Section.

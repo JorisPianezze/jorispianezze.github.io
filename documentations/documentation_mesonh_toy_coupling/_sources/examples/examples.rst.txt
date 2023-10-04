@@ -1,0 +1,157 @@
+.. _RST Examples:
+
+Examples
+*********************************************************
+
+In this section, some applications of the toy model are presented. Don't hesitate to send me your applications to complete this section.
+
+.. _RST Examples_Iroise_sea:
+
+Iroise sea - ktest
+=====================================================
+
+The aim of this ktest is to test the coupling for Meso-NH. The coupled simulation corresponds to a real case in the Iroise Sea. The simulation lasts 360 seconds and the fields are exchanged every 60 seconds.
+Only two fields are exchanged. 10m u-wind speed is send by Meso-NH to the toy model using bilinear interpolation method (:command:`SCRIPR BILINEAR LR SCALAR LATLON 1`).
+Toy model model send to Meso-NH an analytical field based on a sinusoidal function using distance weight interpolation method using 4 neighboors (:command:`SCRIPR DISTWGT LR SCALAR LATLON 1 4`).
+
+In the ktest MY_RUN/KTEST/013_Iroise_OASIS_coupling/ the following structure has been chosen to separate the different steps as much as possible :
+
+.. code-block:: console
+
+   ├── 1_input_mnh   : preparation of the input files for Meso-NH model
+   ├── 2_input_toy   : preparation of the input files for toy model
+   ├── 3_input_oasis : preparation of the input file  for OASIS
+   └── A_cpl_mnh_toy : simulation's directory
+
+To launch the KTEST:
+
+.. code-block:: bash
+
+   ./run_013_Iroise_OASIS_coupling
+
+.. note::
+
+   It is also possible to execute step by step by going to each folder and executing the run_* scripts.
+
+Preparation of the input files for Meso-NH model
+----------------------------------------------------------------
+
+To prepare the input files for Meso-NH model, go to 1_input_mnh directory.
+PREP_PGD and PREP_IDEAL_CASE steps are identical to an uncoupled simulation (without OASIS).
+
+Run the following script to create the PGD and PREP_IDEAL_CASE files :
+
+.. code-block:: bash
+
+  run_prep_mesonh_xyz
+
+.. note::
+
+   It could be necessary to rearrange the cover by suppressing town points using :
+   
+   &NAM_PGD_ARRANGE_COVER LWATER_TO_NATURE = .FALSE., LTOWN_TO_ROCK = .TRUE. /
+
+At the end of run_prep_mesonh_xyz script, a rstrt_MNH.nc file is generated using the python script :command:`create_restart_file_from_PREP_IDEAL_CASE.py`.
+This file contains the fields from the PREP_IDEAL_CASE file that will be sent to the toy model. It is essential to OASIS in order to start the coupled simulation.
+
+.. note::
+
+   The namelist EXSEG1.nam is also present in the 1_input_mnh directory. This namelist is used in the A_cpl_mnh_toy directory.
+
+
+Preparation of the input files for toy model
+-----------------------------------------------------------------------
+
+To prepare the input files for toy model, go to 2_input_toy directory. A python script create_grid_and_restart_files_for_TOY.py is used to generate a grid file read by the toy model. from the etopo2.nc file. You need to enter the coordinates at the start of the script to get the *grid_toy_model.nc* file to create, which will be read by the toy model.
+
+.. code-block:: python
+
+   lon_domain = [-6.2, -4.0]
+   lat_domain = [47.0, 49.5]
+
+
+Run the following script to initialise the toy:
+
+.. code-block:: bash
+
+   run_prep_toy
+
+.. note::
+
+   * This script can also be used to generate a grid from a Meso-NH output, so that the toy model can have the same grid as Meso-NH.
+   * This folder contains the namelists TOYNAMELIST.nam, which will be used in the A_cpl_mnh_toy directory. Go to the section about :ref:`RST TOY` for more information.
+
+Preparation of the input files for OASIS 
+---------------------------------------------------------------------------
+
+To prepare the input files for toy model, go to 3_input_oasis directory.
+This folder contains the namelist for OASIS, namcouple file.
+Information relating to the coupling is contained within this namelist. Go to the section about :ref:`RST OASIS` coupler for more information.
+
+Summary of necessary files for the coupled simulation
+---------------------------------------------------------------------------
+
+==================  =========================================================
+Model/Coupler       List of necessary files                  
+==================  =========================================================
+OASIS               namcouple
+TOY                 TOYNAMELIST.nam, grid_toy_model.nc, rstrt_TOY.nc
+Meso-NH             EXSEG1.nam, PGD and PREP_IDEAL_CASE files, rstrt_MNH.nc                
+==================  =========================================================
+
+Launch the coupled simulation
+---------------------------------------------------------
+
+To launch the simulation go to A_cpl_mnh_toy directory and do :
+
+.. code-block:: bash
+
+   run_mesonh_xyz
+
+.. note::
+
+   This simulation take less than 20 seconds on a Linux laptot with a processor `Intel Core i7 <https://ark.intel.com/content/www/fr/fr/ark/products/208662/intel-core-i71165g7-processor-12m-cache-up-to-4-70-ghz.html>`_ at 2.8 Ghz.
+
+This script is described below :
+
+.. code-block:: bash
+
+   #!/bin/bash
+   
+   echo '--------------------------------------'
+   echo '    Run Meso-NH coupling              '
+   echo '--------------------------------------'
+
+   export PATH_EXETOY=${SRC_MESONH}/src/LIB/toy_1.0/
+
+   #~~~~~ MESONH
+   ln -sf ../1_input_mnh/IROISE_5KM* .
+   ln -sf ../1_input_mnh/EXSEG1.nam .
+   cp     ../1_input_mnh/rstrt_MNH.nc rst_A.nc
+
+   #~~~~~ TOY
+   ln -sf ../2_input_toy/grid_toy_model.nc .
+   ln -sf ../2_input_toy/TOYNAMELIST.nam .
+   cp     ../2_input_toy/rstrt_TOY.nc rst_T.nc
+
+   #~~~~~ OASIS
+   ln -fs ../3_input_oasis/namcouple .
+
+   # ------------------------------------------
+   time mpirun -np 1 $PATH_EXETOY/toy_model : -np 1 MESONH${XYZ}
+   # ------------------------------------------                                           
+
+.. note::
+
+   Following files are created during the simulation :
+   
+   * OASIS: debug.01.000000, debug.02.000000, nout.000000, grids.nc, masks.nc, areas.nc, MNH__U10_mesonh_01.nc, MNH__CHA_mesonh_02.nc, VARRCV01_toyexe_01.nc, VARSIN01_toyexe_02.nc, rmp_ssea_to_toyt_BILINEAR.nc, rmp_toyt_to_ssea_DISTWGT_4.nc
+   * TOY: OUTPUT_TOY.txt
+   * Meso-NH/SurfEX: OUTPUT_LISTING0, OUTPUT_LISTING1, IROIS.1.00-01.000.des, IROIS.1.00-01.000.nc, IROIS.1.00-01.001.des, IROIS.1.00-01.001.nc
+
+And this figure needs to be plotted (MY_RUN/KTEST/013_Iroise_OASIS_coupling/A_cpl_mnh_toy/U10_CHA/U10_CHA.png): 
+
+.. figure:: U10_CHA.png
+
+   The first line corresponds to the 10m u-wind speed sent from Meso-NH (a) to the toy model (b). The second line corresponds to the Charnock coefficient sent by the toy model (c) to Meso-NH (d).
+   Differences are due to the interpolation method (:command:`SCRIPR BILINEAR LR SCALAR LATLON 1` for first line, :command:`SCRIPR DISTWGT LR SCALAR LATLON 1 4` for second line). 

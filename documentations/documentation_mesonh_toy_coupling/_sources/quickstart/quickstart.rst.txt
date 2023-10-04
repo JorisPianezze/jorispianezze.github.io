@@ -1,0 +1,31 @@
+Quickstart
+*********************************************************
+
+Get Meso-NH's package:
+
+.. code-block:: bash
+
+   git clone gitladev@mesonh2.aero.obs-mip.fr:/gitladevrepos/MNH-ladev.git -b MNH-57-branch MNH-V5-7-0
+   cd MNH-V5-7-0
+   git checkout dev_2023_CPLTOYMNH
+
+Compile Meso-NH's package with distributed versions of OASIS and toy model:
+
+.. code-block:: bash
+
+   cd src/
+   export VER_MPI=MPIAUTO
+   export VER_CDF=CDFAUTO
+   export VER_OASIS=OASISAUTO
+
+   ./configure
+   . ../conf/profile_mesonh
+   make
+   make installmaster
+
+Launch the coupling ktest:
+
+.. code-block:: bash
+
+   cd MY_RUN/KTEST/013_Iroise_OASIS_coupling
+   ./run_013_Iroise_OASIS_coupling  

@@ -1,0 +1,24 @@
+Installation
+*********************************************************
+
+To download Meso-NH's package you can follow the instructions in the A-INSTALL file or in the Meso-NH developer's guide. Below you will find the minimum step required to install the last coupling developments.
+
+Get's Meso-NH package for developers via following git clone command :
+
+.. code-block:: bash
+  
+   git clone gitladev@mesonh2.aero.obs-mip.fr:/gitladevrepos/MNH-ladev.git -b MNH-57-branch MNH-V5-7-0
+
+that will create the MNH-V5-7-0 directory containing a clone (copy) of the Meso-NH package of the
+remote branch MNH-57-branch.
+
+Go to the last development's branch to get last coupling features :
+
+.. code-block:: bash
+
+   cd MNH-V5-7-0
+   git checkout dev_2023_CPLTOYMNH
+   
+.. warning::
+
+   This development's branch will evolve and is likely to contain bugs. Please send me an email if you encounter any bugs.

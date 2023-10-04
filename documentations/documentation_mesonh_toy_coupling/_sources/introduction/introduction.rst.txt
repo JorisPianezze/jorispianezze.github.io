@@ -1,0 +1,19 @@
+Introduction
+*********************************************************
+
+This documentation describes how to set up and run a coupled simulation between a toy model and `Meso-NH <http://mesonh.aero.obs-mip.fr/>`_ with the `OASIS <https://oasis.cerfacs.fr/en/home/>`_ coupler.
+It does'nt contain detailed explanations on the use of `Meso-NH <http://mesonh.aero.obs-mip.fr/>`_ or `OASIS <https://oasis.cerfacs.fr/en/home/>`_.
+You are therefore advised to familiarise yourself with these models before reading this documentation.
+
+The developments were carried out as part of an Ocean-Wave-Atmosphere project group
+initiated by the CNRM around the `SURFEX <https://www.umr-cnrm.fr/surfex/>`_  surface model :cite:p:`voldoire_surfex_2017,pianezze_new_2018`.
+
+The developments initially available in version 5.3 of `Meso-NH <http://mesonh.aero.obs-mip.fr/>`_ have been ported to version 5.7.
+New features since version 5.3 :
+
+* upgraded of the OASIS coupler from version oasis3-mct_3.0 to version oasis3-mct_5.0.
+
+* redesigned of the toy model to simplify its use.
+
+.. note::
+   If you want to have an idea of what you can do with the toy model, go to the section :ref:`RST Examples`.
