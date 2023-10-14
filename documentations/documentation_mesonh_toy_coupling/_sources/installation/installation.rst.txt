@@ -1,7 +1,7 @@
 Installation
 *********************************************************
 
-To download Meso-NH's package you can follow the instructions in the A-INSTALL file or in the Meso-NH developer's guide. Below you will find the minimum step required to install the last coupling developments.
+To download Meso-NH's package you can follow the instructions in the A-INSTALL file or in the Meso-NH developer's guide. Below you will find the minimum steps required to install the last coupling developments.
 
 Get's Meso-NH package for developers via following git clone command :
 

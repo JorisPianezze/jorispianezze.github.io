@@ -1,7 +1,7 @@
 Compilation
 *********************************************************
 
-To compile Meso-NH's package with OASIS (oasis3-mct_5.0) and the toy model (toy_1.0), do :
+To compile Meso-NH's package with OASIS (oasis3-mct_5.0) and the toy model (toy_2.0), do :
 
 .. code-block:: bash
 
@@ -24,4 +24,4 @@ To compile Meso-NH's package with OASIS (oasis3-mct_5.0) and the toy model (toy_
    
    * You can use your own NETCDF and OASIS libraries by setting VER_CDF=CDFPERSO and VER_OASIS=OASISPERSO and define NETCDF_CONFIG and OASISDIR environment variables. NETCDF_CONFIG must point to the nf-config file. OASISDIR must point to the OASIS build directory.
    
-  * :command:`make` command call different files: Makefile (compile libraries), Rules.\$ARCH\$(F).mk (options of compilation), Makefile.MESONH.mk (link to the compiled libraries)
+   * The :command:`make` command calls different files: Makefile (compile libraries), Rules.\$ARCH\$(F).mk (options of compilation), Makefile.MESONH.mk (link to the compiled libraries)

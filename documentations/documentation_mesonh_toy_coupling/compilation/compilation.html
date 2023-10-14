@@ -70,7 +70,7 @@
             
   <section id="compilation">
 <h1><span class="section-number">4. </span>Compilation<a class="headerlink" href="#compilation" title="Permalink to this heading">¶</a></h1>
-<p>To compile Meso-NH’s package with OASIS (oasis3-mct_5.0) and the toy model (toy_1.0), do :</p>
+<p>To compile Meso-NH’s package with OASIS (oasis3-mct_5.0) and the toy model (toy_2.0), do :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> src/
 
 <span class="nb">export</span> <span class="nv">VER_MPI</span><span class="o">=</span>MPIAUTO
@@ -85,15 +85,11 @@ make installmaster
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><p>By setting VER_CDF=CDFAUTO and VER_OASIS=OASISAUTO, you chose to install and compile NetCDF and OASIS libraries provided in the Meso-NH’s package. Toy model is also installed and compiled when OASISAUTO is defined. These libraries are located in src/LIB directory.</p></li>
 <li><p><strong class="command">./configure</strong> command extracts tar.gz archives. NetCDF and OASIS libraries and the toy model are compiled at the beginning of the Meso-NH compilation (during <strong class="command">make</strong>).</p></li>
 <li><p>You can use your own NETCDF and OASIS libraries by setting VER_CDF=CDFPERSO and VER_OASIS=OASISPERSO and define NETCDF_CONFIG and OASISDIR environment variables. NETCDF_CONFIG must point to the nf-config file. OASISDIR must point to the OASIS build directory.</p></li>
-</ul>
-</div></blockquote>
-<ul class="simple">
-<li><p><strong class="command">make</strong> command call different files: Makefile (compile libraries), Rules.$ARCH$(F).mk (options of compilation), Makefile.MESONH.mk (link to the compiled libraries)</p></li>
+<li><p>The <strong class="command">make</strong> command calls different files: Makefile (compile libraries), Rules.$ARCH$(F).mk (options of compilation), Makefile.MESONH.mk (link to the compiled libraries)</p></li>
 </ul>
 </div>
 </section>

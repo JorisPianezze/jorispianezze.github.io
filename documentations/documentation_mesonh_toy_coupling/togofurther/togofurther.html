@@ -98,7 +98,7 @@ make -f TopMakefileOasis3
 <section id="functions-implemented-in-models">
 <h3><span class="section-number">8.1.3. </span>Functions implemented in models<a class="headerlink" href="#functions-implemented-in-models" title="Permalink to this heading">¶</a></h3>
 <p>Using OASIS involves an instrumentation phase which consists of placing the various calls to the OASIS3-MCT routines in the codes (in this case Meso-NH and
-TOY) the various calls to the OASIS3-MCT routines. The use of a specific precompilation key means that the code can be used in either code in forced or coupled mode. For Meso-NH, a precompilation key called CPLOASIS is defined when you decided to use OASIS.</p>
+TOY). The use of a specific precompilation key is used if you want to compile Meso-NH linking to OASIS. This key is called CPLOASIS.</p>
 <p>OASIS3-MCT is used in the following phases:</p>
 <ul>
 <li><p><strong>initialisation phase:</strong></p>
@@ -195,7 +195,7 @@ Since there is no syntax check on this file, the slightest error will result in 
 <span class="nv">$NBMODEL</span>
 <span class="c1"># The number of models in this experiment + their names (6 characters)</span>
 <span class="c1">#</span>
-  <span class="m">2</span>  mesonh   wwatch
+  <span class="m">2</span>  mesonh   toyexe
 <span class="nv">$END</span>
 <span class="c1">###########################################################################</span>
 <span class="nv">$RUNTIME</span>
@@ -569,12 +569,9 @@ The rest of the namelist is identical to the case without coupling.</p>
 <span id="rst-toy"></span><h2><span class="section-number">8.3. </span>Toy model<a class="headerlink" href="#toy-model" title="Permalink to this heading">¶</a></h2>
 <section id="what-is-the-toy-model">
 <h3><span class="section-number">8.3.1. </span>What is the toy model?<a class="headerlink" href="#what-is-the-toy-model" title="Permalink to this heading">¶</a></h3>
-<p>The toy model that has been developed for the Meso-NH/SurfEx coupling with OASIS is strongly inspired by the toy models available in the OASIS tutorial.
-the toy models available in the OASIS tutorial.
-This toy model simulates an ocean or wave model that can be coupled with Meso-NH.
+<p>The toy model that has been developed for the Meso-NH/SurfEx coupling with OASIS is inspired by the toy models available in the OASIS tutorial. It has been completely rewritten in version 570 of Meso-NH. This toy model simulates an ocean or wave model that can be coupled with Meso-NH.
 There is no physics involved in this model, which simply sends and receives fields without modifying them.
-Among other things, it can be used to test the coupling algorithm used.
-The toy model is supplied with version 5.2.0 of Meso-NH (src/LIB/toy/).</p>
+Among other things, it can be used to test the coupling algorithm used.</p>
 </section>
 <section id="toy-model-tree-structure">
 <h3><span class="section-number">8.3.2. </span>Toy model tree structure<a class="headerlink" href="#toy-model-tree-structure" title="Permalink to this heading">¶</a></h3>
@@ -597,7 +594,7 @@ The toy model is supplied with version 5.2.0 of Meso-NH (src/LIB/toy/).</p>
 <span class="go">   |-- OASIS *oasis_enddef*</span>
 <span class="go">   |** start time-stepping **</span>
 <span class="go">   |-- OASIS *oasis_get*</span>
-<span class="go">   |-- function_sent.F90</span>
+<span class="go">   |-- get_values_to_send.F90</span>
 <span class="go">       |-- read_forcing.F90</span>
 <span class="go">   |-- OASIS *oasis_put*</span>
 <span class="go">   |** end of time-stepping **</span>
@@ -614,10 +611,10 @@ The toy model is supplied with version 5.2.0 of Meso-NH (src/LIB/toy/).</p>
 </pre></div>
 </div>
 <p>The toy model supplied with Meso-NH is compiled automatically when Meso-NH is compiled (like OASIS) but it may be necessary to modify it and then recompile it.</p>
-<p>To compile the toy model manually, put the link to the previously compiled OASIS library and run the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> toy_directory
-make clean
-make
+<p>To compile the toy model manually, do</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> src/
+. ../conf/profile_mesonh
+make toy
 </pre></div>
 </div>
 </section>
@@ -625,7 +622,7 @@ make
 <h3><span class="section-number">8.3.4. </span>Description of the TOYNAMELIST.nam<a class="headerlink" href="#description-of-the-toynamelist-nam" title="Permalink to this heading">¶</a></h3>
 <p>To use the toy model, you also need to create a TOYNAMELIST.nam with the following namelists :</p>
 <ul class="simple">
-<li><p>&amp;NAM_OASIS</p></li>
+<li><p>&amp;nam_grid</p></li>
 </ul>
 <table class="docutils align-default">
 <thead>
@@ -636,17 +633,17 @@ make
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>IL_NB_TIME_STEPS</p></td>
+<tr class="row-even"><td><p>ntime_steps</p></td>
 <td><p>INTEGER</p></td>
 <td><p>-</p></td>
 <td><p>Nb of time step</p></td>
 </tr>
-<tr class="row-odd"><td><p>DELTA_T</p></td>
+<tr class="row-odd"><td><p>time_step</p></td>
 <td><p>REAL</p></td>
 <td><p>-</p></td>
 <td><p>Time step [s]</p></td>
 </tr>
-<tr class="row-even"><td><p>DATA_FILENAME</p></td>
+<tr class="row-even"><td><p>grid_file_name</p></td>
 <td><p>CHARACTER(LEN=30)</p></td>
 <td><p>-</p></td>
 <td><p>Grid file name</p></td>
@@ -654,7 +651,7 @@ make
 </tbody>
 </table>
 <ul class="simple">
-<li><p>&amp;NAM_FCT_SEND</p></li>
+<li><p>&amp;nam_fct_send</p></li>
 </ul>
 <table class="docutils align-default">
 <thead>
@@ -665,29 +662,29 @@ make
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>CTYPE_FCT</p></td>
+<tr class="row-even"><td><p>type_send</p></td>
 <td><p>CHARACTER(LEN=5)</p></td>
 <td><p>-</p></td>
-<td><p>Type of field send to Meso-NH (‘CNSTE’, ‘SINUS’, ‘FILE’)</p></td>
+<td><p>Type of field send to Meso-NH (‘cnste’, ‘sinus’, ‘files’)</p></td>
 </tr>
-<tr class="row-odd"><td><p>CNAME_FILE</p></td>
+<tr class="row-odd"><td><p>forcing_file_name</p></td>
 <td><p>CHARACTER(LEN=30)</p></td>
 <td><p>-</p></td>
-<td><p>If CTYPE_FCT = ‘FILE’, CNAME_FILE is the name of the netcdf file.</p></td>
+<td><p>If type_send = ‘files’, forcing_file_name is the name of the netcdf file.</p></td>
 </tr>
-<tr class="row-even"><td><p>VALUE</p></td>
+<tr class="row-even"><td><p>value_send</p></td>
 <td><p>REAL</p></td>
 <td><p>-</p></td>
 <td><div class="line-block">
-<div class="line">If CTYPE_FCT = ‘CNSTE’, VALUE corresponds to the value of the field which will be homogeneous over the zone.</div>
-<div class="line">If CTYPE_FCT = ‘SINUS’ then VALUE will be equal to the amplitude of the sine.</div>
+<div class="line">If type_send = ‘cnste’, value_send corresponds to the value of the field which will be homogeneous over the zone.</div>
+<div class="line">If type_send = ‘sinus’ then value_send will be equal to the amplitude of the sine.</div>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
 <ul class="simple">
-<li><p>&amp;NAM_RECV_FIELDS</p></li>
+<li><p>&amp;nam_recv_fields</p></li>
 </ul>
 <table class="docutils align-default">
 <thead>
@@ -698,15 +695,15 @@ make
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>NB_RECV_FIELDS</p></td>
+<tr class="row-even"><td><p>nrecv_fields</p></td>
 <td><p>INTEGER</p></td>
 <td><p>-</p></td>
 <td><p>Nb of fields received by the toy model</p></td>
 </tr>
-<tr class="row-odd"><td><p>CRCVFIELDS</p></td>
+<tr class="row-odd"><td><p>name_recv_fields</p></td>
 <td><div class="line-block">
 <div class="line">CHARACTER(LEN=8,</div>
-<div class="line">DIM=NB_RECV_FIELDS)</div>
+<div class="line">DIM=nrecv_fields)</div>
 </div>
 </td>
 <td><p>-</p></td>
@@ -716,10 +713,10 @@ make
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>CRCVFIELDS name must the same as the one in namcouple and must be 8 characters long</p>
+<p>name_recv_fields name must the same as the one in namcouple and must be 8 characters long</p>
 </div>
 <ul class="simple">
-<li><p>&amp;NAM_SEND_FIELDS</p></li>
+<li><p>&amp;nam_send_fields</p></li>
 </ul>
 <table class="docutils align-default">
 <thead>
@@ -730,15 +727,15 @@ make
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>NB_SEND_FIELDS</p></td>
+<tr class="row-even"><td><p>nsend_fields</p></td>
 <td><p>INTEGER</p></td>
 <td><p>-</p></td>
 <td><p>Nb of fields send by the toy model</p></td>
 </tr>
-<tr class="row-odd"><td><p>CSNDFIELDS</p></td>
+<tr class="row-odd"><td><p>name_send_fields</p></td>
 <td><div class="line-block">
 <div class="line">CHARACTER(LEN=8,</div>
-<div class="line">DIM=NB_SEND_FIELDS)</div>
+<div class="line">DIM=nsend_fields)</div>
 </div>
 </td>
 <td><p>-</p></td>
@@ -748,29 +745,29 @@ make
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>CSNDFIELDS name must the same as the one in namcouple and must be 8 characters long</p>
+<p>name_send_fields name must the same as the one in namcouple and must be 8 characters long</p>
 </div>
 <section id="toynamelist-nam-example">
 <h4><span class="section-number">8.3.4.1. </span>TOYNAMELIST.nam example<a class="headerlink" href="#toynamelist-nam-example" title="Permalink to this heading">¶</a></h4>
 <p>Below is an example of a 3600s simulation, with a time step of 60s.
 The grid and mask definition file is called grid_toy_model.nc. The 3 fields sent come from the file named wave.nc.
 The OASIS identifiers for the 3 fields sent are: VARSND01, VARSND02 and VARSND03. 2 fields are received by the toy and have identifiers VARRCV01 and VARRCV02.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">NAM_OASIS</span><span class="w"> </span><span class="n">IL_NB_TIME_STEPS</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="n">DELTA_T</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span><span class="w"></span>
-<span class="w">           </span><span class="n">DATA_FILENAME</span><span class="o">=</span><span class="s1">&#39;grid_toy_model.nc&#39;</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">nam_grid</span><span class="w"> </span><span class="n">ntime_steps</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="n">time_step</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="n">grid_file_name</span><span class="o">=</span><span class="s1">&#39;grid_toy_model.nc&#39;</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
 
-<span class="p">&amp;</span><span class="n">NAM_FCT_SEND</span><span class="w"> </span><span class="n">CTYPE_FCT</span><span class="o">=</span><span class="s1">&#39;FILES&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="n">CNAME_FILE</span><span class="o">=</span><span class="s1">&#39;wave.nc&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">              </span><span class="k">VALUE</span><span class="o">=</span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+<span class="p">&amp;</span><span class="n">nam_fct_send</span><span class="w"> </span><span class="n">type_send</span><span class="o">=</span><span class="s1">&#39;files&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="n">forcing_file_name</span><span class="o">=</span><span class="s1">&#39;wave.nc&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">              </span><span class="n">value_send</span><span class="o">=</span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
 
-<span class="p">&amp;</span><span class="n">NAM_RECV_FIELDS</span><span class="w"> </span><span class="n">NB_RECV_FIELDS</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">                 </span><span class="n">CRCVFIELDS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;VARRCV01&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                 </span><span class="n">CRCVFIELDS</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;VARRCV02&#39;</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+<span class="p">&amp;</span><span class="n">nam_recv_fields</span><span class="w"> </span><span class="n">nrecv_fields</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">                 </span><span class="n">name_recv_fields</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;VARRCV01&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                 </span><span class="n">name_recv_fields</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;VARRCV02&#39;</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
 
-<span class="p">&amp;</span><span class="n">NAM_SEND_FIELDS</span><span class="w"> </span><span class="n">NB_SEND_FIELDS</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
-<span class="w">                 </span><span class="n">CSNDFIELDS</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;VARSND01&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                 </span><span class="n">CSNDFIELDS</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;VARSND02&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">                 </span><span class="n">CSNDFIELDS</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;VARSND03&#39;</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+<span class="p">&amp;</span><span class="n">nam_send_fields</span><span class="w"> </span><span class="n">nsend_fields</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">                 </span><span class="n">name_send_fields</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;VARSND01&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                 </span><span class="n">name_send_fields</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;VARSND02&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                 </span><span class="n">name_send_fields</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">=</span><span class="s1">&#39;VARSND03&#39;</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

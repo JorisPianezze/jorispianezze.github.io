@@ -45,7 +45,7 @@ Functions implemented in models
 -------------------------------------------------
 
 Using OASIS involves an instrumentation phase which consists of placing the various calls to the OASIS3-MCT routines in the codes (in this case Meso-NH and
-TOY) the various calls to the OASIS3-MCT routines. The use of a specific precompilation key means that the code can be used in either code in forced or coupled mode. For Meso-NH, a precompilation key called CPLOASIS is defined when you decided to use OASIS.
+TOY). The use of a specific precompilation key is used if you want to compile Meso-NH linking to OASIS. This key is called CPLOASIS.
 
 OASIS3-MCT is used in the following phases:
 
@@ -155,7 +155,7 @@ All these parameters are used to write the first part of the namcouple.
    $NBMODEL
    # The number of models in this experiment + their names (6 characters)
    #
-     2  mesonh   wwatch
+     2  mesonh   toyexe
    $END
    ###########################################################################
    $RUNTIME
@@ -415,12 +415,9 @@ Toy model
 What is the toy model?
 ----------------------------------------------------
 
-The toy model that has been developed for the Meso-NH/SurfEx coupling with OASIS is strongly inspired by the toy models available in the OASIS tutorial.
-the toy models available in the OASIS tutorial.
-This toy model simulates an ocean or wave model that can be coupled with Meso-NH.
+The toy model that has been developed for the Meso-NH/SurfEx coupling with OASIS is inspired by the toy models available in the OASIS tutorial. It has been completely rewritten in version 570 of Meso-NH. This toy model simulates an ocean or wave model that can be coupled with Meso-NH.
 There is no physics involved in this model, which simply sends and receives fields without modifying them.
 Among other things, it can be used to test the coupling algorithm used.
-The toy model is supplied with version 5.2.0 of Meso-NH (src/LIB/toy/).
 
 Toy model tree structure
 ----------------------------------------------------
@@ -447,7 +444,7 @@ The tree structure of the toy model and the various calls to OASIS functions are
       |-- OASIS *oasis_enddef*
       |** start time-stepping **
       |-- OASIS *oasis_get*
-      |-- function_sent.F90
+      |-- get_values_to_send.F90
           |-- read_forcing.F90
       |-- OASIS *oasis_put*
       |** end of time-stepping **
@@ -466,68 +463,68 @@ In the toy folder there are :
 
 The toy model supplied with Meso-NH is compiled automatically when Meso-NH is compiled (like OASIS) but it may be necessary to modify it and then recompile it.
 
-To compile the toy model manually, put the link to the previously compiled OASIS library and run the following commands:
+To compile the toy model manually, do
 
 .. code-block:: bash
 
-   cd toy_directory
-   make clean
-   make
+   cd src/
+   . ../conf/profile_mesonh
+   make toy
 
 Description of the TOYNAMELIST.nam
 ----------------------------------------------------------------
 
 To use the toy model, you also need to create a TOYNAMELIST.nam with the following namelists :
 
-* &NAM_OASIS
+* &nam_grid
 
 ==================  ==================  ===============  ================
 Name                Type                Default          Signification
 ==================  ==================  ===============  ================
-IL_NB_TIME_STEPS    INTEGER             \-               Nb of time step
-DELTA_T             REAL                \-               Time step [s]
-DATA_FILENAME       CHARACTER(LEN=30)   \-               Grid file name
+ntime_steps         INTEGER             \-               Nb of time step
+time_step           REAL                \-               Time step [s]
+grid_file_name      CHARACTER(LEN=30)   \-               Grid file name
 ==================  ==================  ===============  ================
 
 
-* &NAM_FCT_SEND
+* &nam_fct_send
 
 ==================  ==================  ===============  ================================================================================================================
 Name                Type                Default          Signification
 ==================  ==================  ===============  ================================================================================================================
-CTYPE_FCT           CHARACTER(LEN=5)    \-               Type of field send to Meso-NH ('CNSTE', 'SINUS', 'FILE')       
-CNAME_FILE          CHARACTER(LEN=30)   \-               If CTYPE_FCT = 'FILE', CNAME_FILE is the name of the netcdf file.
-VALUE               REAL                \-               | If CTYPE_FCT = 'CNSTE', VALUE corresponds to the value of the field which will be homogeneous over the zone.
-                                                         | If CTYPE_FCT = 'SINUS' then VALUE will be equal to the amplitude of the sine.
+type_send           CHARACTER(LEN=5)    \-               Type of field send to Meso-NH ('cnste', 'sinus', 'files')       
+forcing_file_name   CHARACTER(LEN=30)   \-               If type_send = 'files', forcing_file_name is the name of the netcdf file.
+value_send          REAL                \-               | If type_send = 'cnste', value_send corresponds to the value of the field which will be homogeneous over the zone.
+                                                         | If type_send = 'sinus' then value_send will be equal to the amplitude of the sine.
 ==================  ==================  ===============  ================================================================================================================
 
-* &NAM_RECV_FIELDS
+* &nam_recv_fields
 
 ==================  ======================  ===============  ================================================================================================================
 Name                Type                    Default          Signification
 ==================  ======================  ===============  ================================================================================================================
-NB_RECV_FIELDS      INTEGER                 \-               Nb of fields received by the toy model
-CRCVFIELDS          | CHARACTER(LEN=8,      \-               OASIS name for the fields received by the toy model
-                    | DIM=NB_RECV_FIELDS)                    
+nrecv_fields        INTEGER                 \-               Nb of fields received by the toy model
+name_recv_fields    | CHARACTER(LEN=8,      \-               OASIS name for the fields received by the toy model
+                    | DIM=nrecv_fields)                    
 ==================  ======================  ===============  ================================================================================================================
 
 .. note::
 
-   CRCVFIELDS name must the same as the one in namcouple and must be 8 characters long
+   name_recv_fields name must the same as the one in namcouple and must be 8 characters long
 
-* &NAM_SEND_FIELDS
+* &nam_send_fields
 
 ==================  =====================  ===============  ================================================================================================================
 Name                Type                   Default          Signification
 ==================  =====================  ===============  ================================================================================================================
-NB_SEND_FIELDS      INTEGER                \-               Nb of fields send by the toy model
-CSNDFIELDS          | CHARACTER(LEN=8,     \-               OASIS name for the fields send by the toy model
-                    | DIM=NB_SEND_FIELDS)                   
+nsend_fields        INTEGER                \-               Nb of fields send by the toy model
+name_send_fields    | CHARACTER(LEN=8,     \-               OASIS name for the fields send by the toy model
+                    | DIM=nsend_fields)                   
 ==================  =====================  ===============  ================================================================================================================
 
 .. note::
 
-   CSNDFIELDS name must the same as the one in namcouple and must be 8 characters long
+   name_send_fields name must the same as the one in namcouple and must be 8 characters long
 
 TOYNAMELIST.nam example
 +++++++++++++++++++++++++++++++++++
@@ -538,19 +535,19 @@ The OASIS identifiers for the 3 fields sent are: VARSND01, VARSND02 and VARSND03
 
 .. code-block:: fortran
 
-   &NAM_OASIS IL_NB_TIME_STEPS=60,
-              DELTA_T=60,
-              DATA_FILENAME='grid_toy_model.nc' /
+   &nam_grid ntime_steps=60,
+             time_step=60,
+             grid_file_name='grid_toy_model.nc' /
 
-   &NAM_FCT_SEND CTYPE_FCT='FILES',
-                 CNAME_FILE='wave.nc',
-                 VALUE=10 /
+   &nam_fct_send type_send='files',
+                 forcing_file_name='wave.nc',
+                 value_send=10 /
 
-   &NAM_RECV_FIELDS NB_RECV_FIELDS=2,
-                    CRCVFIELDS(1)='VARRCV01',
-                    CRCVFIELDS(2)='VARRCV02' /
+   &nam_recv_fields nrecv_fields=2,
+                    name_recv_fields(1)='VARRCV01',
+                    name_recv_fields(2)='VARRCV02' /
 
-   &NAM_SEND_FIELDS NB_SEND_FIELDS=3,
-                    CSNDFIELDS(1)='VARSND01',
-                    CSNDFIELDS(2)='VARSND02',
-                    CSNDFIELDS(3)='VARSND03' /
+   &nam_send_fields nsend_fields=3,
+                    name_send_fields(1)='VARSND01',
+                    name_send_fields(2)='VARSND02',
+                    name_send_fields(3)='VARSND03' /

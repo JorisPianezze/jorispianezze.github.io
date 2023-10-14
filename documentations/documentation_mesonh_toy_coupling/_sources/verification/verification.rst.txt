@@ -12,7 +12,9 @@ To launch this ktest, do :
 
 .. note::
 
-   Don't forget to load conf/profile_mesonh before launching the ktest.
+   * Don't forget to load conf/profile_mesonh before launching the ktest.
+   
+   * You also need to load your python environment (see :ref:`RST Requirements` section)
 
 
 At the end of the simulation, you need to find at the end of the debug.XX.000000 files in A_cpl_mnh_toy directory : 
