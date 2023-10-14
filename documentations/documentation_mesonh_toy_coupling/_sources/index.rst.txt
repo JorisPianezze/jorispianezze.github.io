@@ -2,7 +2,7 @@ Welcome to the Meso-NH / Toy coupling's documentation
 ======================================================
 
 
-This documentation is intended for `Meso-NH <http://mesonh.aero.obs-mip.fr/>`_ users who are interested to learn how to couple it with a toy model using the `OASIS <https://oasis.cerfacs.fr/en/home/>`_ coupler.
+This documentation is intended for `Meso-NH <http://mesonh.aero.obs-mip.fr/>`_ users who are interested to learn how to couple it with a `toy <https://github.com/JorisPianezze/toy>`_ model using the `OASIS <https://oasis.cerfacs.fr/en/home/>`_ coupler.
 
 .. note::
 
