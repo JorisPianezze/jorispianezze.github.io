@@ -1,195 +1,206 @@
-* {
-  margin  : 0;
-  padding : 0;
-}
-
 body {
-  font-family      : 'Manrope', sans-serif;
-  font-size        : 1em;
-  background-color : white;
-}
-
-a {
-  color           : #242424;
-  text-decoration : none;
-}
-
-em {
-  color      : #a5b4fc;
-  font-style : normal;
-}
-
-h1 {
-  font-size   : 2.5em;
-  color       :  #17202a;
-  font-family : 'Montserrat', sans-serif;
-}
-
-h2 {
-  color : #2c3e50;
-}
-
-p {
-  font-size : 1.1em;
-  color     : #2c3e50;
+  font-family : 'Arial', sans-serif;
+  margin      : 0;
+  padding     : 0;
 }
 
 header {
-  display        : flex;
-  flex-direction : row;
-  /* margin-left: 20%; */    /* comment because not web-responsive */
-  /* margin-right: 20%; */   /* comment because not web-responsive */
+  background-color : #546e7a;
+  color            : #fff;
+  align-items      : center;         /* centrer verticalement */
+  display          : flex;           /* aligner horizontalement */
+  justify-content  : space-between;  /* Pour aligner le titre et la navigation */
+  box-shadow       : 0px 1px 2px 1px rgba(0,0,0,0.3);
+  height           : 60px;
+}
+
+.header-title {
+   margin-left : 20%;
+}
+
+.header-title a {
+   font-size : 1.3em;
+   color   : white;
+}
+
+.header-title a:hover {
+   color   : yellow;
+}
+
+.header-nav {
+   display      : flex;
+   margin-right : 20%;
+}
+
+.header-nav a {
+   font-size : 1.3em;
+   color   : white;
+   padding : 20px;
+}
+
+.header-nav a:hover {
+   color   : yellow;
+}
+
+nav a.active {
+    color: yellow; /* Couleur de texte pour la page active */
 }
 
 footer {
+  background-color : #546e7a;
   display          : flex;
-  justify-content  : space-between;  
-  background-color : #eceff1;    /* light blue-grey */
+  justify-content  : right;
   padding          : 20px 50px;  /* height and width around text */
-  /* margin-left: 20%; */        /* comment because not web-responsive */
-  /* margin-right: 20%; */       /* comment because not web-responsive */
+  border-top       : 2px solid #546e7a;
+  border-bottom    : 2px solid #546e7a;
+}
+
+footer p {
+  font-size : 1.1em;
+  color     : white;
+}
+
+a {
+  color           : #2980b9;
+  text-decoration : none;
 }
 
 a:hover {
   text-decoration: underline;
 }
 
-section {
-  padding: 80px;
+p {
+  font-size : 1.3em;
+  color     : #2c3e50;
+  padding   :0;
+  margin    :0;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* https://www.codeur.com/tuto/css/creer-menu-deroulant-css/  */
-
-nav {
-  width: 100%;
-  font-size: 18px;
-  position: sticky;
-  top: 0;
-}
-
-nav > ul {
-  display: flex;
-  text-align: center;
-  box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.3);
-  height: 50px;
-}
-
-nav ul {
-  list-style-type: none;
-}
-
-nav > ul > li {
-  background-color: #546e7a; /*#d4e6f1;*/
-  color: white;
-  position: relative;
-  height: 100%;
-  flex: 1;
-}
-
-nav > ul > li:hover > a{
-  color: yellow; /* #8e44ad;*/
-}
-
-nav > ul > li > a {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-li a {
-  text-decoration: none;
-  color: white;
-}
-
-.drop-down-menu > a:after{
-  content: '>';
-  font-size: 15px;
-  margin-left: 0px;
-  display: inline-block;
-}
-
-.drop-down-menu:hover > a:after{
-  animation: rotation-arrow 0.2s linear forwards;
-}
-
-@keyframes rotation-arrow {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(45deg);
-  }
-  100%{
-    transform: rotate(90deg);
-  }
-}
-
-.sub-menu {
-  margin-top: 50px;
-  width: 100%;
-  text-align: center;
-  overflow: hidden;
-  max-height: 0;
-  border-radius: 2px;
-  background-color: #546e7a; /*#d4e6f1;*/
-}
-
-.drop-down-menu:hover > .sub-menu {
-  animation: animate-sub-menu 1s forwards;
-}
-
-@keyframes animate-sub-menu {
-  0% {
-    box-shadow: 0px 3px 3px 1px rgba(0,0,0,0);
-    border-top: 3px solid black;
-  }
-  30% {
-    box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
-  }
-  100% {
-    max-height: 50em;
-    border-top: 3px solid black;
-    box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
-  }
-}
-
-.sub-menu > li > a {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  height: 50px;
-  width: 100%;
-}
-
-.sub-menu > li:hover > a {
-  color: yellow;
-}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.home-introduction {
+.home {
   display: flex;
   flex-direction: row;
-  /*width: 80%;*/             /* comment because not web-responsive */
+  background-color: #f0f0f0;
+/*background: radial-gradient(circle, rgba(224,241,245,1) 7%, rgba(220,233,206,0.9570028695071778) 100%);*/
+}
+
+.tools {
+  display: flex;
+  background-color: #f0f0f0;
+  padding-left : 200px;
+  padding-right : 200px;
+}
+
+.documentations {
+  display: flex;
+  background-color: #f0f0f0;
+  padding-left : 200px;
+  padding-right : 200px;
+}
+
+.photo_job {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
   align-items: center;
   justify-content: center;
-  margin: auto;
+  margin-left : 20%;
+  margin-top : 50px;
+  margin-bottom : 50px;
 }
 
-.home-introduction h1 {
-  margin-bottom: 15px;
+.photo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  border-radius: 50%; /* Crée une forme circulaire */
+  overflow: hidden;   /* Cache la partie de l'image en dehors du cercle */
 }
 
-.home-introduction p {
-  margin-bottom: 30px;
-}
-
-.home-introduction div {
-  padding-right: 80px;
+.presentation {
   width: 50%;
+  margin-top : 150px;
+  margin-right : 20%;
+}
+
+.logos {
+  padding-top : 20px;
 }
 
 .contact {
-  color: #808b96;
+  color: #2980b9;
+}
+
+.link-list {
+   display : flex;
+   width: 100%;
+   margin: 20px;
+   padding: 20px;
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      background-color: #f0f0f0;
+      padding-left : 200px;
+      padding-right : 200px;
+}
+
+.address {
+   width: 45%;
+   background-color: white;
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.address-title {
+   padding-top : 20px;
+}
+
+.map {
+   width: 45%;
+   height: 400px;
+   border: 1px solid #ccc;
+   border-radius: 10px;
+}
+
+.article {
+    padding: 0px; /* Espace intérieur pour le contenu */
+    /*display : flex;*/
+    width: 100%;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.article-title {
+   padding: 10px;
+}
+
+.article-content {
+   padding: 10px;
+}
+
+.article-link {
+   padding: 5px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   font-size: 1.5em; /* Taille du titre */
+   background-color: #a93226 ; /*#90a4ae;*/
+   color: white;
+   border-radius: 10px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.article-link a {
+   color: white;
 }

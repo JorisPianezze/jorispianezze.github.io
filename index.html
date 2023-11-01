@@ -4,11 +4,9 @@
 <!-- =================================================== -->
 <head>
    <meta charset="utf-8" >
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Joris PIANEZZE's home page</title>
    <link href="style.css" rel="stylesheet" >
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Manrope&family=Montserrat&display=swap" rel="stylesheet">
 </head>
 <!-- =================================================== -->
 
@@ -17,66 +15,55 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <header>
-  <nav>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li class="drop-down-menu">
-      <a href="#">Tools</a>
-      <ul class="sub-menu">
-        <li><a href="https://jorispianezze.github.io/pytools_at_laero/">pytools at LAERO</a></li>
-      </ul>
-    </li>
-    <li class="drop-down-menu">
-      <a href="#">Documentations</a>
-      <ul class="sub-menu">
-        <li><a href="documentations/documentation_owa_coupling/index.html">OWA coupling</a></li>
-        <li><a href="documentations/documentation_mesonh_toy_coupling/index.html">Meso-NH / Toy coupling</a></li>
-      </ul>
-    </li>
-  </ul>
-  </nav>
+
+   <h3 class="header-title"><a href="index.html">Joris Pianezze</a></h3>
+   <nav class="header-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="tools.html">Tools</a>
+      <a href="documentations.html">Documentations</a>
+      <a href="contact.html">Contact</a>
+   </nav>
+
 </header>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<main>
-   <section class="home-introduction">
-      <div>
-         <h1>Joris PIANEZZE</h1>
-	 <hr><br>
-	 <p class="contact">
-	 <!-- <a href="https://www.cnrs.fr"><img alt="CNRS" src="logos/CNRS.png"  width="40" height="40" />Research Engineer</a>-->
-	 <a href="https://www.cnrs.fr" class="contact">CNRS</a> Research Engineer
-	 <br>
-	 joris.pianezze .at. aero.obs-mip.fr<br>
-	 Address : <a href="https://www.omp.eu" class="contact">OMP</a> / <a href="https://www.aero.obs-mip.fr" class="contact">LAERO (UMR 5560)</a>, 14 Av. Edouard Belin, 31400 Toulouse<br>
-	 (Office A106)
-	 </p>
-	 <hr><br>
-	 <p>
-         Specialised in the development of numerical models, I work
-	 on the improvement, implementation and analysis of coupled ocean-wave-atmosphere simulations.
-	 In particular, I am involved in the development of the <a href="https://www.croco-ocean.org">CROCO</a> and <a href="http://mesonh.aero.obs-mip.fr">Meso-NH</a> community codes.
-	 </p>
-	 <p>
-         The aim of this website is to share tools and documentations with colleagues but also with a wider community working with these tools.
-	 </p>
-	 <br>
-      </div>
-      <img src="photos/JorisPianezze_page_perso_laero.png" alt="Joris PIANEZZE's photo" width=10%>
+<main class="home">
+   <section class="photo_job">
+	   <p><img class="photo" src="photos/JorisPianezze.jpg"></p>
+      <hr style="width:80%">
+      <p>
+         <h2>Joris PIANEZZE</h2>
+	      <!-- <a href="https://www.cnrs.fr"><img alt="CNRS" src="logos/CNRS.png"  width="40" height="40" />Research Engineer</a> -->
+         <p><a href="https://www.cnrs.fr" class="contact">CNRS</a> Research Engineer</p>
+	      <p>joris.pianezze.at.aero.obs-mip.fr</p>
+         <p><a href="https://www.omp.eu" class="contact">OMP</a> / <a href="https://www.aero.obs-mip.fr" class="contact">LAERO (UMR 5560)</a></p>
+         <p>Toulouse</p>
+	   </p>
+      <p class="logos">
+         <a href="https://www.researchgate.net/profile/Joris-Pianezze"> <img alt="ResearchGate" src="logos/researchgate-icon-474x512.png"  width="30" height="30" style="margin:10px 10px 10px 10px" /></a>
+         <a href="https://orcid.org/0000-0003-2357-6398">               <img alt="ORCID"        src="logos/orcid_16x16.webp"               width="30" height="30" style="margin:10px 10px 10px 10px" /></a>
+         <a href="https://www.linkedin.com/in/joris-pianezze-38a562112"><img alt="LinkdIn"      src="logos/LI-In-Bug.png"                  width="30" height="30" style="margin:10px 10px 10px 10px" /></a>
+         <a href="https://github.com/JorisPianezze">                    <img alt="Github"       src="logos/github-mark.png"                width="30" height="30" style="margin:10px 10px 10px 10px" /></a>
+      </p>
+	   <hr style="width:80%">
+   </section>
+   <section class="presentation">
+      <p>
+      Specialised in the development of numerical models, I work
+	   on the improvement, implementation and analysis of coupled ocean-wave-atmosphere simulations.
+	   In particular, I am involved in the development of the <a href="https://www.croco-ocean.org">CROCO</a> and <a href="http://mesonh.aero.obs-mip.fr">Meso-NH</a> community codes.
+	   </p><br>
+	   <p>
+      The aim of this website is to share tools and documentations with colleagues but also with a wider community working with these tools.
+	   </p>
    </section>
 </main>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <footer>
-<h5>
-<a href="https://www.researchgate.net/profile/Joris-Pianezze"> <img alt="ResearchGate" src="logos/researchgate-icon-474x512.png"  width="20" height="20" style="margin:0px 10px 0px 10px" /></a>	 
-<a href="https://orcid.org/0000-0003-2357-6398">               <img alt="ORCID"        src="logos/orcid_16x16.webp"               width="20" height="20" style="margin:0px 10px 0px 10px" /></a>
-<a href="https://www.linkedin.com/in/joris-pianezze-38a562112"><img alt="LinkdIn"      src="logos/LI-In-Bug.png"                  width="20" height="20" style="margin:0px 10px 0px 10px" /></a>
-<a href="https://github.com/JorisPianezze">                    <img alt="Github"       src="logos/github-mark.png"                width="20" height="20" style="margin:0px 10px 0px 10px" /></a>
-</h5>
-<h5>Last updated 28-09-2023 by Joris PIANEZZE.</h5>
+<p>Last updated 29-10-2023 by Joris PIANEZZE.</p>
 </footer>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
