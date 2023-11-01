@@ -114,23 +114,38 @@ p {
   padding-top : 20px;
 }
 
-.tools {
-  display: flex;
-  background-color: #f0f0f0;
-  padding-left : 200px;
-  padding-right : 200px;
-}
-
-.documentations {
-  display: flex;
-  background-color: #f0f0f0;
-  padding-left : 200px;
-  padding-right : 200px;
-}
-
 .contact {
   color: #2980b9;
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*                      tools                                */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.tools-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f0f0f0;
+  /*padding-left : 200px;*/
+  /*padding-right : 200px;*/
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*                      documentations                       */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.documentations-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #f0f0f0;
+  /*padding-left : 200px;*/
+  /*padding-right : 200px;*/
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/*                      Contact                              */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .link-list {
    display : flex;
@@ -147,8 +162,8 @@ p {
       justify-content: space-between;
       padding: 20px;
       background-color: #f0f0f0;
-      padding-left : 200px;
-      padding-right : 200px;
+      /*padding-left : 200px;*/
+      /*padding-right : 200px;*/
 }
 
 .address {
@@ -171,8 +186,10 @@ p {
 }
 
 .article {
+    flex-grow: 1;
+    flex-basis: 21%;
+    /*flex: 1 0 21%; /* explanation below */*/
     padding: 0px; /* Espace interieur pour le contenu */
-    width: 100%;
     margin: 20px;
     background-color: #fff;
     border-radius: 10px;
