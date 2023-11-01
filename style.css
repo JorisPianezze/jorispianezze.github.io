@@ -82,7 +82,6 @@ p {
   display: flex;
   flex-direction: row;
   background-color: #f0f0f0;
-/*background: radial-gradient(circle, rgba(224,241,245,1) 7%, rgba(220,233,206,0.9570028695071778) 100%);*/
 }
 
 .tools {
@@ -115,8 +114,8 @@ p {
   margin-left: auto;
   margin-right: auto;
   width: 40%;
-  border-radius: 50%; /* Crée une forme circulaire */
-  overflow: hidden;   /* Cache la partie de l'image en dehors du cercle */
+  border-radius: 50%; /* Cree une forme circulaire */
+  overflow: hidden;   /* Cache la partie de l image en dehors du cercle */
 }
 
 .presentation {
@@ -172,8 +171,7 @@ p {
 }
 
 .article {
-    padding: 0px; /* Espace intérieur pour le contenu */
-    /*display : flex;*/
+    padding: 0px; /* Espace interieur pour le contenu */
     width: 100%;
     margin: 20px;
     background-color: #fff;
