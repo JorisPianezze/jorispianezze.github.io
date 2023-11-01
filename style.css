@@ -16,7 +16,7 @@ header {
 
 .header-title {
    /*margin-left : 20%;*/
-   padding: 20%;
+   padding-left: 20%;
 }
 
 .header-title a {
@@ -52,6 +52,8 @@ footer {
   display          : flex;
   justify-content  : space-between;
   padding          : 20px;
+  padding-left     : 20%;
+  padding-right    : 20%;
   border-top       : 2px solid #546e7a;
   border-bottom    : 2px solid #546e7a;
 }
@@ -239,5 +241,7 @@ p {
 .header-nav   {padding       : 20px;}
 .address      {margin-left   : 0%;}
 .map          {margin-right  : 0%;}
+footer        {padding-left  : 20px;
+               padding-right : 20px;}
 
 }
