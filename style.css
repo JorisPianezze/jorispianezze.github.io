@@ -225,7 +225,7 @@ p {
 /*                      Web-responsive                       */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-@media (max-width: 1200px) {
+@media only screen and (max-width: 1200px) {
 
 .article {
     flex-basis: 100%;
