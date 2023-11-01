@@ -51,7 +51,7 @@ footer {
   background-color : #546e7a;
   display          : flex;
   justify-content  : right;
-  padding          : 20px 50px;  /* height and width around text */
+  padding          : 20px;
   border-top       : 2px solid #546e7a;
   border-bottom    : 2px solid #546e7a;
 }
@@ -125,6 +125,7 @@ p {
 .tools-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   background-color: #f0f0f0;
   /*padding-left : 200px;*/
   /*padding-right : 200px;*/
@@ -133,15 +134,15 @@ p {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*                      documentations                       */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 .documentations-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   background-color: #f0f0f0;
   /*padding-left : 200px;*/
   /*padding-right : 200px;*/
 }
-
-
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /*                      Contact                              */
@@ -159,7 +160,7 @@ p {
 
 .contact-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       padding: 20px;
       background-color: #f0f0f0;
       /*padding-left : 200px;*/
