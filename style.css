@@ -220,3 +220,11 @@ p {
    /*border: 1px solid #ccc;*/
    /*border-radius: 10px;*/
 }
+
+@media (max-width: 800px) {
+
+.article {
+    flex-basis: 100%;
+}
+
+}
