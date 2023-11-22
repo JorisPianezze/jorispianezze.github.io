@@ -1,0 +1,205 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>6. Simulation &#8212; Meso-NH/WW3/CROCO coupling 5.7.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. To go further" href="../togofurther/togofurther.html" />
+    <link rel="prev" title="5. Pre-processing" href="../preprocessing/preprocessing.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../togofurther/togofurther.html" title="7. To go further"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../preprocessing/preprocessing.html" title="5. Pre-processing"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">6. </span>Simulation</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="simulation">
+<span id="rst-simulation"></span><h1><span class="section-number">6. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">¶</a></h1>
+<section id="run-a-coupled-simulation">
+<h2><span class="section-number">6.1. </span>Run a coupled simulation<a class="headerlink" href="#run-a-coupled-simulation" title="Permalink to this heading">¶</a></h2>
+<p>Depending on whether you want to run a coupled OA simulation or a coupled Meso-NH/WW3/CROCO simulation, you need to go to the B1_cpl_mnh_croco or C1_cpl_mnh_ww3_croco directory, respectively. In these directories, you need to change the path and run the script using the following command :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch run_cpl_mnh_ww3_croco.sub
+</pre></div>
+</div>
+<p>or :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./run_cpl_mnh_ww3_croco.sub
+</pre></div>
+</div>
+<p>At the end of this simulation, you should read ‘’(oasis_terminate) SUCCESSFUL RUN’’ at the end of the debug.root.XX files. The standard outputs for Meso-NH/SurfEx, WW3 and CROCO are the same as in the forced simulations.</p>
+</section>
+<section id="outputs-of-a-coupled-simulation">
+<h2><span class="section-number">6.2. </span>Outputs of a coupled simulation<a class="headerlink" href="#outputs-of-a-coupled-simulation" title="Permalink to this heading">¶</a></h2>
+<p>At the end of your simulation, a large number of files are created:</p>
+<ul class="simple">
+<li><p>Meso-NH /SurfEx output: standard output (the same as for a forced simulation)</p></li>
+<li><p>WW3 output: standard output (same as for a forced simulation)</p></li>
+<li><p>CROCO output: standard output (same as a forced simulation)</p></li>
+<li><p>OASIS output: debug files, etc.</p></li>
+</ul>
+</section>
+<section id="changing-the-coupling-time-step">
+<h2><span class="section-number">6.3. </span>Changing the coupling time step<a class="headerlink" href="#changing-the-coupling-time-step" title="Permalink to this heading">¶</a></h2>
+<p>To change the coupling time step, you need to modify several namelists. The Meso-NH namelist (EXSEG1.nam) :</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">XTSTEP_CPL_WAVE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">60</span><span class="mf">0.0</span><span class="w"></span>
+<span class="n">XTSTEP_CPL_SEA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">60</span><span class="mf">0.0</span><span class="w"></span>
+</pre></div>
+</div>
+<p>that of OASIS :</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">MNH__U10</span><span class="w"> </span><span class="n">WW3__U10</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">600</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">rst_A</span><span class="p">.</span><span class="n">nc</span><span class="w"> </span><span class="n">EXPORTED</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Coupling time step problem:
+The XTSTEP in the MNH EXSEG must be identical to the LAG variable in the namcouple.
+If this is not the case, the model may stop at the beginning of the simulation (e.g. at 600s).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the coupling time step must be a multiple of the time steps of all the models.</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements/requirements.html">2. Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation/compilation.html">4. Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preprocessing/preprocessing.html">5. Pre-processing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#run-a-coupled-simulation">6.1. Run a coupled simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#outputs-of-a-coupled-simulation">6.2. Outputs of a coupled simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changing-the-coupling-time-step">6.3. Changing the coupling time step</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../togofurther/togofurther.html">7. To go further</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/simulation/simulation.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../togofurther/togofurther.html" title="7. To go further"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../preprocessing/preprocessing.html" title="5. Pre-processing"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">6. </span>Simulation</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, J. Pianezze.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
