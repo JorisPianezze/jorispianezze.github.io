@@ -1,0 +1,228 @@
+Compilation
+*********************************************************
+
+First you need to compile Meso-NH because NetCDF and OASIS libraries are compiled during this compilation. Next you can compile WW3. For CROCO you need to know the numbers of points of your domain before compile it.
+
+.. _RST compile_MNH:
+
+Meso-NH/SurfEx (+ NetCDF and OASIS)
+====================================
+
+To compile Meso-NH's package with NetCDF and OASIS (oasis3-mct_5.0) librairies, do :
+
+.. code-block:: bash
+
+   cd MNH-V5-7-0/src/
+   
+   export VER_MPI=MPIAUTO
+   export VER_CDF=CDFAUTO
+   export VER_OASIS=OASISAUTO
+
+   ./configure
+   . ../conf/profile_mesonh
+   make
+   make installmaster
+  
+.. note::
+   
+   * By setting VER_CDF=CDFAUTO and VER_OASIS=OASISAUTO, you chose to install and compile NetCDF and OASIS libraries provided in the Meso-NH's package. These libraries are located in src/LIB directory.
+   
+   * oasis3-mct_5.0 version is provided in the Meso-NH's package. Compiled librairies is located in src/dir_obj*/MASTER/OASIS3-MCT_5.0 directory.
+   
+   * NetCDF is compiled using version 1.0.6 of libaec, version 1.14.0 of hdf5 version 4.9.0 of netcdf-c and version 4.6.0 of netcdf-fortran. Compiled librairies is located in src/dir_obj*/MASTER/NETCDF-4.6.0 directory.
+   
+   * :command:`./configure` command extracts tar.gz archives. NetCDF and OASIS libraries are compiled at the beginning of the Meso-NH compilation (during :command:`make`).
+   
+   * You can use your own NETCDF and OASIS libraries by setting VER_CDF=CDFPERSO and VER_OASIS=OASISPERSO and define NETCDF_CONFIG and OASISDIR environment variables. NETCDF_CONFIG must point to the nf-config file. OASISDIR must point to the OASIS build directory.
+   
+   * The :command:`make` command calls different files: Makefile (compile libraries), Rules.\$ARCH\$(F).mk (options of compilation), Makefile.MESONH.mk (link to the compiled libraries)
+   
+Many programs have been compiled. For this documentation we will use those presented in the following table. These programs can be used with or without activating coupling. The choice of parametrizations is realized via the use of namelist: it is therefore not necessary
+to recompile Meso-NH if you wish to change parametrizations, which is not the case for WW3 and CROCO.
+
+.. table:: List of executables Meso-NH/SurfEx compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.
+
+   +--------------------+--------------------------------------+-----------------+
+   | Executable name    + Function                             + Namelist        |
+   +====================+======================================+=================+
+   | PREP_PGD           | Prepare horizontal grid              | PRE_PGD1.nam    |
+   +--------------------+--------------------------------------+-----------------+
+   | PREP_REAL_CASE     | Prepare verticale grid and IC / LBC  | PRE_REAL1.nam   |
+   +--------------------+--------------------------------------+-----------------+
+   | MESONH             | Run simulation                       | EXSEG1.nam      |
+   +--------------------+--------------------------------------+-----------------+
+   | DIAG               | Compute diagnostics after simulation | DIAG1.nam       |
+   +--------------------+--------------------------------------+-----------------+    
+   
+.. warning:: at the end of the compilation you need to define OASISDIR and NETCDF_CONFIG environment variable as follows:
+
+.. code-block:: bash
+
+   export OASISDIR=/path/to/mnh/src/dir_obj-XYZ/MASTER/OASIS3-MCT_5.0
+   export NETCDF_CONFIG=/path/to/mnh/src/dir_obj-XYZ/MASTER/NETCDF-4.6.0/bin/nf-config
+
+.. tip:: You can add these environment variables at the end of the profile_mesonh file, by example.
+
+.. note:: These environment variables will be used during compilation of WW3 and CROCO.
+
+.. _RST compile_WW3:
+
+WW3
+====================================
+
+.. note:: It is now possible and advise to compile WW3 using cmake !
+
+Old compilation's procedure (w3_make)
+--------------------------------------------
+
+The steps for compiling WW3 are described in the WW3 manual (ww3_dir/manual/) but are repeated here for greater clarity.
+Whatever the computers, you can follow the same procedure to compile WW3.
+
+For my compilation I need to change following line of the link.tmpl file:
+
+.. code-block:: bash
+
+   libs="$libs `$NETCDF_CONFIG --flibs` `$NETCDF_CONFIG --libs`"
+   
+by 
+
+.. code-block:: bash
+
+   libs="$libs `$NETCDF_CONFIG --flibs`"
+
+Then you must then prepare the link and comp files used to compile WW3 using the following command:
+
+.. code-block:: bash
+
+   ./w3_setup .. -c your_environment -s OASACM -q
+
+.. note:: A list of environment of available in the file cmplr.env. If there is no environment corresponding to yours in this file, then you will need to create one.
+
+At this stage, the comp and link files are created and the switch_OASACM is copied into the switch file.
+Note that it is in the switch file that you must define the physical parameters you wish to use. The OASACM and OASOCM switches are used to activate coupling with an atmospheric model and an ocean model respectively (see WW3 manual).
+
+For the aim of this documentation you need to create two new swicthes switch_OASACM_OASOCM and switch_SANSOASIS by example. The first one will have an additional key OASOCM and the second one will not have COU OASIS OASACM keys.
+
+Next, you can choose to compile all WW3 programs with the w3_make command:
+
+.. code-block:: bash
+
+   ./w3_make
+
+or you can compile a selected list of program with the following command : 
+
+.. code-block:: bash
+ 
+   ./w3_make ww3_grid ww3_bound ww3_prnc ww3_shel ww3_ounf
+
+To recompile everything you need to do :
+
+.. code-block:: bash
+
+   ./w3_clean
+   ./w3_new
+   ./w3_make
+
+To check that WW3 has been correctly compiled, a number of tests are available in the regtests/ folder.
+
+A series of programs have been compiled, and for the purposes of this documentation we will use those in the following table. The executables are stored in the exe folder.
+They depend on the settings activated, so if you want to change the settings you have to recompile WW3: it is therefore necessary to copy the exe folder so as not to overwrite the executables previously compiled.
+For this tutorial, it is necessary to compile WW3 twice: once with the OASACM_OASOCM switch and once with the switch_SANSOASIS (only necessary for the spinup simulation).
+In the models/ folder I therefore have two exe folders, one called exe_SANSOASIS and the other exe_OASACM_OASOCM containing the executables for the spinup simulation and for the coupled ocean-wave-atmosphere simulation, respectively.
+
+.. table:: List of executables WW3 compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.
+
+   +--------------------+--------------------------------------+-----------------+
+   | Executable name    + Function                             + Namelist        |
+   +====================+======================================+=================+
+   | ww3_grid           | Prepare grid                         | ww3_grid.nml    |
+   +--------------------+--------------------------------------+-----------------+
+   | ww3_bound          | Prepare LBC                          | ww3_bound.nml   |
+   +--------------------+--------------------------------------+-----------------+
+   | ww3_prnc           | Prepare forcing (wind in our case)   | ww3_prnc.nml    |
+   +--------------------+--------------------------------------+-----------------+
+   | ww3_shel           | Run simulation                       | ww3_shel.nml    |
+   +--------------------+--------------------------------------+-----------------+    
+   | ww3_ounf           | Create netcdf file                   | ww3_ounf.nml    |
+   +--------------------+--------------------------------------+-----------------+
+   
+New compilation's procedure (cmake)
+--------------------------------------------
+
+.. warning:: Not yet tested.
+
+.. _RST compile_CROCO:
+
+CROCO
+====================================
+
+Whatever the computers, you can follow the same procedure to compile CROCO.
+
+To begin with, you need to create a directory containing the jobcomp compilation script and the files you wish to modify.
+An example is located in the Git repository in 3_input_croco/src/exe_IROISE_1core_CPLOA_CPLOW directory. This folder contains the following folders and files: 
+
+* clean.sh : clean the compiled directory
+
+* jobcomp : script to launch the compilation
+
+* MY_SRC : folder containing the configuration files.
+
+In the MY_SRC directory you must put the files to be modified. The CPP keys used and the domain location must be entered in the cppdefs.h and param.h files.
+
+In the cppdefs.h file, you can choose whether or not to pair with the following cpp keys: 
+
+.. code-block:: fortran
+
+   # define OA_COUPLING
+   # define OW_COUPLING
+
+The cpp keys OA_COUPLING and OW_COUPLING are used to activate coupling with an atmospheric model and a wave model, respectively. Next you need to give a name to your configuration, which will be used in the param.h file:
+
+.. code-block:: fortran
+
+   /* Configuration Name */
+   # define IROISE
+
+In param.h, you also must indicate the number of points you have for the CROCO domain.
+
+.. tip:: To find out these points, run a ncdump -h command on the file rstrt_SAVE.nc for example, see the section :ref:`RST preprocessing_MNH`.
+
+.. code-block:: fortran
+
+   # elif defined  IROISE
+         parameter (LLm0=38,  MMm0=38,  N=32)     ! IROISE
+
+The number of cores used (NNODES) during the simulation must be entered in the param.h file and the code must be recompiled each time the number of cores used is changed:
+
+.. code-block:: fortran
+
+   #ifdef MPI
+   integer NP_XI, NP_ETA, NNODES
+   parameter (NP_XI=1, NP_ETA=1,  NNODES=NP_XI*NP_ETA)
+   parameter (NPP=1)
+   parameter (NSUB_X=1, NSUB_E=1)
+
+NP_XI and NP_ETA correspond to the number of cores in longitude and latitude respectively.
+
+Unlike WW3 and Meso-NH, there is no program for preparing initial conditions or lateral boundary conditions: these steps are carried out using croco_tools.
+
+To compile CROCO run the following command:
+
+.. code-block:: bash
+
+   ./jobcomp
+
+.. note:: Before compiling you need to check and eventually change SOURCE=../OCEAN directory in the beginning of jobcomp script.
+
+Only one compiled program is used in this documentation (cf following table).
+This executable depends on the settings activated, so if you want to change the settings you have to recompile CROCO: it is therefore necessary to copy the exe compilation folder so as not to overwrite the previously compiled executables.
+In the croco folder, I therefore have two folders exe_IROISE_1core_CPLOA and exe_IROISE_1core_CPLOA_CPLOW containing the executables for the coupled ocean-atmosphere and ocean-wave-atmosphere simulations, respectively.
+
+.. table:: Executable CROCO compiled and used in this documentation.
+
+   +--------------------+--------------------------------------+-----------------+
+   | Executable name    + Function                             + Namelist        |
+   +====================+======================================+=================+
+   | croco              | Run simulation                       | croco.in        |
+   +--------------------+--------------------------------------+-----------------+
+

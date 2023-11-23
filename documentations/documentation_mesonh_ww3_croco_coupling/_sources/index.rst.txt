@@ -1,20 +1,29 @@
-Welcome to ocean-wave-atmosphere coupling tutorial!
-====================================
+Welcome to Meso-NH / WW3 / CROCO coupling's documentation
+============================================================
 
-The purpose of this tutorial is to ...
+
+This documentation is intended for `Meso-NH <http://mesonh.aero.obs-mip.fr/>`_ users who are interested to learn how to couple it with `WW3 <https://polar.ncep.noaa.gov/waves/wavewatch>`_ and/or `CROCO <https://www.croco-ocean.org>`_ models using the `OASIS <https://oasis.cerfacs.fr/en/home/>`_ coupler.
 
 .. note::
 
-   This tutorial is under development.
+   This documentation is subject to change, so don't hesitate to `send me <joris.pianezze@aero.obs-mip.fr>`_ your improvements, corrections, etc ...
 
 Contents
 ********
 
 .. toctree::
+   :maxdepth: 3
    :numbered:
+
+   introduction/introduction
+   requirements/requirements
+   installation/installation
+   compilation/compilation
+   preprocessing/preprocessing
+   simulation/simulation
+   togofurther/togofurther
 
 References
 **********
 
 .. bibliography::
-

@@ -1,0 +1,54 @@
+Installation
+*********************************************************
+
+You can install models where you want but I suggest that you to put the models in a directory dedicated to the case study,
+especially if you intend to test new versions of models, compilers or libraries.
+
+At the end of this section you need to have 3 directories : MNH-V5-7-0, WW3 and croco.
+
+.. _RST install_MNH:
+
+Meso-NH/SurfEx (+ NetCDF and OASIS)
+====================================
+
+To download Meso-NH's package you can follow the instructions in the A-INSTALL file or in the Meso-NH developer's guide. Below you will find the minimum steps required to install the last coupling developments.
+
+Get's Meso-NH package for developers via following git clone command :
+
+.. code-block:: bash
+  
+   git clone gitladev@mesonh2.aero.obs-mip.fr:/gitladevrepos/MNH-ladev.git -b MNH-57-branch MNH-V5-7-0
+
+that will create the MNH-V5-7-0 directory containing a clone (copy) of the Meso-NH package of the
+remote branch MNH-57-branch.
+   
+.. note::
+
+   This version of Meso-NH already contains NetCDF and oasis3-mct_5.0 libraries and you can compile it automatically when you compile Meso-NH (for that go to the section :ref:`RST compile_MNH`).
+   
+.. warning::
+
+   This development's branch will evolve and is likely to contain bugs. Please send me an email if you encounter any bugs.
+   
+.. _RST install_WW3:
+
+WW3
+=============================
+
+To get the last release version of WW3, do :
+
+.. code-block:: bash
+
+   git clone https://github.com/NOAA-EMC/WW3.git
+
+
+.. _RST install_CROCO:
+
+CROCO
+=============================
+
+To get the last release version of CROCO, do :
+
+.. code-block:: bash
+
+   git clone https://gitlab.inria.fr/croco-ocean/croco.git
