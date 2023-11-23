@@ -1,0 +1,196 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Welcome to CROCO / ABL1d coupling’s documentation &#8212; CROCO/ABL1d coupling 1.3.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/cloud.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1. New features" href="new_features.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="new_features.html" title="1. New features"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+    <li><a href="#">CROCO/ABL1d coupling 1.3.1 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Welcome to CROCO / ABL1d coupling’s documentation</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <section id="welcome-to-croco-abl1d-coupling-s-documentation">
+<h1>Welcome to CROCO / ABL1d coupling’s documentation<a class="headerlink" href="#welcome-to-croco-abl1d-coupling-s-documentation" title="Permalink to this heading">¶</a></h1>
+<p>The purpose of this tutorial is to present the different steps to set up :</p>
+<ul class="simple">
+<li><p>an idealized simulation with the Atmospheric Boundary Layer 1d (ABL1d) model based on <span id="id1">Kilpatrick <em>et al.</em> [<a class="reference internal" href="#id6" title="Thomas Kilpatrick, Niklas Schneider, and Bo Qiu. Boundary Layer Convergence Induced by Strong Winds across a Midlatitude SST Front*. Journal of Climate, 27(4):1698–1718, February 2014. URL: http://journals.ametsoc.org/doi/10.1175/JCLI-D-13-00101.1 (visited on 2022-02-09), doi:10.1175/JCLI-D-13-00101.1.">2014</a>]</span> case study (Section <a class="reference internal" href="cases_kilpatrick.html#section-kilpatrick"><span class="std std-ref">Run KILPATRICK test cases</span></a>; see also <span id="id2">Kilpatrick <em>et al.</em> [<a class="reference internal" href="#id6" title="Thomas Kilpatrick, Niklas Schneider, and Bo Qiu. Boundary Layer Convergence Induced by Strong Winds across a Midlatitude SST Front*. Journal of Climate, 27(4):1698–1718, February 2014. URL: http://journals.ametsoc.org/doi/10.1175/JCLI-D-13-00101.1 (visited on 2022-02-09), doi:10.1175/JCLI-D-13-00101.1.">2014</a>], Spall [<a class="reference internal" href="#id7" title="Michael A. Spall. Midlatitude Wind Stress–Sea Surface Temperature Coupling in the Vicinity of Oceanic Fronts. Journal of Climate, 20(15):3785–3801, August 2007. URL: http://journals.ametsoc.org/doi/10.1175/JCLI4234.1 (visited on 2022-02-09), doi:10.1175/JCLI4234.1.">2007</a>], Ayet and Redelsperger [<a class="reference internal" href="#id5" title="Alex Ayet and Jean‐Luc Redelsperger. An analytical study of the atmospheric boundary‐layer flow and divergence over an SST front. Quarterly Journal of the Royal Meteorological Society, 145(723):2549–2567, July 2019. URL: https://onlinelibrary.wiley.com/doi/10.1002/qj.3578 (visited on 2022-03-31), doi:10.1002/qj.3578.">2019</a>], Lemarié <em>et al.</em> [<a class="reference internal" href="#id8" title="Florian Lemarié, Guillaume Samson, Jean-Luc Redelsperger, Hervé Giordani, Théo Brivoal, and Gurvan Madec. A simplified atmospheric boundary layer model for an improved representation of air–sea interactions in eddying oceanic models: implementation and first evaluation in NEMO (4.0). Geoscientific Model Development, 14(1):543–572, January 2021. URL: https://gmd.copernicus.org/articles/14/543/2021/ (visited on 2021-04-08), doi:10.5194/gmd-14-543-2021.">2021</a>]</span>) ;</p></li>
+<li><p>a real case ABL1d - CROCO based on BENGUELA_LR ktest (Section <a class="reference internal" href="cases_benguela_lr.html#section-benguela-lr"><span class="std std-ref">Run BENGUELA_LR test case</span></a>).</p></li>
+</ul>
+<p>Description of the ABL1d model can be found in <span id="id3">Lemarié <em>et al.</em> [<a class="reference internal" href="#id8" title="Florian Lemarié, Guillaume Samson, Jean-Luc Redelsperger, Hervé Giordani, Théo Brivoal, and Gurvan Madec. A simplified atmospheric boundary layer model for an improved representation of air–sea interactions in eddying oceanic models: implementation and first evaluation in NEMO (4.0). Geoscientific Model Development, 14(1):543–572, January 2021. URL: https://gmd.copernicus.org/articles/14/543/2021/ (visited on 2021-04-08), doi:10.5194/gmd-14-543-2021.">2021</a>]</span>. Same version of the ABL1d model described in this paper has been implemented in CROCO.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This documentation is subject to change, so don’t hesitate to <a class="reference external" href="mailto:joris&#46;pianezze&#37;&#52;&#48;aero&#46;obs-mip&#46;fr">send me</a> your improvements, corrections, etc …</p>
+</div>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="new_features.html">1. New features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="new_features.html#get-the-code">1.1. Get the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new_features.html#code-modifications">1.2. Code modifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="new_features.html#croco-in">1.3. croco.in</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cases_kilpatrick.html">2. Run KILPATRICK test cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cases_kilpatrick.html#cold-to-warm-case">2.1. Cold-to-warm case</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cases_kilpatrick.html#id1">2.1.1. Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cases_kilpatrick.html#compilation">2.1.2. Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cases_kilpatrick.html#simulation">2.1.3. Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cases_kilpatrick.html#results">2.1.4. Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cases_kilpatrick.html#warm-to-cold-case">2.2. Warm-to-cold case</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cases_kilpatrick.html#id2">2.2.1. Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cases_kilpatrick.html#id3">2.2.2. Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cases_kilpatrick.html#id4">2.2.3. Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cases_kilpatrick.html#id5">2.2.4. Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cases_benguela_lr.html">3. Run BENGUELA_LR test case</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cases_benguela_lr.html#installation">3.1. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cases_benguela_lr.html#prepare-3d-atmospheric-forcing-fields-for-abl1d">3.2. Prepare 3d atmospheric forcing fields for ABL1d</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cases_benguela_lr.html#get-the-preprocessing-tools-for-abl1d">3.2.1. Get the preprocessing tools for ABL1d</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cases_benguela_lr.html#compilation">3.2.2. Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cases_benguela_lr.html#download-era5-data">3.2.3. Download ERA5 data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cases_benguela_lr.html#run-preprocessing-tool">3.2.4. Run preprocessing tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cases_benguela_lr.html#convert-netcdf-file-into-a-format-readable-by-croco">3.2.5. Convert netcdf file into a format readable by CROCO</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cases_benguela_lr.html#compilation-and-simulation-for-bulk-flux-test-case">3.3. Compilation and simulation for BULK_FLUX test case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cases_benguela_lr.html#compilation-and-simulation-for-abl1d-test-case">3.4. Compilation and simulation for ABL1d test case</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cases_benguela_lr.html#results">3.5. Results</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<div class="docutils container" id="id4">
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>)</span>
+<p>Thomas Kilpatrick, Niklas Schneider, and Bo Qiu. Boundary Layer Convergence Induced by Strong Winds across a Midlatitude SST Front*. <em>Journal of Climate</em>, 27(4):1698–1718, February 2014. URL: <a class="reference external" href="http://journals.ametsoc.org/doi/10.1175/JCLI-D-13-00101.1">http://journals.ametsoc.org/doi/10.1175/JCLI-D-13-00101.1</a> (visited on 2022-02-09), <a class="reference external" href="https://doi.org/10.1175/JCLI-D-13-00101.1">doi:10.1175/JCLI-D-13-00101.1</a>.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Michael A. Spall. Midlatitude Wind Stress–Sea Surface Temperature Coupling in the Vicinity of Oceanic Fronts. <em>Journal of Climate</em>, 20(15):3785–3801, August 2007. URL: <a class="reference external" href="http://journals.ametsoc.org/doi/10.1175/JCLI4234.1">http://journals.ametsoc.org/doi/10.1175/JCLI4234.1</a> (visited on 2022-02-09), <a class="reference external" href="https://doi.org/10.1175/JCLI4234.1">doi:10.1175/JCLI4234.1</a>.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">3</a><span class="fn-bracket">]</span></span>
+<p>Alex Ayet and Jean‐Luc Redelsperger. An analytical study of the atmospheric boundary‐layer flow and divergence over an SST front. <em>Quarterly Journal of the Royal Meteorological Society</em>, 145(723):2549–2567, July 2019. URL: <a class="reference external" href="https://onlinelibrary.wiley.com/doi/10.1002/qj.3578">https://onlinelibrary.wiley.com/doi/10.1002/qj.3578</a> (visited on 2022-03-31), <a class="reference external" href="https://doi.org/10.1002/qj.3578">doi:10.1002/qj.3578</a>.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
+<p>Florian Lemarié, Guillaume Samson, Jean-Luc Redelsperger, Hervé Giordani, Théo Brivoal, and Gurvan Madec. A simplified atmospheric boundary layer model for an improved representation of air–sea interactions in eddying oceanic models: implementation and first evaluation in NEMO (4.0). <em>Geoscientific Model Development</em>, 14(1):543–572, January 2021. URL: <a class="reference external" href="https://gmd.copernicus.org/articles/14/543/2021/">https://gmd.copernicus.org/articles/14/543/2021/</a> (visited on 2021-04-08), <a class="reference external" href="https://doi.org/10.5194/gmd-14-543-2021">doi:10.5194/gmd-14-543-2021</a>.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="new_features.html" title="1. New features"
+             >next</a> &nbsp; &nbsp;</li>
+    <li><a href="#">CROCO/ABL1d coupling 1.3.1 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Welcome to CROCO / ABL1d coupling’s documentation</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, J. Pianezze.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

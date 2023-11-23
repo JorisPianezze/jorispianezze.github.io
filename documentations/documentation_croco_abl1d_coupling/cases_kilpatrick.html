@@ -1,0 +1,376 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>2. Run KILPATRICK test cases &#8212; CROCO/ABL1d coupling 1.3.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/cloud.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Run BENGUELA_LR test case" href="cases_benguela_lr.html" />
+    <link rel="prev" title="1. New features" href="new_features.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cases_benguela_lr.html" title="3. Run BENGUELA_LR test case"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="new_features.html" title="1. New features"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">CROCO/ABL1d coupling 1.3.1 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>Run KILPATRICK test cases</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="run-kilpatrick-test-cases">
+<span id="section-kilpatrick"></span><h1><span class="section-number">2. </span>Run KILPATRICK test cases<a class="headerlink" href="#run-kilpatrick-test-cases" title="Permalink to this heading">¶</a></h1>
+<section id="cold-to-warm-case">
+<span id="installation"></span><h2><span class="section-number">2.1. </span>Cold-to-warm case<a class="headerlink" href="#cold-to-warm-case" title="Permalink to this heading">¶</a></h2>
+<section id="id1">
+<h3><span class="section-number">2.1.1. </span>Installation<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>To install CROCO with ABL1d developments, get the dev_2022_ABL1d branch from INRIA’s gitlab server :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://gitlab.inria.fr/croco-ocean/croco.git</span>
+<span class="go">git checkout -b dev_2022_ABL1d origin/dev_2022_ABL1d</span>
+</pre></div>
+</div>
+</section>
+<section id="compilation">
+<h3><span class="section-number">2.1.2. </span>Compilation<a class="headerlink" href="#compilation" title="Permalink to this heading">¶</a></h3>
+<p>To compile Kilpatrick test case, you need to adapt the cppdefs.h file (define KILPATRICK and undef REGIONAL) :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">...</span>
+<span class="gp">#</span>define KILPATRICK      /* 2D sst front*/
+<span class="go">/*</span>
+<span class="go">     ... OR REALISTIC CONFIGURATIONS</span>
+<span class="go">*/</span>
+<span class="gp">#</span>undef  COASTAL         /* COASTAL Applications */
+<span class="gp">#</span>undef  REGIONAL        /* REGIONAL Applications */
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>In param.h, you need to change the MPI setup by :</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">NP_XI</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w">  </span><span class="n">NP_ETA</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="n">NNODES</span><span class="o">=</span><span class="n">NP_XI</span><span class="o">*</span><span class="n">NP_ETA</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="simulation">
+<h3><span class="section-number">2.1.3. </span>Simulation<a class="headerlink" href="#simulation" title="Permalink to this heading">¶</a></h3>
+<p>Here is an example of the croco.in file to use :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">title:</span>
+<span class="go">     KILPATRICK</span>
+<span class="go">time_stepping: NTIMES   dt[sec]  NDTFAST  NINFO</span>
+<span class="go">             1296      100      2      1</span>
+
+<span class="go">S-coord: THETA_S,   THETA_B,    Hc (m)</span>
+<span class="go">        7.0d0     2.0d0      200.0d0</span>
+
+<span class="go">initial: NRREC / filename</span>
+<span class="go">       0</span>
+<span class="go">   croco_ini.nc</span>
+<span class="go">restart:          NRST, NRPFRST / filename</span>
+<span class="go">                2592    -1</span>
+<span class="go">   croco_rst.nc</span>
+
+<span class="go">history: LDEFHIS, NWRT, NRPFHIS / filename</span>
+<span class="go">         T      36     0</span>
+<span class="go">   croco_his.nc</span>
+<span class="go">averages: NTSAVG, NAVG, NRPFAVG / filename</span>
+<span class="go">         1      36     0</span>
+<span class="go">   croco_avg.nc</span>
+<span class="go">primary_history_fields: zeta UBAR VBAR  U  V   wrtT(1:NT)</span>
+<span class="go">                       T    T   T   T  T    40*T</span>
+<span class="go">auxiliary_history_fields:   rho Omega  W  Akv  Akt  Aks  Bvf  Visc3d Diff3d  HBL HBBL Bostr Bustr Bvstr Wstr Ustr Vstr Shfl Swfl rsw rlw lat sen HEL</span>
+<span class="go">                          F   F     T   F    T    F   F    F       F       T   T    T     F      F     T    T    T    T    T   30*T</span>
+
+<span class="go">primary_averages: zeta UBAR VBAR  U  V   wrtT(1:NT)</span>
+<span class="go">                T    T    T    T  T   40*T</span>
+<span class="go">auxiliary_averages: rho Omega  W  Akv  Akt  Aks  Bvf Visc3d Diff3d HBL HBBL Bostr Bustr Bvstr Wstr Ustr Vstr Shfl Swfl rsw rlw lat sen HEL</span>
+<span class="go">                  F   T     T   F    T    F    F    F     F      T   T    T     F     F     T   T    T     T    T   30*T</span>
+
+<span class="go">abl: ldefablhis, nwrtablhis, nrpfablhis / filename</span>
+<span class="go">           T       36     0</span>
+<span class="go">   croco_abl_his.nc</span>
+<span class="go">abl_history_fields: pu_dta pv_dta pt_dta pq_dta pgu_dta pgv_dta u_abl v_abl t_abl q_abl tke mxlm mxld avm avt ablh zr zw Hzr Hzw</span>
+<span class="go">                   T      T       T      T       T      T     T      T     T     T     T   T    T    T   T   T   T  T  T   T</span>
+<span class="go">abl_averages: ldefablavg, ntsablavg, nwrtablavg, nrpfablavg / filename</span>
+<span class="go">               F        1             1          0</span>
+<span class="go">   croco_abl_avg.nc</span>
+<span class="go">abl_averages_fields: pu_dta pv_dta pt_dta pq_dta pgu_dta pgv_dta u_abl v_abl t_abl q_abl tke mxlm mxld avm avt ablh zr zw Hzr Hzw</span>
+<span class="go">                   T      T       T      T       T      T     T      T      T     T     T   T    T    T   T   T   T  T  T   T</span>
+
+<span class="go">rho0:</span>
+<span class="go">   1025.d0</span>
+
+<span class="go">vertical_mixing: Akv_bak, Akt_bak [m^2/sec]</span>
+<span class="go">                0.d0    30*0.d0</span>
+
+<span class="go">bottom_drag:     RDRG [m/s],  RDRG2,  Zob [m],  Cdb_min, Cdb_max</span>
+<span class="go">              3.0d-04      0.d-3    0.d-3     1.d-4    1.d-1</span>
+
+<span class="go">gamma2:</span>
+<span class="go">              1.d0</span>
+
+<span class="go">abl_nudg_cof:    ltra_min, ltra_max, ldyn_min, ldyn_max  [seconds for all]</span>
+<span class="go">                   5400.     3600.     5400.    3600.</span>
+
+<span class="go">nudg_cof:    TauT_in, TauT_out, TauM_in, TauM_out  [days for all]</span>
+<span class="go">               1.      360.      3.      360.</span>
+</pre></div>
+</div>
+<p>Launch the simulation with mpirun (it takes less than 10 secondes) :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mpirun -np 4 ./croco</span>
+</pre></div>
+</div>
+</section>
+<section id="results">
+<h3><span class="section-number">2.1.4. </span>Results<a class="headerlink" href="#results" title="Permalink to this heading">¶</a></h3>
+<p>At the end of the simulation you should have the file croco_abl_his.nc. It contains instantanneous ABL1d variables.</p>
+</section>
+</section>
+<section id="warm-to-cold-case">
+<h2><span class="section-number">2.2. </span>Warm-to-cold case<a class="headerlink" href="#warm-to-cold-case" title="Permalink to this heading">¶</a></h2>
+<section id="id2">
+<h3><span class="section-number">2.2.1. </span>Installation<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<p>To install CROCO with ABL1d developments, get the dev_2022_ABL1d branch from INRIA’s gitlab server :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://gitlab.inria.fr/croco-ocean/croco.git</span>
+<span class="go">git checkout -b dev_2022_ABL1d origin/dev_2022_ABL1d</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3><span class="section-number">2.2.2. </span>Compilation<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+<p>To compile Kilpatrick test case, you need to adapt the cppdefs.h file (define KILPATRICK and undef REGIONAL) :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">...</span>
+<span class="gp">#</span>define KILPATRICK      /* 2D sst front*/
+<span class="go">/*</span>
+<span class="go">     ... OR REALISTIC CONFIGURATIONS</span>
+<span class="go">*/</span>
+<span class="gp">#</span>undef  COASTAL         /* COASTAL Applications */
+<span class="gp">#</span>undef  REGIONAL        /* REGIONAL Applications */
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>In param.h, you need to change the MPI setup by :</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">NP_XI</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w">  </span><span class="n">NP_ETA</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="n">NNODES</span><span class="o">=</span><span class="n">NP_XI</span><span class="o">*</span><span class="n">NP_ETA</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Contrary to the cold-to-warm case, you need to modify the SST front by multiplying by -1.0 the xr variable in the file ana_initial.F :</p>
+</section>
+<section id="id4">
+<h3><span class="section-number">2.2.3. </span>Simulation<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<p>Here is an example of the croco.in file to use (same as the cold-to-warm case) :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">title:</span>
+<span class="go">     KILPATRICK</span>
+<span class="go">time_stepping: NTIMES   dt[sec]  NDTFAST  NINFO</span>
+<span class="go">             1296      100      2      1</span>
+
+<span class="go">S-coord: THETA_S,   THETA_B,    Hc (m)</span>
+<span class="go">        7.0d0     2.0d0      200.0d0</span>
+
+<span class="go">initial: NRREC / filename</span>
+<span class="go">       0</span>
+<span class="go">   croco_ini.nc</span>
+<span class="go">restart:          NRST, NRPFRST / filename</span>
+<span class="go">                2592    -1</span>
+<span class="go">   croco_rst.nc</span>
+
+<span class="go">history: LDEFHIS, NWRT, NRPFHIS / filename</span>
+<span class="go">         T      36     0</span>
+<span class="go">   croco_his.nc</span>
+<span class="go">averages: NTSAVG, NAVG, NRPFAVG / filename</span>
+<span class="go">         1      36     0</span>
+<span class="go">   croco_avg.nc</span>
+<span class="go">primary_history_fields: zeta UBAR VBAR  U  V   wrtT(1:NT)</span>
+<span class="go">                       T    T   T   T  T    40*T</span>
+<span class="go">auxiliary_history_fields:   rho Omega  W  Akv  Akt  Aks  Bvf  Visc3d Diff3d  HBL HBBL Bostr Bustr Bvstr Wstr Ustr Vstr Shfl Swfl rsw rlw lat sen HEL</span>
+<span class="go">                          F   F     T   F    T    F   F    F       F       T   T    T     F      F     T    T    T    T    T   30*T</span>
+
+<span class="go">primary_averages: zeta UBAR VBAR  U  V   wrtT(1:NT)</span>
+<span class="go">                T    T    T    T  T   40*T</span>
+<span class="go">auxiliary_averages: rho Omega  W  Akv  Akt  Aks  Bvf Visc3d Diff3d HBL HBBL Bostr Bustr Bvstr Wstr Ustr Vstr Shfl Swfl rsw rlw lat sen HEL</span>
+<span class="go">                  F   T     T   F    T    F    F    F     F      T   T    T     F     F     T   T    T     T    T   30*T</span>
+
+<span class="go">abl: ldefablhis, nwrtablhis, nrpfablhis / filename</span>
+<span class="go">           T       36     0</span>
+<span class="go">   croco_abl_his.nc</span>
+<span class="go">abl_history_fields: pu_dta pv_dta pt_dta pq_dta pgu_dta pgv_dta u_abl v_abl t_abl q_abl tke mxlm mxld avm avt ablh zr zw Hzr Hzw</span>
+<span class="go">                   T      T       T      T       T      T     T      T     T     T     T   T    T    T   T   T   T  T  T   T</span>
+<span class="go">abl_averages: ldefablavg, ntsablavg, nwrtablavg, nrpfablavg / filename</span>
+<span class="go">               F        1             1          0</span>
+<span class="go">   croco_abl_avg.nc</span>
+<span class="go">abl_averages_fields: pu_dta pv_dta pt_dta pq_dta pgu_dta pgv_dta u_abl v_abl t_abl q_abl tke mxlm mxld avm avt ablh zr zw Hzr Hzw</span>
+<span class="go">                   T      T       T      T       T      T     T      T      T     T     T   T    T    T   T   T   T  T  T   T</span>
+
+<span class="go">rho0:</span>
+<span class="go">   1025.d0</span>
+
+<span class="go">vertical_mixing: Akv_bak, Akt_bak [m^2/sec]</span>
+<span class="go">                0.d0    30*0.d0</span>
+
+<span class="go">bottom_drag:     RDRG [m/s],  RDRG2,  Zob [m],  Cdb_min, Cdb_max</span>
+<span class="go">              3.0d-04      0.d-3    0.d-3     1.d-4    1.d-1</span>
+
+<span class="go">gamma2:</span>
+<span class="go">              1.d0</span>
+
+<span class="go">abl_nudg_cof:    ltra_min, ltra_max, ldyn_min, ldyn_max  [seconds for all]</span>
+<span class="go">                   5400.     3600.     5400.    3600.</span>
+
+<span class="go">nudg_cof:    TauT_in, TauT_out, TauM_in, TauM_out  [days for all]</span>
+<span class="go">               1.      360.      3.      360.</span>
+</pre></div>
+</div>
+<p>Launch the simulation with mpirun (it takes less than 10 secondes) :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mpirun -np 4 ./croco</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3><span class="section-number">2.2.4. </span>Results<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+<p>At the end of the simulation you should have the file croco_abl_his.nc. It contains instantanneous ABL1d variables.</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="new_features.html">1. New features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Run KILPATRICK test cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cold-to-warm-case">2.1. Cold-to-warm case</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2.1.1. Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compilation">2.1.2. Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simulation">2.1.3. Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">2.1.4. Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#warm-to-cold-case">2.2. Warm-to-cold case</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">2.2.1. Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2.2.2. Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">2.2.3. Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">2.2.4. Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cases_benguela_lr.html">3. Run BENGUELA_LR test case</a></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/cases_kilpatrick.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cases_benguela_lr.html" title="3. Run BENGUELA_LR test case"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="new_features.html" title="1. New features"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">CROCO/ABL1d coupling 1.3.1 documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>Run KILPATRICK test cases</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, J. Pianezze.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
