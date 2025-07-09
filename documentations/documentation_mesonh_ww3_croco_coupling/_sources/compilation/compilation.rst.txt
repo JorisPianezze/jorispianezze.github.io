@@ -133,11 +133,6 @@ to recompile Meso-NH if you wish to change parametrizations, which is not the ca
 WW3
 ====================================
 
-.. note:: It is now possible and advise to compile WW3 using cmake !
-
-Old compilation's procedure (w3_make)
---------------------------------------------
-
 The steps for compiling WW3 are described in the WW3 manual (ww3_dir/manual/) but are repeated here for greater clarity.
 Whatever the computers, you can follow the same procedure to compile WW3.
 
@@ -209,11 +204,6 @@ In the models/ folder I therefore have two exe folders, one called exe_SANSOASIS
    +--------------------+--------------------------------------+-----------------+    
    | ww3_ounf           | Create netcdf file                   | ww3_ounf.nml    |
    +--------------------+--------------------------------------+-----------------+
-   
-New compilation's procedure (cmake)
---------------------------------------------
-
-.. warning:: Not yet tested.
 
 .. _RST compile_CROCO:
 
