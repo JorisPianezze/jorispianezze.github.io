@@ -6,7 +6,7 @@ This documentation is intended for `Meso-NH <http://mesonh.aero.obs-mip.fr/>`_ u
 
 .. note::
 
-   This documentation is subject to change, so don't hesitate to `send me <joris.pianezze@aero.obs-mip.fr>`_ your improvements, corrections, etc ...
+   This documentation is subject to change, so don't hesitate to `send me <joris.pianezze@cnrs.fr>`_ your improvements, corrections, etc ...
 
 Contents
 ********

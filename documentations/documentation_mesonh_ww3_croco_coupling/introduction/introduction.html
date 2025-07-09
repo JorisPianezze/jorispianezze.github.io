@@ -1,23 +1,20 @@
 
 
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Introduction &#8212; Meso-NH/WW3/CROCO coupling 5.7.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <title>1. Introduction &#8212; Meso-NH/WW3/CROCO coupling 2.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css?v=f9ae72be" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=51b770b3"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
@@ -55,7 +52,7 @@
         <li class="right" >
           <a href="../index.html" title="Welcome to Meso-NH / WW3 / CROCO coupling’s documentation"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
@@ -69,15 +66,19 @@
           <div class="body" role="main">
             
   <section id="introduction">
-<h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
-<p>This documentation describes how to set up and run a coupled simulation between <a class="reference external" href="http://mesonh.aero.obs-mip.fr">Meso-NH</a> and <a class="reference external" href="https://polar.ncep.noaa.gov/waves/wavewatch">WW3</a> and/or <a class="reference external" href="https://www.croco-ocean.org">CROCO</a> with the <a class="reference external" href="https://oasis.cerfacs.fr/en/home">OASIS</a> coupler. It does’nt contain detailed explanations on the use of Meso-NH, WW3, CROCO or OASIS. You are therefore advised to familiarise yourself with these models before reading this documentation.</p>
+<h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
+<p>This documentation describes how to set up and run a coupled simulation between <a class="reference external" href="http://mesonh.aero.obs-mip.fr">Meso-NH</a> and <a class="reference external" href="https://polar.ncep.noaa.gov/waves/wavewatch">WW3</a> and/or <a class="reference external" href="https://www.croco-ocean.org">CROCO</a> with the <a class="reference external" href="https://oasis.cerfacs.fr/en/home">OASIS</a> coupler. It doesn’t contain detailed explanations on the use of Meso-NH, WW3, CROCO or OASIS. You are therefore advised to familiarise yourself with these models before reading this documentation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This documentation has been tested with version 5.7.2 of Meso-NH, 2.1.0 of CROCO, 7.14 of WW3 and 5.2 of OASIS.</p>
+</div>
 <p>The developments were carried out as part of an Ocean-Wave-Atmosphere project group
 initiated by the Centre National de Recherches Météorologiques (<a class="reference external" href="https://www.umr-cnrm.fr/">CNRM</a>) around the <a class="reference external" href="https://www.umr-cnrm.fr/surfex/">SURFEX</a>  surface model <span id="id1">[<a class="reference internal" href="../index.html#id3" title="A. Voldoire, B. Decharme, J. Pianezze, C. Lebeaupin Brossier, F. Sevault, L. Seyfried, V. Garnier, S. Bielli, S. Valcke, A. Alias, M. Accensi, F. Ardhuin, M.-N. Bouin, V. Ducrocq, S. Faroux, H. Giordani, F. Léger, P. Marsaleix, R. Rainaud, J.-L. Redelsperger, E. Richard, and S. Riette. SURFEX v8.0 interface with OASIS3-MCT to couple atmosphere with hydrology, ocean, waves and sea-ice models, from coastal to global scales. Geoscientific Model Development, 10(11):4207–4227, November 2017. URL: https://www.geosci-model-dev.net/10/4207/2017/ (visited on 2018-08-06), doi:10.5194/gmd-10-4207-2017.">Voldoire <em>et al.</em>, 2017</a>, <a class="reference internal" href="../index.html#id2" title="J. Pianezze, C. Barthe, S. Bielli, P. Tulet, S. Jullien, G. Cambon, O. Bousquet, M. Claeys, and E. Cordier. A New Coupled Ocean-Waves-Atmosphere Model Designed for Tropical Storm Studies: Example of Tropical Cyclone Bejisa (2013-2014) in the South-West Indian Ocean. Journal of Advances in Modeling Earth Systems, 10(3):801–825, March 2018. URL: http://doi.wiley.com/10.1002/2017MS001177 (visited on 2018-08-06), doi:10.1002/2017MS001177.">Pianezze <em>et al.</em>, 2018</a>]</span>.</p>
 <p>The coupling algorithm implemented enables coupled ocean-wave-atmosphere simulations to be carried out for any study case or any regional geographical area. The possible exchanges between the different components of the coupled system are illustrated in the following figure :</p>
 <figure class="align-default" id="id2">
 <img alt="../_images/coupling_MNH_SFX_WW3_CROCO.png" src="../_images/coupling_MNH_SFX_WW3_CROCO.png" />
 <figcaption>
-<p><span class="caption-text">Diagram illustrating the different fields that can be exchanged between the Meso-NH/SurfEx, WW3 and CROCO models using OASIS coupler.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Diagram illustrating the different fields that can be exchanged between the Meso-NH/SurfEx, WW3 and CROCO models using OASIS coupler.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -153,7 +154,7 @@ initiated by the Centre National de Recherches Météorologiques (<a class="refe
         <li class="right" >
           <a href="../index.html" title="Welcome to Meso-NH / WW3 / CROCO coupling’s documentation"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Introduction</a></li> 
       </ul>
@@ -161,8 +162,8 @@ initiated by the Centre National de Recherches Météorologiques (<a class="refe
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, J. Pianezze.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    &#169; Copyright 2025, J. Pianezze.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

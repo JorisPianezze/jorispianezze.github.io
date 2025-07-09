@@ -22,55 +22,5 @@ To be able to use Meso-NH, WW3 and OASIS coupling's developments you need to hav
 +--------------------+---------------------+
 | Parallel library   | MPI                 |
 +--------------------+---------------------+
-| | Python3          | | os, glob          |
-| |                  | | netCDF4           |
-| |                  | | numpy             |
-| |                  | | matplotlib        |
+| Preprocessing      | Python3             |
 +--------------------+---------------------+
-
-This documentation has been tested with following python's environment :
-
-.. code-block:: yaml
-
-   name: env_cpl_mnhww3croco
-   channels:
-     - defaults
-   dependencies:
-     - python=3.11.5
-     - numpy=1.26.0
-     - netcdf4=1.6.2
-     - matplotlib=3.7.2
-
-.. note::
-
-   You can copy/paste these lines in a file called env_cpl_mnhww3croco.yml.
-
-To install it with :command:`conda`, do
-
-.. code-block:: bash
-   
-   conda env create -f env_cpl_mnhww3croco.yml
-
-.. note::
-
-   Insallation of python's environment has to be done one time.
-
-.. tip::
-
-   To accelerate the installation of your conda's environment you can use mamba, example :
-   
-.. code-block:: bash
-   
-   mamba env create -f env_cpl_mnhww3croco.yml
-
-To activate it, do
-
-.. code-block:: bash
-
-   conda activate env_cpl_mnhww3croco
-   
-To deactivate it, do
-
-.. code-block:: bash
-
-   conda deactivate

@@ -1,23 +1,20 @@
 
 
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>4. Compilation &#8212; Meso-NH/WW3/CROCO coupling 5.7.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <title>4. Compilation &#8212; Meso-NH/WW3/CROCO coupling 2.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css?v=f9ae72be" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=51b770b3"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
@@ -55,7 +52,7 @@
         <li class="right" >
           <a href="../installation/installation.html" title="3. Installation"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4. </span>Compilation</a></li> 
       </ul>
@@ -69,38 +66,99 @@
           <div class="body" role="main">
             
   <section id="compilation">
-<h1><span class="section-number">4. </span>Compilation<a class="headerlink" href="#compilation" title="Permalink to this heading">¶</a></h1>
-<p>First you need to compile Meso-NH because NetCDF and OASIS libraries are compiled during this compilation. Next you can compile WW3. For CROCO you need to know the numbers of points of your domain before compile it.</p>
-<section id="meso-nh-surfex-netcdf-and-oasis">
-<span id="rst-compile-mnh"></span><h2><span class="section-number">4.1. </span>Meso-NH/SurfEx (+ NetCDF and OASIS)<a class="headerlink" href="#meso-nh-surfex-netcdf-and-oasis" title="Permalink to this heading">¶</a></h2>
-<p>To compile Meso-NH’s package with NetCDF and OASIS (oasis3-mct_5.0) librairies, do :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> MNH-V5-7-0/src/
+<h1><span class="section-number">4. </span>Compilation<a class="headerlink" href="#compilation" title="Link to this heading">¶</a></h1>
+<p>First you need to compile Meso-NH because NetCDF and OASIS libraries are compiled during this compilation. Next you can compile WW3. For CROCO you need to know the numbers of horizontal and vertical points of your domain before compile it.</p>
+<section id="netcdf">
+<span id="rst-compile-netcdf"></span><h2><span class="section-number">4.1. </span>NetCDF<a class="headerlink" href="#netcdf" title="Link to this heading">¶</a></h2>
+<p>You can compile NetCDF library using the script :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY/libraries/
+sbatch<span class="w"> </span>install_aer_hdf_netcdf_libraries.sub
+</pre></div>
+</div>
+<p>To test compilation of the different libraries, do :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./build_netcdf-X.X.X/bin/nf-config<span class="w"> </span>--all
+</pre></div>
+</div>
+<p>And you need to see :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>This<span class="w"> </span>netCDF-Fortran<span class="w"> </span>X.X.X<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>built<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>following<span class="w"> </span>features:
 
-<span class="nb">export</span> <span class="nv">VER_MPI</span><span class="o">=</span>MPIAUTO
-<span class="nb">export</span> <span class="nv">VER_CDF</span><span class="o">=</span>CDFAUTO
-<span class="nb">export</span> <span class="nv">VER_OASIS</span><span class="o">=</span>OASISAUTO
+<span class="w">  </span>--cc<span class="w">        </span>-&gt;<span class="w"> </span>XXX
+<span class="w">  </span>--cflags<span class="w">    </span>-&gt;<span class="w"> </span>XXX
+
+<span class="w">  </span>--fc<span class="w">        </span>-&gt;<span class="w"> </span>XXX
+<span class="w">  </span>--fflags<span class="w">    </span>-&gt;<span class="w"> </span>XXX
+<span class="w">  </span>--flibs<span class="w">     </span>-&gt;<span class="w"> </span>XXX
+<span class="w">  </span>--has-f90<span class="w">   </span>-&gt;<span class="w"> </span>XXX
+<span class="w">  </span>--has-f03<span class="w">   </span>-&gt;<span class="w"> </span>XXX
+
+<span class="w">  </span>--has-nc2<span class="w">   </span>-&gt;<span class="w"> </span>XXX
+<span class="w">  </span>--has-nc4<span class="w">   </span>-&gt;<span class="w"> </span>XXX
+
+<span class="w">  </span>--prefix<span class="w">    </span>-&gt;<span class="w"> </span>XXX
+<span class="w">  </span>--includedir-&gt;<span class="w"> </span>XXX
+<span class="w">  </span>--version<span class="w">   </span>-&gt;<span class="w"> </span>netCDF-Fortran<span class="w"> </span>X.X.X
+</pre></div>
+</div>
+</section>
+<section id="oasis">
+<h2><span class="section-number">4.2. </span>OASIS<a class="headerlink" href="#oasis" title="Link to this heading">¶</a></h2>
+<p>To compile OASIS you need to adapt the make.inc and make.${machine} path.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>You need to put absolute path !</p></li>
+<li><p>make.inc call make.${machine} file</p></li>
+<li><p>To know environment variable ${machine} look at your environment.sh file</p></li>
+</ul>
+</div>
+<p>Then you can compile OASIS :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY/
+<span class="nb">source</span><span class="w"> </span>environment.sh
+<span class="nb">cd</span><span class="w"> </span>oasis3-mct_5.2/util/make_dir/
+make<span class="w"> </span>realclean<span class="w"> </span>-f<span class="w"> </span>TopMakefileOasis3
+make<span class="w"> </span>-f<span class="w"> </span>TopMakefileOasis3
+</pre></div>
+</div>
+</section>
+<section id="meso-nh-surfex">
+<span id="rst-compile-mnh"></span><h2><span class="section-number">4.3. </span>Meso-NH/SurfEx<a class="headerlink" href="#meso-nh-surfex" title="Link to this heading">¶</a></h2>
+<p>Before compiling Meso-NH, you need to change MNHENV in the configure by the path of your environment.sh file :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">MNHENV</span><span class="o">=</span><span class="si">${</span><span class="nv">MNHENV</span><span class="k">:-</span><span class="s2">&quot;</span>
+<span class="s2">       source /XXX/models_YOURCASESTUDY/environment.sh</span>
+<span class="s2">&quot;</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>Then to compile Meso-NH’s package, do :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>MNH-V5-7-2/src/
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">VER_MPI</span><span class="o">=</span>MPIAUTO
+<span class="nb">export</span><span class="w"> </span><span class="nv">VER_CDF</span><span class="o">=</span>CDFPERSO
+<span class="nb">export</span><span class="w"> </span><span class="nv">VER_OASIS</span><span class="o">=</span>OASISPERSO
 
 ./configure
-. ../conf/profile_mesonh
-make
-make installmaster
+</pre></div>
+</div>
+<p>and then, depending of the architecture, compile interactively :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+make<span class="w"> </span>installmaster
+</pre></div>
+</div>
+<p>or submit a job (take care of the name of profile-mesonh in the job). By example, for belenos, do :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>job_make_mesonh_BullX_belenos
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p>By setting VER_CDF=CDFAUTO and VER_OASIS=OASISAUTO, you chose to install and compile NetCDF and OASIS libraries provided in the Meso-NH’s package. These libraries are located in src/LIB directory.</p></li>
-<li><p>oasis3-mct_5.0 version is provided in the Meso-NH’s package. Compiled librairies is located in src/dir_obj*/MASTER/OASIS3-MCT_5.0 directory.</p></li>
-<li><p>NetCDF is compiled using version 1.0.6 of libaec, version 1.14.0 of hdf5 version 4.9.0 of netcdf-c and version 4.6.0 of netcdf-fortran. Compiled librairies is located in src/dir_obj*/MASTER/NETCDF-4.6.0 directory.</p></li>
-<li><p><strong class="command">./configure</strong> command extracts tar.gz archives. NetCDF and OASIS libraries are compiled at the beginning of the Meso-NH compilation (during <strong class="command">make</strong>).</p></li>
-<li><p>You can use your own NETCDF and OASIS libraries by setting VER_CDF=CDFPERSO and VER_OASIS=OASISPERSO and define NETCDF_CONFIG and OASISDIR environment variables. NETCDF_CONFIG must point to the nf-config file. OASISDIR must point to the OASIS build directory.</p></li>
+<li><p>By setting VER_CDF=CDFPERSO and VER_OASIS=OASISPERSO, compilation of Meso-NH will use NETCDF_CONFIG must point to the nf-config file. OASISDIR must point to the OASIS build directory. NETCDF_CONFIG and OASISDIR environment variables are defined in environment.sh file.</p></li>
+<li><p>If you chose VER_CDF=CDFAUTO and VER_OASIS=OASISAUTO, you will install and compile NetCDF and OASIS libraries provided in the Meso-NH’s package. These libraries will be located in src/LIB directory.</p></li>
 <li><p>The <strong class="command">make</strong> command calls different files: Makefile (compile libraries), Rules.$ARCH$(F).mk (options of compilation), Makefile.MESONH.mk (link to the compiled libraries)</p></li>
 </ul>
 </div>
 <p>Many programs have been compiled. For this documentation we will use those presented in the following table. These programs can be used with or without activating coupling. The choice of parametrizations is realized via the use of namelist: it is therefore not necessary
 to recompile Meso-NH if you wish to change parametrizations, which is not the case for WW3 and CROCO.</p>
 <table class="docutils align-default" id="id1">
-<caption><span class="caption-text">List of executables Meso-NH/SurfEx compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">List of executables Meso-NH/SurfEx compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.</span><a class="headerlink" href="#id1" title="Link to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head" rowspan="2"><p>Executable name</p></th>
 <th class="head" rowspan="2"><p>Function</p></th>
@@ -127,31 +185,15 @@ to recompile Meso-NH if you wish to change parametrizations, which is not the ca
 </tr>
 </tbody>
 </table>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>at the end of the compilation you need to define OASISDIR and NETCDF_CONFIG environment variable as follows:</p>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">OASISDIR</span><span class="o">=</span>/path/to/mnh/src/dir_obj-XYZ/MASTER/OASIS3-MCT_5.0
-<span class="nb">export</span> <span class="nv">NETCDF_CONFIG</span><span class="o">=</span>/path/to/mnh/src/dir_obj-XYZ/MASTER/NETCDF-4.6.0/bin/nf-config
-</pre></div>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You can add these environment variables at the end of the profile_mesonh file, by example.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>These environment variables will be used during compilation of WW3 and CROCO.</p>
-</div>
 </section>
 <section id="ww3">
-<span id="rst-compile-ww3"></span><h2><span class="section-number">4.2. </span>WW3<a class="headerlink" href="#ww3" title="Permalink to this heading">¶</a></h2>
+<span id="rst-compile-ww3"></span><h2><span class="section-number">4.4. </span>WW3<a class="headerlink" href="#ww3" title="Link to this heading">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>It is now possible and advise to compile WW3 using cmake !</p>
 </div>
 <section id="old-compilation-s-procedure-w3-make">
-<h3><span class="section-number">4.2.1. </span>Old compilation’s procedure (w3_make)<a class="headerlink" href="#old-compilation-s-procedure-w3-make" title="Permalink to this heading">¶</a></h3>
+<h3><span class="section-number">4.4.1. </span>Old compilation’s procedure (w3_make)<a class="headerlink" href="#old-compilation-s-procedure-w3-make" title="Link to this heading">¶</a></h3>
 <p>The steps for compiling WW3 are described in the WW3 manual (ww3_dir/manual/) but are repeated here for greater clarity.
 Whatever the computers, you can follow the same procedure to compile WW3.</p>
 <p>For my compilation I need to change following line of the link.tmpl file:</p>
@@ -163,7 +205,7 @@ Whatever the computers, you can follow the same procedure to compile WW3.</p>
 </pre></div>
 </div>
 <p>Then you must then prepare the link and comp files used to compile WW3 using the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_setup .. -c your_environment -s OASACM -q
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_setup<span class="w"> </span>..<span class="w"> </span>-c<span class="w"> </span>your_environment<span class="w"> </span>-s<span class="w"> </span>OASACM<span class="w"> </span>-q
 </pre></div>
 </div>
 <div class="admonition note">
@@ -178,7 +220,7 @@ Note that it is in the switch file that you must define the physical parameters 
 </pre></div>
 </div>
 <p>or you can compile a selected list of program with the following command :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_make ww3_grid ww3_bound ww3_prnc ww3_shel ww3_ounf
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_make<span class="w"> </span>ww3_grid<span class="w"> </span>ww3_bound<span class="w"> </span>ww3_prnc<span class="w"> </span>ww3_shel<span class="w"> </span>ww3_ounf
 </pre></div>
 </div>
 <p>To recompile everything you need to do :</p>
@@ -193,7 +235,7 @@ They depend on the settings activated, so if you want to change the settings you
 For this tutorial, it is necessary to compile WW3 twice: once with the OASACM_OASOCM switch and once with the switch_SANSOASIS (only necessary for the spinup simulation).
 In the models/ folder I therefore have two exe folders, one called exe_SANSOASIS and the other exe_OASACM_OASOCM containing the executables for the spinup simulation and for the coupled ocean-wave-atmosphere simulation, respectively.</p>
 <table class="docutils align-default" id="id2">
-<caption><span class="caption-text">List of executables WW3 compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">List of executables WW3 compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.</span><a class="headerlink" href="#id2" title="Link to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head" rowspan="2"><p>Executable name</p></th>
 <th class="head" rowspan="2"><p>Function</p></th>
@@ -226,7 +268,7 @@ In the models/ folder I therefore have two exe folders, one called exe_SANSOASIS
 </table>
 </section>
 <section id="new-compilation-s-procedure-cmake">
-<h3><span class="section-number">4.2.2. </span>New compilation’s procedure (cmake)<a class="headerlink" href="#new-compilation-s-procedure-cmake" title="Permalink to this heading">¶</a></h3>
+<h3><span class="section-number">4.4.2. </span>New compilation’s procedure (cmake)<a class="headerlink" href="#new-compilation-s-procedure-cmake" title="Link to this heading">¶</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Not yet tested.</p>
@@ -234,24 +276,32 @@ In the models/ folder I therefore have two exe folders, one called exe_SANSOASIS
 </section>
 </section>
 <section id="croco">
-<span id="rst-compile-croco"></span><h2><span class="section-number">4.3. </span>CROCO<a class="headerlink" href="#croco" title="Permalink to this heading">¶</a></h2>
+<span id="rst-compile-croco"></span><h2><span class="section-number">4.5. </span>CROCO<a class="headerlink" href="#croco" title="Link to this heading">¶</a></h2>
 <p>Whatever the computers, you can follow the same procedure to compile CROCO.</p>
-<p>To begin with, you need to create a directory containing the jobcomp compilation script and the files you wish to modify.
-An example is located in the Git repository in 3_input_croco/src/exe_IROISE_1core_CPLOA_CPLOW directory. This folder contains the following folders and files:</p>
+<p>First, you need to go to the directory :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd models_CASESTUDY/croco-v2.1.0/exe_${machine}
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p>clean.sh : clean the compiled directory</p></li>
-<li><p>jobcomp : script to launch the compilation</p></li>
-<li><p>MY_SRC : folder containing the configuration files.</p></li>
+<li><p>To know environment variable ${machine} look at your environment.sh file</p></li>
 </ul>
-<p>In the MY_SRC directory you must put the files to be modified. The CPP keys used and the domain location must be entered in the cppdefs.h and param.h files.</p>
+</div>
+<p>In this directoy, there are :</p>
+<ul class="simple">
+<li><p>clean_compilation_croco.sh: a script to clean the compiled directory</p></li>
+<li><p>jobcomp.${machine} : a script to launch the compilation adapted to your machine.</p></li>
+<li><p>MY_SRC : a folder containing the configuration files cppdefs.h and param.h files.</p></li>
+</ul>
 <p>In the cppdefs.h file, you can choose whether or not to pair with the following cpp keys:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="cp"># define OA_COUPLING</span>
 <span class="cp"># define OW_COUPLING</span>
 </pre></div>
 </div>
 <p>The cpp keys OA_COUPLING and OW_COUPLING are used to activate coupling with an atmospheric model and a wave model, respectively. Next you need to give a name to your configuration, which will be used in the param.h file:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span><span class="w"> </span><span class="n">Configuration</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">*/</span><span class="w"></span>
-<span class="cp"># define IROISE</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span><span class="w"> </span><span class="n">Configuration</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">*/</span>
+<span class="cp"># define YOURCASESTUDY</span>
 </pre></div>
 </div>
 <p>In param.h, you also must indicate the number of points you have for the CROCO domain.</p>
@@ -259,22 +309,22 @@ An example is located in the Git repository in 3_input_croco/src/exe_IROISE_1cor
 <p class="admonition-title">Tip</p>
 <p>To find out these points, run a ncdump -h command on the file rstrt_SAVE.nc for example, see the section <a class="reference internal" href="../preprocessing/preprocessing.html#rst-preprocessing-mnh"><span class="std std-ref">Meso-NH/SurfEx</span></a>.</p>
 </div>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="cp"># elif defined  IROISE</span>
-<span class="w">      </span><span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">LLm0</span><span class="o">=</span><span class="mi">38</span><span class="p">,</span><span class="w">  </span><span class="n">MMm0</span><span class="o">=</span><span class="mi">38</span><span class="p">,</span><span class="w">  </span><span class="n">N</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span><span class="w">     </span><span class="c">! IROISE</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="cp"># elif defined  YOURCASESTUDY</span>
+<span class="w">      </span><span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">LLm0</span><span class="o">=</span><span class="mi">38</span><span class="p">,</span><span class="w">  </span><span class="n">MMm0</span><span class="o">=</span><span class="mi">38</span><span class="p">,</span><span class="w">  </span><span class="n">N</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span><span class="w">     </span><span class="c">! YOURCASESTUDY</span>
 </pre></div>
 </div>
 <p>The number of cores used (NNODES) during the simulation must be entered in the param.h file and the code must be recompiled each time the number of cores used is changed:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifdef MPI</span>
-<span class="kt">integer </span><span class="n">NP_XI</span><span class="p">,</span><span class="w"> </span><span class="n">NP_ETA</span><span class="p">,</span><span class="w"> </span><span class="n">NNODES</span><span class="w"></span>
-<span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">NP_XI</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NP_ETA</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="n">NNODES</span><span class="o">=</span><span class="n">NP_XI</span><span class="o">*</span><span class="n">NP_ETA</span><span class="p">)</span><span class="w"></span>
-<span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">NPP</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">NSUB_X</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NSUB_E</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="kt">integer </span><span class="n">NP_XI</span><span class="p">,</span><span class="w"> </span><span class="n">NP_ETA</span><span class="p">,</span><span class="w"> </span><span class="n">NNODES</span>
+<span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">NP_XI</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NP_ETA</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w">  </span><span class="n">NNODES</span><span class="o">=</span><span class="n">NP_XI</span><span class="o">*</span><span class="n">NP_ETA</span><span class="p">)</span>
+<span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">NPP</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">NSUB_X</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">NSUB_E</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>NP_XI and NP_ETA correspond to the number of cores in longitude and latitude respectively.</p>
-<p>Unlike WW3 and Meso-NH, there is no program for preparing initial conditions or lateral boundary conditions: these steps are carried out using croco_tools.</p>
+<p>Unlike WW3 and Meso-NH, there is no program for preparing initial conditions or lateral boundary conditions: these steps are carried out using croco_pytools.</p>
 <p>To compile CROCO run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./jobcomp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./jobcomp.<span class="si">${</span><span class="nv">machine</span><span class="si">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -283,9 +333,9 @@ An example is located in the Git repository in 3_input_croco/src/exe_IROISE_1cor
 </div>
 <p>Only one compiled program is used in this documentation (cf following table).
 This executable depends on the settings activated, so if you want to change the settings you have to recompile CROCO: it is therefore necessary to copy the exe compilation folder so as not to overwrite the previously compiled executables.
-In the croco folder, I therefore have two folders exe_IROISE_1core_CPLOA and exe_IROISE_1core_CPLOA_CPLOW containing the executables for the coupled ocean-atmosphere and ocean-wave-atmosphere simulations, respectively.</p>
+In the croco folder, I therefore have two folders exe_YOURCCONFIG_Xcore_CPLOA and exe_YOURCONFIG_Xcore_CPLOA_CPLOW containing the executables for the coupled ocean-atmosphere and ocean-wave-atmosphere simulations, respectively.</p>
 <table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Executable CROCO compiled and used in this documentation.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-text">Executable CROCO compiled and used in this documentation.</span><a class="headerlink" href="#id3" title="Link to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head" rowspan="2"><p>Executable name</p></th>
 <th class="head" rowspan="2"><p>Function</p></th>
@@ -327,13 +377,15 @@ In the croco folder, I therefore have two folders exe_IROISE_1core_CPLOA and exe
 <li class="toctree-l1"><a class="reference internal" href="../requirements/requirements.html">2. Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">3. Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">4. Compilation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#meso-nh-surfex-netcdf-and-oasis">4.1. Meso-NH/SurfEx (+ NetCDF and OASIS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ww3">4.2. WW3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#old-compilation-s-procedure-w3-make">4.2.1. Old compilation’s procedure (w3_make)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#new-compilation-s-procedure-cmake">4.2.2. New compilation’s procedure (cmake)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#netcdf">4.1. NetCDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#oasis">4.2. OASIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#meso-nh-surfex">4.3. Meso-NH/SurfEx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ww3">4.4. WW3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#old-compilation-s-procedure-w3-make">4.4.1. Old compilation’s procedure (w3_make)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#new-compilation-s-procedure-cmake">4.4.2. New compilation’s procedure (cmake)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#croco">4.3. CROCO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#croco">4.5. CROCO</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../preprocessing/preprocessing.html">5. Pre-processing</a></li>
@@ -383,7 +435,7 @@ In the croco folder, I therefore have two folders exe_IROISE_1core_CPLOA and exe
         <li class="right" >
           <a href="../installation/installation.html" title="3. Installation"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">4. </span>Compilation</a></li> 
       </ul>
@@ -391,8 +443,8 @@ In the croco folder, I therefore have two folders exe_IROISE_1core_CPLOA and exe
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, J. Pianezze.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    &#169; Copyright 2025, J. Pianezze.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

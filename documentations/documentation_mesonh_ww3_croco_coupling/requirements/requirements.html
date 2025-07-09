@@ -1,23 +1,20 @@
 
 
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>2. Requirements &#8212; Meso-NH/WW3/CROCO coupling 5.7.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <title>2. Requirements &#8212; Meso-NH/WW3/CROCO coupling 2.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css?v=f9ae72be" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=51b770b3"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
@@ -55,7 +52,7 @@
         <li class="right" >
           <a href="../introduction/introduction.html" title="1. Introduction"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>Requirements</a></li> 
       </ul>
@@ -69,7 +66,7 @@
           <div class="body" role="main">
             
   <section id="requirements">
-<span id="rst-requirements"></span><h1><span class="section-number">2. </span>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h1>
+<span id="rst-requirements"></span><h1><span class="section-number">2. </span>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">¶</a></h1>
 <p>To be able to use Meso-NH, WW3 and OASIS coupling’s developments you need to have the following requirements :</p>
 <table class="docutils align-default">
 <thead>
@@ -102,61 +99,11 @@
 <tr class="row-odd"><td><p>Parallel library</p></td>
 <td><p>MPI</p></td>
 </tr>
-<tr class="row-even"><td><div class="line-block">
-<div class="line">Python3</div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</td>
-<td><div class="line-block">
-<div class="line">os, glob</div>
-<div class="line">netCDF4</div>
-<div class="line">numpy</div>
-<div class="line">matplotlib</div>
-</div>
-</td>
+<tr class="row-even"><td><p>Preprocessing</p></td>
+<td><p>Python3</p></td>
 </tr>
 </tbody>
 </table>
-<p>This documentation has been tested with following python’s environment :</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env_cpl_mnhww3croco</span><span class="w"></span>
-<span class="nt">channels</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">defaults</span><span class="w"></span>
-<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python=3.11.5</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy=1.26.0</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">netcdf4=1.6.2</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">matplotlib=3.7.2</span><span class="w"></span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can copy/paste these lines in a file called env_cpl_mnhww3croco.yml.</p>
-</div>
-<p>To install it with <strong class="command">conda</strong>, do</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f env_cpl_mnhww3croco.yml
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Insallation of python’s environment has to be done one time.</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>To accelerate the installation of your conda’s environment you can use mamba, example :</p>
-</div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba env create -f env_cpl_mnhww3croco.yml
-</pre></div>
-</div>
-<p>To activate it, do</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate env_cpl_mnhww3croco
-</pre></div>
-</div>
-<p>To deactivate it, do</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda deactivate
-</pre></div>
-</div>
 </section>
 
 
@@ -230,7 +177,7 @@
         <li class="right" >
           <a href="../introduction/introduction.html" title="1. Introduction"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">2. </span>Requirements</a></li> 
       </ul>
@@ -238,8 +185,8 @@
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, J. Pianezze.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    &#169; Copyright 2025, J. Pianezze.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

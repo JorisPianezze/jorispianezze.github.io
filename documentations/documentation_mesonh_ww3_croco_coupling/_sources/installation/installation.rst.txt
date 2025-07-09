@@ -4,51 +4,99 @@ Installation
 You can install models where you want but I suggest that you to put the models in a directory dedicated to the case study,
 especially if you intend to test new versions of models, compilers or libraries.
 
-At the end of this section you need to have 3 directories : MNH-V5-7-0, WW3 and croco.
+At the end of this section you need to have 4 directories : **libraries**, **MNH-V5-7-2**, **WW3-v7.16** and **croco-v2.1.0** inside your **models_YOURCASESTUDY** directory.
+
+.. _RST get_models_template:
+
+Get models template
+====================================
+
+To get the models template directory, do :
+
+.. code-block:: bash
+
+   git clone https://github.com/JorisPianezze/models_tmpl_for_mesonh_ww3_croco_coupling.git
+
+Rename the directory into your own case study 
+
+.. code-block:: bash
+
+   mv models_tmpl_for_mesonh_ww3_croco_coupling models_YOURCASESTUDY
+
+You can chose your environment depending of your architecture (ARCH) :
+
+.. code-block:: bash
+
+   cd models_YOURCASESTUDY
+   ln -sf environment/environment_ARCH.sh environment.sh
+
+.. note::
+
+   * This environment has been tested in different architecture.
+   * Following scripts will called :file:`envionment.sh` file. You also have to use this script when you will compile and run models.
+
+.. _RST install_NETCDF:
+
+NetCDF
+====================================
+
+First, you need to download and install NetCDF. To download tar.gz files, do :
+
+.. code-block:: bash
+
+   cd libraries
+   ./download_aec_hdf_netcdf_libraries.sh
+
+You need to have 4 new tar.gz files in the libraries directory : libaec-X.X.X, hdf5-X.X.X, netcdf-c-X.X.X and netcdf-fortran-X.X.X.
+
+.. _RST install_OASIS:
+
+OASIS
+====================================
+
+To download OASIS you have to set :code:`download_oasis=true` in :file:`models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh` and then execute this file :
+
+.. code-block:: bash
+
+   cd models_YOURCASESTUDY
+   ./download_oasis_mesonh_ww3_croco_models.sh
 
 .. _RST install_MNH:
 
-Meso-NH/SurfEx (+ NetCDF and OASIS)
+Meso-NH/SurfEx
 ====================================
 
-To download Meso-NH's package you can follow the instructions in the A-INSTALL file or in the Meso-NH developer's guide. Below you will find the minimum steps required to install the last coupling developments.
-
-Get's Meso-NH package for developers via following git clone command :
+To download Meso-NH/SURFEX you have to set :code:`download_mesonh=true` in :file:`models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh` and then execute this file :
 
 .. code-block:: bash
-  
-   git clone gitladev@mesonh2.aero.obs-mip.fr:/gitladevrepos/MNH-ladev.git -b MNH-57-branch MNH-V5-7-0
 
-that will create the MNH-V5-7-0 directory containing a clone (copy) of the Meso-NH package of the
-remote branch MNH-57-branch.
-   
+   cd models_YOURCASESTUDY
+   ./download_oasis_mesonh_ww3_croco_models.sh
+
 .. note::
 
-   This version of Meso-NH already contains NetCDF and oasis3-mct_5.0 libraries and you can compile it automatically when you compile Meso-NH (for that go to the section :ref:`RST compile_MNH`).
-   
-.. warning::
-
-   This development's branch will evolve and is likely to contain bugs. Please send me an email if you encounter any bugs.
+   This version of Meso-NH already contains NetCDF and oasis3-mct_5.0 libraries and you can compile it automatically when you compile Meso-NH but I recommend to compile NETCDF and OASIS separately to be indepedent of Meso-NH.
    
 .. _RST install_WW3:
 
 WW3
 =============================
 
-To get the last release version of WW3, do :
+To download WW3 you have to set :code:`download_ww3=true` in :file:`models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh` and then execute this file :
 
 .. code-block:: bash
 
-   git clone https://github.com/NOAA-EMC/WW3.git
-
+   cd models_YOURCASESTUDY
+   ./download_oasis_mesonh_ww3_croco_models.sh
 
 .. _RST install_CROCO:
 
 CROCO
 =============================
 
-To get the last release version of CROCO, do :
+To download CROCO you have to set :code:`download_croco=true` in :file:`models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh` and then execute this file :
 
 .. code-block:: bash
 
-   git clone https://gitlab.inria.fr/croco-ocean/croco.git
+   cd models_YOURCASESTUDY
+   ./download_oasis_mesonh_ww3_croco_models.sh

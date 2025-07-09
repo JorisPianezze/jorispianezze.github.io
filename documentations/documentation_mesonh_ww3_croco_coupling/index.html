@@ -1,23 +1,20 @@
 
 
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Welcome to Meso-NH / WW3 / CROCO coupling’s documentation &#8212; Meso-NH/WW3/CROCO coupling 5.7.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/cloud.css" />
+    <title>Welcome to Meso-NH / WW3 / CROCO coupling’s documentation &#8212; Meso-NH/WW3/CROCO coupling 2.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/cloud.css?v=f9ae72be" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
+    <script src="_static/documentation_options.js?v=51b770b3"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
@@ -51,7 +48,7 @@
         <li class="right" >
           <a href="introduction/introduction.html" title="1. Introduction"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
-    <li><a href="#">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+    <li><a href="#">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href="">Welcome to Meso-NH / WW3 / CROCO coupling’s documentation</a></li> 
       </ul>
@@ -64,65 +61,71 @@
           <div class="body" role="main">
             
   <section id="welcome-to-meso-nh-ww3-croco-coupling-s-documentation">
-<h1>Welcome to Meso-NH / WW3 / CROCO coupling’s documentation<a class="headerlink" href="#welcome-to-meso-nh-ww3-croco-coupling-s-documentation" title="Permalink to this heading">¶</a></h1>
+<h1>Welcome to Meso-NH / WW3 / CROCO coupling’s documentation<a class="headerlink" href="#welcome-to-meso-nh-ww3-croco-coupling-s-documentation" title="Link to this heading">¶</a></h1>
 <p>This documentation is intended for <a class="reference external" href="http://mesonh.aero.obs-mip.fr/">Meso-NH</a> users who are interested to learn how to couple it with <a class="reference external" href="https://polar.ncep.noaa.gov/waves/wavewatch">WW3</a> and/or <a class="reference external" href="https://www.croco-ocean.org">CROCO</a> models using the <a class="reference external" href="https://oasis.cerfacs.fr/en/home/">OASIS</a> coupler.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This documentation is subject to change, so don’t hesitate to <a class="reference external" href="mailto:joris&#46;pianezze&#37;&#52;&#48;aero&#46;obs-mip&#46;fr">send me</a> your improvements, corrections, etc …</p>
+<p>This documentation is subject to change, so don’t hesitate to <a class="reference external" href="mailto:joris&#46;pianezze&#37;&#52;&#48;cnrs&#46;fr">send me</a> your improvements, corrections, etc …</p>
 </div>
 <section id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this heading">¶</a></h2>
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="introduction/introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="requirements/requirements.html">2. Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/installation.html">3. Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation/installation.html#meso-nh-surfex-netcdf-and-oasis">3.1. Meso-NH/SurfEx (+ NetCDF and OASIS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation/installation.html#ww3">3.2. WW3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation/installation.html#croco">3.3. CROCO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/installation.html#get-models-template">3.1. Get models template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/installation.html#netcdf">3.2. NetCDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/installation.html#oasis">3.3. OASIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/installation.html#meso-nh-surfex">3.4. Meso-NH/SurfEx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/installation.html#ww3">3.5. WW3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/installation.html#croco">3.6. CROCO</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="compilation/compilation.html">4. Compilation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="compilation/compilation.html#meso-nh-surfex-netcdf-and-oasis">4.1. Meso-NH/SurfEx (+ NetCDF and OASIS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="compilation/compilation.html#ww3">4.2. WW3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="compilation/compilation.html#old-compilation-s-procedure-w3-make">4.2.1. Old compilation’s procedure (w3_make)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="compilation/compilation.html#new-compilation-s-procedure-cmake">4.2.2. New compilation’s procedure (cmake)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation/compilation.html#netcdf">4.1. NetCDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation/compilation.html#oasis">4.2. OASIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation/compilation.html#meso-nh-surfex">4.3. Meso-NH/SurfEx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation/compilation.html#ww3">4.4. WW3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation/compilation.html#old-compilation-s-procedure-w3-make">4.4.1. Old compilation’s procedure (w3_make)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation/compilation.html#new-compilation-s-procedure-cmake">4.4.2. New compilation’s procedure (cmake)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="compilation/compilation.html#croco">4.3. CROCO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation/compilation.html#croco">4.5. CROCO</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="preprocessing/preprocessing.html">5. Pre-processing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="preprocessing/preprocessing.html#tree-template">5.1. Tree template</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessing/preprocessing.html#meso-nh-surfex">5.2. Meso-NH/SurfEx</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-horizontal-grid-prep-pgd">5.2.1. Prepare the horizontal grid : PREP_PGD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-vertical-grid-ic-and-lbc-prep-real-case">5.2.2. Prepare the vertical grid, IC and LBC : PREP_REAL_CASE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#preparing-the-namelist-for-the-coupled-simulation-exseg1-nam">5.2.3. Preparing the namelist for the coupled simulation : EXSEG1.nam</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#list-of-necessary-files-for-mnh-1-input-mnh">5.2.4. List of necessary files for MNH : 1_input_mnh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing/preprocessing.html#requirements-pre-processing">5.1. Requirements pre-processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing/preprocessing.html#tree-template">5.2. Tree template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing/preprocessing.html#meso-nh-surfex">5.3. Meso-NH/SurfEx</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-horizontal-grid-prep-pgd">5.3.1. Prepare the horizontal grid : PREP_PGD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-vertical-grid-ic-and-lbc-prep-real-case">5.3.2. Prepare the vertical grid, IC and LBC : PREP_REAL_CASE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#preparing-the-namelist-for-the-coupled-simulation-exseg1-nam">5.3.3. Preparing the namelist for the coupled simulation : EXSEG1.nam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#list-of-necessary-files-for-mnh-1-input-mnh">5.3.4. List of necessary files for MNH : 1_input_mnh</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessing/preprocessing.html#ww3">5.3. WW3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#create-the-files-containing-the-grid">5.3.1. Create the files containing the grid</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-grid-ww3-grid">5.3.2. Prepare the grid : ww3_grid</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prpare-the-forcing-wind-for-spinup-simulation-ww3-prnc">5.3.3. Prpare the forcing (wind) for spinup simulation : ww3_prnc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-lbc-ww3-bound">5.3.4. Prepare the LBC : ww3_bound</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-ic-spinup-ww3-shel">5.3.5. Prepare the IC : spinup (ww3_shel)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-namelist-for-the-coupled-simulation-ww3-shel-nml">5.3.6. Prepare namelist for the coupled simulation : ww3_shel.nml</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#list-of-necessary-files-for-ww3-2-input-ww3">5.3.7. List of necessary files for WW3 : 2_input_ww3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing/preprocessing.html#ww3">5.4. WW3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#create-the-files-containing-the-grid">5.4.1. Create the files containing the grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-grid-ww3-grid">5.4.2. Prepare the grid : ww3_grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prpare-the-forcing-wind-for-spinup-simulation-ww3-prnc">5.4.3. Prpare the forcing (wind) for spinup simulation : ww3_prnc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-lbc-ww3-bound">5.4.4. Prepare the LBC : ww3_bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-ic-spinup-ww3-shel">5.4.5. Prepare the IC : spinup (ww3_shel)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-namelist-for-the-coupled-simulation-ww3-shel-nml">5.4.6. Prepare namelist for the coupled simulation : ww3_shel.nml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#list-of-necessary-files-for-ww3-2-input-ww3">5.4.7. List of necessary files for WW3 : 2_input_ww3</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessing/preprocessing.html#croco">5.4. CROCO</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#download-croco-pytools">5.4.1. Download croco_pytools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#create-the-horizontal-grid">5.4.2. Create the horizontal grid</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#create-the-ic-and-lbc">5.4.3. Create the IC and LBC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-namelist-for-the-coupled-simulation-croco-in">5.4.4. Prepare the namelist for the coupled simulation : croco.in</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#list-of-necessary-files-for-croco-3-input-croco">5.4.5. List of necessary files for CROCO : 3_input_croco</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing/preprocessing.html#croco">5.5. CROCO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#download-croco-pytools">5.5.1. Download croco_pytools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#create-the-horizontal-grid">5.5.2. Create the horizontal grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#create-the-ic-and-lbc">5.5.3. Create the IC and LBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-namelist-for-the-coupled-simulation-croco-in">5.5.4. Prepare the namelist for the coupled simulation : croco.in</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#list-of-necessary-files-for-croco-3-input-croco">5.5.5. List of necessary files for CROCO : 3_input_croco</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessing/preprocessing.html#oasis">5.5. OASIS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#create-remap-files">5.5.1. Create remap files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-namelist-for-the-coupled-simulation-namcouple">5.5.2. Prepare the namelist for the coupled simulation: namcouple</a></li>
-<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#list-of-necessary-files-in-the-directory-4-input-oasis">5.5.3. List of necessary files in the directory 4_input_oasis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing/preprocessing.html#oasis">5.6. OASIS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#create-remap-files">5.6.1. Create remap files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#prepare-the-namelist-for-the-coupled-simulation-namcouple">5.6.2. Prepare the namelist for the coupled simulation: namcouple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="preprocessing/preprocessing.html#list-of-necessary-files-in-the-directory-4-input-oasis">5.6.3. List of necessary files in the directory 4_input_oasis</a></li>
 </ul>
 </li>
 </ul>
@@ -154,7 +157,7 @@
 </div>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
 <div class="docutils container" id="id1">
 <div class="citation" id="id3" role="doc-biblioentry">
 <span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
@@ -203,7 +206,7 @@
         <li class="right" >
           <a href="introduction/introduction.html" title="1. Introduction"
              >next</a> &nbsp; &nbsp;</li>
-    <li><a href="#">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+    <li><a href="#">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href="">Welcome to Meso-NH / WW3 / CROCO coupling’s documentation</a></li> 
       </ul>
@@ -211,8 +214,8 @@
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, J. Pianezze.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    &#169; Copyright 2025, J. Pianezze.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

@@ -1,7 +1,11 @@
 Introduction
 *********************************************************
 
-This documentation describes how to set up and run a coupled simulation between `Meso-NH <http://mesonh.aero.obs-mip.fr>`_ and `WW3 <https://polar.ncep.noaa.gov/waves/wavewatch>`_ and/or `CROCO <https://www.croco-ocean.org>`_ with the `OASIS <https://oasis.cerfacs.fr/en/home>`_ coupler. It does'nt contain detailed explanations on the use of Meso-NH, WW3, CROCO or OASIS. You are therefore advised to familiarise yourself with these models before reading this documentation.
+This documentation describes how to set up and run a coupled simulation between `Meso-NH <http://mesonh.aero.obs-mip.fr>`_ and `WW3 <https://polar.ncep.noaa.gov/waves/wavewatch>`_ and/or `CROCO <https://www.croco-ocean.org>`_ with the `OASIS <https://oasis.cerfacs.fr/en/home>`_ coupler. It doesn't contain detailed explanations on the use of Meso-NH, WW3, CROCO or OASIS. You are therefore advised to familiarise yourself with these models before reading this documentation.
+
+.. warning::
+
+   This documentation has been tested with version 5.7.2 of Meso-NH, 2.1.0 of CROCO, 7.14 of WW3 and 5.2 of OASIS.
 
 The developments were carried out as part of an Ocean-Wave-Atmosphere project group
 initiated by the Centre National de Recherches Météorologiques (`CNRM <https://www.umr-cnrm.fr/>`_) around the `SURFEX <https://www.umr-cnrm.fr/surfex/>`_  surface model :cite:p:`voldoire_surfex_2017,pianezze_new_2018`.

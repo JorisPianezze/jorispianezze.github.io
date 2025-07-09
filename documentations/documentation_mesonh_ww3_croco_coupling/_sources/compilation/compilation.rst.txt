@@ -1,39 +1,112 @@
 Compilation
 *********************************************************
 
-First you need to compile Meso-NH because NetCDF and OASIS libraries are compiled during this compilation. Next you can compile WW3. For CROCO you need to know the numbers of points of your domain before compile it.
+First you need to compile Meso-NH because NetCDF and OASIS libraries are compiled during this compilation. Next you can compile WW3. For CROCO you need to know the numbers of horizontal and vertical points of your domain before compile it.
 
-.. _RST compile_MNH:
+.. _RST compile_NETCDF:
 
-Meso-NH/SurfEx (+ NetCDF and OASIS)
+NetCDF
 ====================================
 
-To compile Meso-NH's package with NetCDF and OASIS (oasis3-mct_5.0) librairies, do :
+You can compile NetCDF library using the script :
 
 .. code-block:: bash
 
-   cd MNH-V5-7-0/src/
+   cd models_YOURCASESTUDY/libraries/
+   sbatch install_aer_hdf_netcdf_libraries.sub
+
+To test compilation of the different libraries, do :
+
+.. code-block:: bash
+
+   ./build_netcdf-X.X.X/bin/nf-config --all
+
+And you need to see :
+
+.. code-block:: bash
+
+   This netCDF-Fortran X.X.X has been built with the following features:
+
+     --cc        -> XXX
+     --cflags    -> XXX
+
+     --fc        -> XXX
+     --fflags    -> XXX
+     --flibs     -> XXX
+     --has-f90   -> XXX
+     --has-f03   -> XXX
+
+     --has-nc2   -> XXX
+     --has-nc4   -> XXX
+
+     --prefix    -> XXX
+     --includedir-> XXX
+     --version   -> netCDF-Fortran X.X.X
+
+OASIS
+====================================
+
+To compile OASIS you need to adapt the make.inc and make.${machine} path. 
+
+.. warning:: 
+
+   * You need to put absolute path !
+   * make.inc call make.${machine} file
+   * To know environment variable ${machine} look at your environment.sh file
+
+Then you can compile OASIS :
+
+.. code-block:: bash
+  
+   cd models_YOURCASESTUDY/
+   source environment.sh
+   cd oasis3-mct_5.2/util/make_dir/
+   make realclean -f TopMakefileOasis3
+   make -f TopMakefileOasis3
+
+.. _RST compile_MNH:
+
+Meso-NH/SurfEx
+====================================
+
+Before compiling Meso-NH, you need to change MNHENV in the configure by the path of your environment.sh file :
+
+.. code-block:: bash
+
+   export MNHENV=${MNHENV:-"
+          source /XXX/models_YOURCASESTUDY/environment.sh
+   "}
+
+Then to compile Meso-NH's package, do :
+
+.. code-block:: bash
+
+   cd MNH-V5-7-2/src/
    
    export VER_MPI=MPIAUTO
-   export VER_CDF=CDFAUTO
-   export VER_OASIS=OASISAUTO
+   export VER_CDF=CDFPERSO
+   export VER_OASIS=OASISPERSO
 
    ./configure
-   . ../conf/profile_mesonh
-   make
+   
+and then, depending of the architecture, compile interactively :
+
+.. code-block:: bash
+
+   make   
    make installmaster
+
+or submit a job (take care of the name of profile-mesonh in the job). By example, for belenos, do :
+
+.. code-block:: bash
+
+   sbatch job_make_mesonh_BullX_belenos
   
 .. note::
    
-   * By setting VER_CDF=CDFAUTO and VER_OASIS=OASISAUTO, you chose to install and compile NetCDF and OASIS libraries provided in the Meso-NH's package. These libraries are located in src/LIB directory.
-   
-   * oasis3-mct_5.0 version is provided in the Meso-NH's package. Compiled librairies is located in src/dir_obj*/MASTER/OASIS3-MCT_5.0 directory.
-   
-   * NetCDF is compiled using version 1.0.6 of libaec, version 1.14.0 of hdf5 version 4.9.0 of netcdf-c and version 4.6.0 of netcdf-fortran. Compiled librairies is located in src/dir_obj*/MASTER/NETCDF-4.6.0 directory.
-   
-   * :command:`./configure` command extracts tar.gz archives. NetCDF and OASIS libraries are compiled at the beginning of the Meso-NH compilation (during :command:`make`).
-   
-   * You can use your own NETCDF and OASIS libraries by setting VER_CDF=CDFPERSO and VER_OASIS=OASISPERSO and define NETCDF_CONFIG and OASISDIR environment variables. NETCDF_CONFIG must point to the nf-config file. OASISDIR must point to the OASIS build directory.
+   * By setting VER_CDF=CDFPERSO and VER_OASIS=OASISPERSO, compilation of Meso-NH will use NETCDF_CONFIG must point to the nf-config file. OASISDIR must point to the OASIS build directory. NETCDF_CONFIG and OASISDIR environment variables are defined in environment.sh file.
+
+   * If you chose VER_CDF=CDFAUTO and VER_OASIS=OASISAUTO, you will install and compile NetCDF and OASIS libraries provided in the Meso-NH's package. These libraries will be located in src/LIB directory.
    
    * The :command:`make` command calls different files: Makefile (compile libraries), Rules.\$ARCH\$(F).mk (options of compilation), Makefile.MESONH.mk (link to the compiled libraries)
    
@@ -54,17 +127,6 @@ to recompile Meso-NH if you wish to change parametrizations, which is not the ca
    | DIAG               | Compute diagnostics after simulation | DIAG1.nam       |
    +--------------------+--------------------------------------+-----------------+    
    
-.. warning:: at the end of the compilation you need to define OASISDIR and NETCDF_CONFIG environment variable as follows:
-
-.. code-block:: bash
-
-   export OASISDIR=/path/to/mnh/src/dir_obj-XYZ/MASTER/OASIS3-MCT_5.0
-   export NETCDF_CONFIG=/path/to/mnh/src/dir_obj-XYZ/MASTER/NETCDF-4.6.0/bin/nf-config
-
-.. tip:: You can add these environment variables at the end of the profile_mesonh file, by example.
-
-.. note:: These environment variables will be used during compilation of WW3 and CROCO.
-
 .. _RST compile_WW3:
 
 WW3
@@ -158,16 +220,23 @@ CROCO
 
 Whatever the computers, you can follow the same procedure to compile CROCO.
 
-To begin with, you need to create a directory containing the jobcomp compilation script and the files you wish to modify.
-An example is located in the Git repository in 3_input_croco/src/exe_IROISE_1core_CPLOA_CPLOW directory. This folder contains the following folders and files: 
+First, you need to go to the directory :
 
-* clean.sh : clean the compiled directory
+.. code-block::
 
-* jobcomp : script to launch the compilation
+   cd models_CASESTUDY/croco-v2.1.0/exe_${machine}
 
-* MY_SRC : folder containing the configuration files.
+.. note::
 
-In the MY_SRC directory you must put the files to be modified. The CPP keys used and the domain location must be entered in the cppdefs.h and param.h files.
+   * To know environment variable ${machine} look at your environment.sh file
+
+In this directoy, there are :
+
+* clean_compilation_croco.sh: a script to clean the compiled directory
+
+* jobcomp.${machine} : a script to launch the compilation adapted to your machine.
+
+* MY_SRC : a folder containing the configuration files cppdefs.h and param.h files.
 
 In the cppdefs.h file, you can choose whether or not to pair with the following cpp keys: 
 
@@ -181,7 +250,7 @@ The cpp keys OA_COUPLING and OW_COUPLING are used to activate coupling with an a
 .. code-block:: fortran
 
    /* Configuration Name */
-   # define IROISE
+   # define YOURCASESTUDY
 
 In param.h, you also must indicate the number of points you have for the CROCO domain.
 
@@ -189,8 +258,8 @@ In param.h, you also must indicate the number of points you have for the CROCO d
 
 .. code-block:: fortran
 
-   # elif defined  IROISE
-         parameter (LLm0=38,  MMm0=38,  N=32)     ! IROISE
+   # elif defined  YOURCASESTUDY
+         parameter (LLm0=38,  MMm0=38,  N=32)     ! YOURCASESTUDY
 
 The number of cores used (NNODES) during the simulation must be entered in the param.h file and the code must be recompiled each time the number of cores used is changed:
 
@@ -204,19 +273,19 @@ The number of cores used (NNODES) during the simulation must be entered in the p
 
 NP_XI and NP_ETA correspond to the number of cores in longitude and latitude respectively.
 
-Unlike WW3 and Meso-NH, there is no program for preparing initial conditions or lateral boundary conditions: these steps are carried out using croco_tools.
+Unlike WW3 and Meso-NH, there is no program for preparing initial conditions or lateral boundary conditions: these steps are carried out using croco_pytools.
 
 To compile CROCO run the following command:
 
 .. code-block:: bash
 
-   ./jobcomp
+   ./jobcomp.${machine}
 
 .. note:: Before compiling you need to check and eventually change SOURCE=../OCEAN directory in the beginning of jobcomp script.
 
 Only one compiled program is used in this documentation (cf following table).
 This executable depends on the settings activated, so if you want to change the settings you have to recompile CROCO: it is therefore necessary to copy the exe compilation folder so as not to overwrite the previously compiled executables.
-In the croco folder, I therefore have two folders exe_IROISE_1core_CPLOA and exe_IROISE_1core_CPLOA_CPLOW containing the executables for the coupled ocean-atmosphere and ocean-wave-atmosphere simulations, respectively.
+In the croco folder, I therefore have two folders exe_YOURCCONFIG_Xcore_CPLOA and exe_YOURCONFIG_Xcore_CPLOA_CPLOW containing the executables for the coupled ocean-atmosphere and ocean-wave-atmosphere simulations, respectively.
 
 .. table:: Executable CROCO compiled and used in this documentation.
 

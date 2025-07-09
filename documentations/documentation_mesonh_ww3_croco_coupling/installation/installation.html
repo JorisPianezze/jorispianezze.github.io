@@ -1,23 +1,20 @@
 
 
-
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>3. Installation &#8212; Meso-NH/WW3/CROCO coupling 5.7.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
+    <title>3. Installation &#8212; Meso-NH/WW3/CROCO coupling 2.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css?v=f9ae72be" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js?v=51b770b3"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
 
     
     
@@ -55,7 +52,7 @@
         <li class="right" >
           <a href="../requirements/requirements.html" title="2. Requirements"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Installation</a></li> 
       </ul>
@@ -69,39 +66,75 @@
           <div class="body" role="main">
             
   <section id="installation">
-<h1><span class="section-number">3. </span>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h1>
+<h1><span class="section-number">3. </span>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
 <p>You can install models where you want but I suggest that you to put the models in a directory dedicated to the case study,
 especially if you intend to test new versions of models, compilers or libraries.</p>
-<p>At the end of this section you need to have 3 directories : MNH-V5-7-0, WW3 and croco.</p>
-<section id="meso-nh-surfex-netcdf-and-oasis">
-<span id="rst-install-mnh"></span><h2><span class="section-number">3.1. </span>Meso-NH/SurfEx (+ NetCDF and OASIS)<a class="headerlink" href="#meso-nh-surfex-netcdf-and-oasis" title="Permalink to this heading">¶</a></h2>
-<p>To download Meso-NH’s package you can follow the instructions in the A-INSTALL file or in the Meso-NH developer’s guide. Below you will find the minimum steps required to install the last coupling developments.</p>
-<p>Get’s Meso-NH package for developers via following git clone command :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone gitladev@mesonh2.aero.obs-mip.fr:/gitladevrepos/MNH-ladev.git -b MNH-57-branch MNH-V5-7-0
+<p>At the end of this section you need to have 4 directories : <strong>libraries</strong>, <strong>MNH-V5-7-2</strong>, <strong>WW3-v7.16</strong> and <strong>croco-v2.1.0</strong> inside your <strong>models_YOURCASESTUDY</strong> directory.</p>
+<section id="get-models-template">
+<span id="rst-get-models-template"></span><h2><span class="section-number">3.1. </span>Get models template<a class="headerlink" href="#get-models-template" title="Link to this heading">¶</a></h2>
+<p>To get the models template directory, do :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/JorisPianezze/models_tmpl_for_mesonh_ww3_croco_coupling.git
 </pre></div>
 </div>
-<p>that will create the MNH-V5-7-0 directory containing a clone (copy) of the Meso-NH package of the
-remote branch MNH-57-branch.</p>
+<p>Rename the directory into your own case study</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>models_tmpl_for_mesonh_ww3_croco_coupling<span class="w"> </span>models_YOURCASESTUDY
+</pre></div>
+</div>
+<p>You can chose your environment depending of your architecture (ARCH) :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY
+ln<span class="w"> </span>-sf<span class="w"> </span>environment/environment_ARCH.sh<span class="w"> </span>environment.sh
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This version of Meso-NH already contains NetCDF and oasis3-mct_5.0 libraries and you can compile it automatically when you compile Meso-NH (for that go to the section <a class="reference internal" href="../compilation/compilation.html#rst-compile-mnh"><span class="std std-ref">Meso-NH/SurfEx (+ NetCDF and OASIS)</span></a>).</p>
+<ul class="simple">
+<li><p>This environment has been tested in different architecture.</p></li>
+<li><p>Following scripts will called <code class="file docutils literal notranslate"><span class="pre">envionment.sh</span></code> file. You also have to use this script when you will compile and run models.</p></li>
+</ul>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This development’s branch will evolve and is likely to contain bugs. Please send me an email if you encounter any bugs.</p>
+</section>
+<section id="netcdf">
+<span id="rst-install-netcdf"></span><h2><span class="section-number">3.2. </span>NetCDF<a class="headerlink" href="#netcdf" title="Link to this heading">¶</a></h2>
+<p>First, you need to download and install NetCDF. To download tar.gz files, do :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>libraries
+./download_aec_hdf_netcdf_libraries.sh
+</pre></div>
+</div>
+<p>You need to have 4 new tar.gz files in the libraries directory : libaec-X.X.X, hdf5-X.X.X, netcdf-c-X.X.X and netcdf-fortran-X.X.X.</p>
+</section>
+<section id="oasis">
+<span id="rst-install-oasis"></span><h2><span class="section-number">3.3. </span>OASIS<a class="headerlink" href="#oasis" title="Link to this heading">¶</a></h2>
+<p>To download OASIS you have to set <code class="code docutils literal notranslate"><span class="pre">download_oasis=true</span></code> in <code class="file docutils literal notranslate"><span class="pre">models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh</span></code> and then execute this file :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY
+./download_oasis_mesonh_ww3_croco_models.sh
+</pre></div>
+</div>
+</section>
+<section id="meso-nh-surfex">
+<span id="rst-install-mnh"></span><h2><span class="section-number">3.4. </span>Meso-NH/SurfEx<a class="headerlink" href="#meso-nh-surfex" title="Link to this heading">¶</a></h2>
+<p>To download Meso-NH/SURFEX you have to set <code class="code docutils literal notranslate"><span class="pre">download_mesonh=true</span></code> in <code class="file docutils literal notranslate"><span class="pre">models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh</span></code> and then execute this file :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY
+./download_oasis_mesonh_ww3_croco_models.sh
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This version of Meso-NH already contains NetCDF and oasis3-mct_5.0 libraries and you can compile it automatically when you compile Meso-NH but I recommend to compile NETCDF and OASIS separately to be indepedent of Meso-NH.</p>
 </div>
 </section>
 <section id="ww3">
-<span id="rst-install-ww3"></span><h2><span class="section-number">3.2. </span>WW3<a class="headerlink" href="#ww3" title="Permalink to this heading">¶</a></h2>
-<p>To get the last release version of WW3, do :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/NOAA-EMC/WW3.git
+<span id="rst-install-ww3"></span><h2><span class="section-number">3.5. </span>WW3<a class="headerlink" href="#ww3" title="Link to this heading">¶</a></h2>
+<p>To download WW3 you have to set <code class="code docutils literal notranslate"><span class="pre">download_ww3=true</span></code> in <code class="file docutils literal notranslate"><span class="pre">models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh</span></code> and then execute this file :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY
+./download_oasis_mesonh_ww3_croco_models.sh
 </pre></div>
 </div>
 </section>
 <section id="croco">
-<span id="rst-install-croco"></span><h2><span class="section-number">3.3. </span>CROCO<a class="headerlink" href="#croco" title="Permalink to this heading">¶</a></h2>
-<p>To get the last release version of CROCO, do :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://gitlab.inria.fr/croco-ocean/croco.git
+<span id="rst-install-croco"></span><h2><span class="section-number">3.6. </span>CROCO<a class="headerlink" href="#croco" title="Link to this heading">¶</a></h2>
+<p>To download CROCO you have to set <code class="code docutils literal notranslate"><span class="pre">download_croco=true</span></code> in <code class="file docutils literal notranslate"><span class="pre">models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh</span></code> and then execute this file :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY
+./download_oasis_mesonh_ww3_croco_models.sh
 </pre></div>
 </div>
 </section>
@@ -130,9 +163,12 @@ remote branch MNH-57-branch.</p>
 <li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../requirements/requirements.html">2. Requirements</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">3. Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#meso-nh-surfex-netcdf-and-oasis">3.1. Meso-NH/SurfEx (+ NetCDF and OASIS)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ww3">3.2. WW3</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#croco">3.3. CROCO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-models-template">3.1. Get models template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#netcdf">3.2. NetCDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#oasis">3.3. OASIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#meso-nh-surfex">3.4. Meso-NH/SurfEx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ww3">3.5. WW3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#croco">3.6. CROCO</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../compilation/compilation.html">4. Compilation</a></li>
@@ -183,7 +219,7 @@ remote branch MNH-57-branch.</p>
         <li class="right" >
           <a href="../requirements/requirements.html" title="2. Requirements"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 5.7.0 documentation</a> &#187;</li>
+    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href=""><span class="section-number">3. </span>Installation</a></li> 
       </ul>
@@ -191,8 +227,8 @@ remote branch MNH-57-branch.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2023, J. Pianezze.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.2.
+    &#169; Copyright 2025, J. Pianezze.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>
