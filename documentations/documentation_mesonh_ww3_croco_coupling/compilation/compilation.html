@@ -67,7 +67,7 @@
             
   <section id="compilation">
 <h1><span class="section-number">4. </span>Compilation<a class="headerlink" href="#compilation" title="Link to this heading">¶</a></h1>
-<p>First you need to compile Meso-NH because NetCDF and OASIS libraries are compiled during this compilation. Next you can compile WW3. For CROCO you need to know the numbers of horizontal and vertical points of your domain before compile it.</p>
+<p>First you need to compile NetCDF and OASIS libraries because Meso-NH, WW3 and CROCO wil use this libraries during their compilation. For CROCO’s compilation you need to know the numbers of horizontal and vertical points of your domain before compile it.</p>
 <section id="netcdf">
 <span id="rst-compile-netcdf"></span><h2><span class="section-number">4.1. </span>NetCDF<a class="headerlink" href="#netcdf" title="Link to this heading">¶</a></h2>
 <p>You can compile NetCDF library using the script :</p>
@@ -129,7 +129,7 @@ make<span class="w"> </span>-f<span class="w"> </span>TopMakefileOasis3
 </pre></div>
 </div>
 <p>Then to compile Meso-NH’s package, do :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>MNH-V5-7-2/src/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY/MNH-V5-7-2/src/
 
 <span class="nb">export</span><span class="w"> </span><span class="nv">VER_MPI</span><span class="o">=</span>MPIAUTO
 <span class="nb">export</span><span class="w"> </span><span class="nv">VER_CDF</span><span class="o">=</span>CDFPERSO
@@ -139,7 +139,8 @@ make<span class="w"> </span>-f<span class="w"> </span>TopMakefileOasis3
 </pre></div>
 </div>
 <p>and then, depending of the architecture, compile interactively :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.<span class="w"> </span>../conf/profile_mesonh
+make
 make<span class="w"> </span>installmaster
 </pre></div>
 </div>
@@ -205,7 +206,8 @@ Whatever the computers, you can follow the same procedure to compile WW3.</p>
 </pre></div>
 </div>
 <p>Then you must then prepare the link and comp files used to compile WW3 using the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_setup<span class="w"> </span>..<span class="w"> </span>-c<span class="w"> </span>your_environment<span class="w"> </span>-s<span class="w"> </span>OASACM<span class="w"> </span>-q
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>../../../environment.sh
+./w3_setup<span class="w"> </span>..<span class="w"> </span>-c<span class="w"> </span><span class="si">${</span><span class="nv">machine</span><span class="si">}</span><span class="w"> </span>-s<span class="w"> </span>OASACM<span class="w"> </span>-q
 </pre></div>
 </div>
 <div class="admonition note">
@@ -291,7 +293,7 @@ In the models/ folder I therefore have two exe folders, one called exe_SANSOASIS
 <p>In this directoy, there are :</p>
 <ul class="simple">
 <li><p>clean_compilation_croco.sh: a script to clean the compiled directory</p></li>
-<li><p>jobcomp.${machine} : a script to launch the compilation adapted to your machine.</p></li>
+<li><p>jobcomp : a script to launch the compilation adapted to your machine.</p></li>
 <li><p>MY_SRC : a folder containing the configuration files cppdefs.h and param.h files.</p></li>
 </ul>
 <p>In the cppdefs.h file, you can choose whether or not to pair with the following cpp keys:</p>
@@ -324,7 +326,8 @@ In the models/ folder I therefore have two exe folders, one called exe_SANSOASIS
 <p>NP_XI and NP_ETA correspond to the number of cores in longitude and latitude respectively.</p>
 <p>Unlike WW3 and Meso-NH, there is no program for preparing initial conditions or lateral boundary conditions: these steps are carried out using croco_pytools.</p>
 <p>To compile CROCO run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./jobcomp.<span class="si">${</span><span class="nv">machine</span><span class="si">}</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>../../environment.sh
+./jobcomp
 </pre></div>
 </div>
 <div class="admonition note">

@@ -1,7 +1,7 @@
 Compilation
 *********************************************************
 
-First you need to compile Meso-NH because NetCDF and OASIS libraries are compiled during this compilation. Next you can compile WW3. For CROCO you need to know the numbers of horizontal and vertical points of your domain before compile it.
+First you need to compile NetCDF and OASIS libraries because Meso-NH, WW3 and CROCO wil use this libraries during their compilation. For CROCO's compilation you need to know the numbers of horizontal and vertical points of your domain before compile it.
 
 .. _RST compile_NETCDF:
 
@@ -81,7 +81,7 @@ Then to compile Meso-NH's package, do :
 
 .. code-block:: bash
 
-   cd MNH-V5-7-2/src/
+   cd models_YOURCASESTUDY/MNH-V5-7-2/src/
    
    export VER_MPI=MPIAUTO
    export VER_CDF=CDFPERSO
@@ -93,6 +93,7 @@ and then, depending of the architecture, compile interactively :
 
 .. code-block:: bash
 
+   . ../conf/profile_mesonh
    make   
    make installmaster
 
@@ -156,7 +157,8 @@ Then you must then prepare the link and comp files used to compile WW3 using the
 
 .. code-block:: bash
 
-   ./w3_setup .. -c your_environment -s OASACM -q
+   source ../../../environment.sh
+   ./w3_setup .. -c ${machine} -s OASACM -q
 
 .. note:: A list of environment of available in the file cmplr.env. If there is no environment corresponding to yours in this file, then you will need to create one.
 
@@ -234,7 +236,7 @@ In this directoy, there are :
 
 * clean_compilation_croco.sh: a script to clean the compiled directory
 
-* jobcomp.${machine} : a script to launch the compilation adapted to your machine.
+* jobcomp : a script to launch the compilation adapted to your machine.
 
 * MY_SRC : a folder containing the configuration files cppdefs.h and param.h files.
 
@@ -279,7 +281,8 @@ To compile CROCO run the following command:
 
 .. code-block:: bash
 
-   ./jobcomp.${machine}
+   source ../../environment.sh
+   ./jobcomp
 
 .. note:: Before compiling you need to check and eventually change SOURCE=../OCEAN directory in the beginning of jobcomp script.
 
