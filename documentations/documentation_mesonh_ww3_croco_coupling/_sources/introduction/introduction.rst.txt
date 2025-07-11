@@ -1,3 +1,5 @@
+.. _introduction:
+
 Introduction
 *********************************************************
 
@@ -15,3 +17,7 @@ The coupling algorithm implemented enables coupled ocean-wave-atmosphere simulat
 .. figure:: coupling_MNH_SFX_WW3_CROCO.png
 
    Diagram illustrating the different fields that can be exchanged between the Meso-NH/SurfEx, WW3 and CROCO models using OASIS coupler.
+
+.. note::
+
+   Additional fields can be exchanged between CROCO and WW3 :cite:p:`porcile_2023`.

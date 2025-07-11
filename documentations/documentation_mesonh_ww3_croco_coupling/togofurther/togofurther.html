@@ -1,79 +1,115 @@
 
 
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<html lang="en" data-content_root="../">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To go further &mdash; Meso-NH/WW3/CROCO coupling 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
-    <title>7. To go further &#8212; Meso-NH/WW3/CROCO coupling 2.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css?v=f9ae72be" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
-    
-    <script src="../_static/documentation_options.js?v=51b770b3"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-
-    
-    
-     
-        <script src="../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script src="../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script src="../_static/cloud.js"></script>
-    
-
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="6. Simulation" href="../simulation/simulation.html" /> 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head><body>
-    <div class="relbar-top">
-        
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../simulation/simulation.html" title="6. Simulation"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
+    <link rel="prev" title="Simulation" href="../simulation/simulation.html" /> 
+</head>
 
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">7. </span>To go further</a></li> 
-      </ul>
-    </div>
-    </div>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Meso-NH/WW3/CROCO coupling
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements/requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation/compilation.html">Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preprocessing/preprocessing.html">Pre-processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/simulation.html">Simulation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">To go further</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#oasis">OASIS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-and-compilation">Installation and compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#functions-implemented-in-models">Functions implemented in models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description-of-the-namcouple">Description of the namcouple</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lag-concept">LAG concept</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#meso-nh-surfex">Meso-NH/SurfEx</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tree-structure-of-meso-nh-surfex">Tree structure of Meso-NH/SurfEx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preparing-initial-files-for-meso-nh">Preparing initial files for Meso-NH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#description-of-the-exseg1-nam">Description of the EXSEG1.nam</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nam-oasis">&amp;NAM_OASIS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nam-sfx-sea-cpl">&amp;NAM_SFX_SEA_CPL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nam-sfx-wave-cpl">&amp;NAM_SFX_WAVE_CPL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-namelist-exseg1-nam-for-an-ocean-wave-atmosphere-coupling">Example namelist EXSEG1.nam for an Ocean-Wave-Atmosphere coupling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Meso-NH/WW3/CROCO coupling</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">To go further</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/togofurther/togofurther.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="to-go-further">
-<h1><span class="section-number">7. </span>To go further<a class="headerlink" href="#to-go-further" title="Link to this heading">¶</a></h1>
+<h1>To go further<a class="headerlink" href="#to-go-further" title="Link to this heading"></a></h1>
 <section id="oasis">
-<span id="rst-oasis"></span><h2><span class="section-number">7.1. </span>OASIS<a class="headerlink" href="#oasis" title="Link to this heading">¶</a></h2>
+<span id="rst-oasis"></span><h2>OASIS<a class="headerlink" href="#oasis" title="Link to this heading"></a></h2>
 <section id="introduction">
-<h3><span class="section-number">7.1.1. </span>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h3>
+<h3>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h3>
 <p>The information presented in this section is described in detail in the OASIS user guide (<a class="reference external" href="https://verc.enes.org/oasis/">https://verc.enes.org/oasis/</a>).
 The OASIS source code is either available in the Meso-NH version in the src/LIB/oasis3-mct_5.0/ folder (if you are using a Meso-NH version greater than or equal to 5.3.0)
 or by downloading it from the OASIS website.</p>
 <p>To sum up, OASIS3-MCT is fully parallelized, has no executable specific to the coupler, is capable of managing 2d and 3d coupling field exchanges, is capable of supporting unstructured meshes, is capable of transferring fields in parallel, across all source or target component processes, has a namelist that allows the coupling characteristics to be changed without having to recompile the codes (type of interpolation, simulation duration, exchange time, etc.).</p>
 </section>
 <section id="installation-and-compilation">
-<h3><span class="section-number">7.1.2. </span>Installation and compilation<a class="headerlink" href="#installation-and-compilation" title="Link to this heading">¶</a></h3>
+<h3>Installation and compilation<a class="headerlink" href="#installation-and-compilation" title="Link to this heading"></a></h3>
 <p>In the folder containing the OASIS code (src/LIB/oasis3-mct_5.0/), following directories are presented:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>doc/<span class="w">                 </span>:<span class="w"> </span>Documentation
 lib/<span class="w">                 </span>:<span class="w"> </span>Libraries<span class="w"> </span>:<span class="w"> </span>mct,<span class="w"> </span>psmile<span class="w"> </span>and<span class="w"> </span>scrip
@@ -93,7 +129,7 @@ make<span class="w"> </span>-f<span class="w"> </span>TopMakefileOasis3
 </div>
 </section>
 <section id="functions-implemented-in-models">
-<h3><span class="section-number">7.1.3. </span>Functions implemented in models<a class="headerlink" href="#functions-implemented-in-models" title="Link to this heading">¶</a></h3>
+<h3>Functions implemented in models<a class="headerlink" href="#functions-implemented-in-models" title="Link to this heading"></a></h3>
 <p>Using OASIS involves an instrumentation phase which consists of placing the various calls to the OASIS3-MCT routines in the codes (in this case Meso-NH and
 TOY). The use of a specific precompilation key is used if you want to compile Meso-NH linking to OASIS. This key is called CPLOASIS.</p>
 <p>OASIS3-MCT is used in the following phases:</p>
@@ -169,7 +205,7 @@ The fields received by the model which first makes an oasis_get will come from a
 </ul>
 </section>
 <section id="description-of-the-namcouple">
-<h3><span class="section-number">7.1.4. </span>Description of the namcouple<a class="headerlink" href="#description-of-the-namcouple" title="Link to this heading">¶</a></h3>
+<h3>Description of the namcouple<a class="headerlink" href="#description-of-the-namcouple" title="Link to this heading"></a></h3>
 <p>The namcouple file is the namelist for the OASIS coupler, which contains all the information relating to exchanges between models.
 It follows a syntax which is clearly explained in the OASIS3-MCT user manual. There are no blank lines!
 Since there is no syntax check on this file, the slightest error will result in a crash with no error indication.</p>
@@ -258,13 +294,13 @@ operations:</p>
 </section>
 </section>
 <section id="lag-concept">
-<span id="rst-lag-concept"></span><h2><span class="section-number">7.2. </span>LAG concept<a class="headerlink" href="#lag-concept" title="Link to this heading">¶</a></h2>
+<span id="rst-lag-concept"></span><h2>LAG concept<a class="headerlink" href="#lag-concept" title="Link to this heading"></a></h2>
 <p>The figure ref{fig:coupled_simulation} shows an example of a coupled simulation between an atmospheric model and an ocean model to introduce the LAG concept explained in detail in the OASIS documentation. The purpose of this diagram is to present the role of the files rstrt_SAVE.nc (rst_A.nc and rst_O.nc) which you will have to create in the chapter concerning the preparation of configurations (Chapter ref{ch:prepa_config}). \</p>
 <figure class="align-default" id="id1">
 <img alt="../_images/temporal_lag.png" src="../_images/temporal_lag.png" />
 <figcaption>
 <p><span class="caption-text">At the initial instant (t=ini), the atmospheric and oceanic models receive the coupling fields located in the rtsrt.nc files. As soon as the models reach a simulation time that is a multiple of the exchange time (at t=exchange time),
-the models exchange the fields. At the end of the simulation (at t=end), the exchanged fields are stored in the rstrt.nc files, which can be used at the start of the next simulation. \</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+the models exchange the fields. At the end of the simulation (at t=end), the exchanged fields are stored in the rstrt.nc files, which can be used at the start of the next simulation. \</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <div class="admonition note">
@@ -273,11 +309,11 @@ the models exchange the fields. At the end of the simulation (at t=end), the exc
 </div>
 </section>
 <section id="meso-nh-surfex">
-<span id="rst-details-mnh"></span><h2><span class="section-number">7.3. </span>Meso-NH/SurfEx<a class="headerlink" href="#meso-nh-surfex" title="Link to this heading">¶</a></h2>
+<span id="rst-details-mnh"></span><h2>Meso-NH/SurfEx<a class="headerlink" href="#meso-nh-surfex" title="Link to this heading"></a></h2>
 <p>77 functions have been modified/created to cover the implementation of coupling in Meso-NH/SurfEx: 9 functions concern Meso-NH and 66 SurfEx.
 These functions are described in the routines. Only the tree structure and the steps for compiling Meso-NH are described in this section.</p>
 <section id="tree-structure-of-meso-nh-surfex">
-<h3><span class="section-number">7.3.1. </span>Tree structure of Meso-NH/SurfEx<a class="headerlink" href="#tree-structure-of-meso-nh-surfex" title="Link to this heading">¶</a></h3>
+<h3>Tree structure of Meso-NH/SurfEx<a class="headerlink" href="#tree-structure-of-meso-nh-surfex" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--<span class="w"> </span>mesonh.f90
 <span class="w">  </span><span class="p">|</span>--<span class="w"> </span>sfx_oasis_init.f90
 <span class="w">      </span><span class="p">|</span>--<span class="w"> </span>OASIS<span class="w"> </span>*oasis_init_comp*
@@ -334,17 +370,17 @@ These functions are described in the routines. Only the tree structure and the s
 </div>
 </section>
 <section id="preparing-initial-files-for-meso-nh">
-<h3><span class="section-number">7.3.2. </span>Preparing initial files for Meso-NH<a class="headerlink" href="#preparing-initial-files-for-meso-nh" title="Link to this heading">¶</a></h3>
+<h3>Preparing initial files for Meso-NH<a class="headerlink" href="#preparing-initial-files-for-meso-nh" title="Link to this heading"></a></h3>
 <p>The coupling only affects the simulation (MESONH executable). The initial Meso-NH files for a simulation are therefore obtained in the same way as for a forced simulation.
 as for a forced simulation. The initial files will come from the PREP_PGD and PREP_REAL_CASE or PREP_IDEAL_CASE stages.</p>
 <p>It is necessary to have an rstrt.nc file which will allow the model starting first, which needs to receive a field via oasis_get, to read the field in the rstrt.nc file.
 This rstrt.nc file can be created using the python script used in KTEST.</p>
 </section>
 <section id="description-of-the-exseg1-nam">
-<h3><span class="section-number">7.3.3. </span>Description of the EXSEG1.nam<a class="headerlink" href="#description-of-the-exseg1-nam" title="Link to this heading">¶</a></h3>
+<h3>Description of the EXSEG1.nam<a class="headerlink" href="#description-of-the-exseg1-nam" title="Link to this heading"></a></h3>
 <p>Namelists specific to the coupling have been created and are presented below. The other namelists for EXSEG1.nam are identical to an uncoupled simulation.</p>
 <section id="nam-oasis">
-<h4><span class="section-number">7.3.3.1. </span>&amp;NAM_OASIS<a class="headerlink" href="#nam-oasis" title="Link to this heading">¶</a></h4>
+<h4>&amp;NAM_OASIS<a class="headerlink" href="#nam-oasis" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -377,7 +413,7 @@ This rstrt.nc file can be created using the python script used in KTEST.</p>
 </div>
 </section>
 <section id="nam-sfx-sea-cpl">
-<h4><span class="section-number">7.3.3.2. </span>&amp;NAM_SFX_SEA_CPL<a class="headerlink" href="#nam-sfx-sea-cpl" title="Link to this heading">¶</a></h4>
+<h4>&amp;NAM_SFX_SEA_CPL<a class="headerlink" href="#nam-sfx-sea-cpl" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -473,7 +509,7 @@ This rstrt.nc file can be created using the python script used in KTEST.</p>
 </div>
 </section>
 <section id="nam-sfx-wave-cpl">
-<h4><span class="section-number">7.3.3.3. </span>&amp;NAM_SFX_WAVE_CPL<a class="headerlink" href="#nam-sfx-wave-cpl" title="Link to this heading">¶</a></h4>
+<h4>&amp;NAM_SFX_WAVE_CPL<a class="headerlink" href="#nam-sfx-wave-cpl" title="Link to this heading"></a></h4>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -535,7 +571,7 @@ This rstrt.nc file can be created using the python script used in KTEST.</p>
 </div>
 </section>
 <section id="example-namelist-exseg1-nam-for-an-ocean-wave-atmosphere-coupling">
-<h4><span class="section-number">7.3.3.4. </span>Example namelist EXSEG1.nam for an Ocean-Wave-Atmosphere coupling<a class="headerlink" href="#example-namelist-exseg1-nam-for-an-ocean-wave-atmosphere-coupling" title="Link to this heading">¶</a></h4>
+<h4>Example namelist EXSEG1.nam for an Ocean-Wave-Atmosphere coupling<a class="headerlink" href="#example-namelist-exseg1-nam-for-an-ocean-wave-atmosphere-coupling" title="Link to this heading"></a></h4>
 <p>Below is an example of a namelist for a simulation with Meso-NH. The creation of the grids is desired during the simulation. The model identifier is “mesonh” and this name must be identical to that of the namcouple. Coupling with wave and ocean models is desired. Fields with identifiers are exchanged every 100s.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">NAM_OASIS</span><span class="w"> </span><span class="n">LOASIS</span><span class="o">=</span><span class="p">.</span><span class="n">TRUE</span><span class="p">.,</span>
 <span class="w">           </span><span class="n">LOASIS_GRID</span><span class="o">=</span><span class="p">.</span><span class="n">TRUE</span><span class="p">.,</span>
@@ -580,100 +616,33 @@ The rest of the namelist is identical to the case without coupling.</p>
 </section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-<div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../index.html">Table of Contents</a></h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">1. Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../requirements/requirements.html">2. Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../compilation/compilation.html">4. Compilation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../preprocessing/preprocessing.html">5. Pre-processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../simulation/simulation.html">6. Simulation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">7. To go further</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#oasis">7.1. OASIS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#introduction">7.1.1. Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#installation-and-compilation">7.1.2. Installation and compilation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#functions-implemented-in-models">7.1.3. Functions implemented in models</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#description-of-the-namcouple">7.1.4. Description of the namcouple</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#lag-concept">7.2. LAG concept</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#meso-nh-surfex">7.3. Meso-NH/SurfEx</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#tree-structure-of-meso-nh-surfex">7.3.1. Tree structure of Meso-NH/SurfEx</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#preparing-initial-files-for-meso-nh">7.3.2. Preparing initial files for Meso-NH</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#description-of-the-exseg1-nam">7.3.3. Description of the EXSEG1.nam</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/togofurther/togofurther.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-        </div>
-      </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
-      <div class="clearer"></div>
-    </div>
-    <div class="relbar-bottom">
-        
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../simulation/simulation.html" title="6. Simulation"
-             >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
-
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">7. </span>To go further</a></li> 
-      </ul>
-    </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../simulation/simulation.html" class="btn btn-neutral float-left" title="Simulation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2025, J. Pianezze.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
-    </div>
-    <!-- cloud_sptheme 1.4 -->
-  </body>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, J. Pianezze.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

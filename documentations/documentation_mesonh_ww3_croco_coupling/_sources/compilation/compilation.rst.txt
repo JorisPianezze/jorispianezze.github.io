@@ -1,9 +1,15 @@
+.. _compilation:
+
 Compilation
 *********************************************************
 
-First you need to compile NetCDF and OASIS libraries because Meso-NH, WW3 and CROCO wil use this libraries during their compilation. For CROCO's compilation you need to know the numbers of horizontal and vertical points of your domain before compile it.
+First you need to compile :ref:`compilation_NETCDF` and :ref:`compilation_OASIS` libraries because :ref:`compilation_MESONH`, :ref:`compilation_WW3` and :ref:`compilation_CROCO` will use these libraries during their compilation.
 
-.. _RST compile_NETCDF:
+.. note::
+
+   For :ref:`compilation_CROCO`'s compilation you need to know the numbers of horizontal and vertical points of your domain before compile it.
+
+.. _compilation_NETCDF:
 
 NetCDF
 ====================================
@@ -43,6 +49,8 @@ And you need to see :
      --includedir-> XXX
      --version   -> netCDF-Fortran X.X.X
 
+.. _compilation_OASIS:
+
 OASIS
 ====================================
 
@@ -64,12 +72,12 @@ Then you can compile OASIS :
    make realclean -f TopMakefileOasis3
    make -f TopMakefileOasis3
 
-.. _RST compile_MNH:
+.. _compilation_MESONH:
 
-Meso-NH/SurfEx
+Meso-NH
 ====================================
 
-Before compiling Meso-NH, you need to change MNHENV in the configure by the path of your environment.sh file :
+Before compiling Meso-NH, you need to change MNHENV in the :file:`MNH/src/configure` file by the path of your environment.sh file :
 
 .. code-block:: bash
 
@@ -97,7 +105,7 @@ and then, depending of the architecture, compile interactively :
    make   
    make installmaster
 
-or submit a job (take care of the name of profile-mesonh in the job). By example, for belenos, do :
+or submit a job (take care of the name of profile_mesonh in the job). By example, for belenos, do :
 
 .. code-block:: bash
 
@@ -111,10 +119,9 @@ or submit a job (take care of the name of profile-mesonh in the job). By example
    
    * The :command:`make` command calls different files: Makefile (compile libraries), Rules.\$ARCH\$(F).mk (options of compilation), Makefile.MESONH.mk (link to the compiled libraries)
    
-Many programs have been compiled. For this documentation we will use those presented in the following table. These programs can be used with or without activating coupling. The choice of parametrizations is realized via the use of namelist: it is therefore not necessary
-to recompile Meso-NH if you wish to change parametrizations, which is not the case for WW3 and CROCO.
+Many programs have been compiled. In this documentation, we will focus on those listed in the following table. These programs can be utilized with or without activating OASIS coupling. The selection of Meso-NH's parameterizations is managed through the use of namelists; therefore, it is not necessary to recompile Meso-NH if you wish to change parameterizations, unlike WW3 and CROCO.
 
-.. table:: List of executables Meso-NH/SurfEx compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.
+.. table:: List of Meso-NH's executables used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.
 
    +--------------------+--------------------------------------+-----------------+
    | Executable name    + Function                             + Namelist        |
@@ -128,39 +135,25 @@ to recompile Meso-NH if you wish to change parametrizations, which is not the ca
    | DIAG               | Compute diagnostics after simulation | DIAG1.nam       |
    +--------------------+--------------------------------------+-----------------+    
    
-.. _RST compile_WW3:
+.. _compilation_WW3:
 
 WW3
 ====================================
 
-The steps for compiling WW3 are described in the WW3 manual (ww3_dir/manual/) but are repeated here for greater clarity.
-Whatever the computers, you can follow the same procedure to compile WW3.
-
-For my compilation I need to change following line of the link.tmpl file:
+The steps for compiling WW3 are detailed in the WW3 manual (ww3_dir/manual/), but they are also outlined here for enhanced clarity.
+Regardless of the computer you are using, you can follow the same procedure to compile WW3. Next, you need to prepare the link and comp files required for compiling WW3 by using the following command:
 
 .. code-block:: bash
 
-   libs="$libs `$NETCDF_CONFIG --flibs` `$NETCDF_CONFIG --libs`"
-   
-by 
-
-.. code-block:: bash
-
-   libs="$libs `$NETCDF_CONFIG --flibs`"
-
-Then you must then prepare the link and comp files used to compile WW3 using the following command:
-
-.. code-block:: bash
-
-   source ../../../environment.sh
+   cd models_YOURCASESTUDY
+   source environment.sh
+   cd WW3-v7.14/model/bin/
    ./w3_setup .. -c ${machine} -s OASACM -q
 
-.. note:: A list of environment of available in the file cmplr.env. If there is no environment corresponding to yours in this file, then you will need to create one.
+At this stage, the :file:`comp` and :file:`link` files are created and the :file:`switch_OASACM` is copied into the :file:`switch` file.
+Note that it is in the switch file that you must define the numerical schema, physical parameters, ... you want to use. The OASACM and OASOCM switches are used to activate coupling with an atmospheric model and an ocean model respectively (see WW3 manual).
 
-At this stage, the comp and link files are created and the switch_OASACM is copied into the switch file.
-Note that it is in the switch file that you must define the physical parameters you wish to use. The OASACM and OASOCM switches are used to activate coupling with an atmospheric model and an ocean model respectively (see WW3 manual).
-
-For the aim of this documentation you need to create two new swicthes switch_OASACM_OASOCM and switch_SANSOASIS by example. The first one will have an additional key OASOCM and the second one will not have COU OASIS OASACM keys.
+For the aim of this documentation you need to create two new swicthes switch_OASACM_OASOCM and switch_NOOASIS by example. The first one will have an additional key OASOCM and the second one will not have COU OASIS OASACM keys. switch_NOOASIS will be used to create executables for WW3 spinup simulation.
 
 Next, you can choose to compile all WW3 programs with the w3_make command:
 
@@ -182,12 +175,7 @@ To recompile everything you need to do :
    ./w3_new
    ./w3_make
 
-To check that WW3 has been correctly compiled, a number of tests are available in the regtests/ folder.
-
-A series of programs have been compiled, and for the purposes of this documentation we will use those in the following table. The executables are stored in the exe folder.
-They depend on the settings activated, so if you want to change the settings you have to recompile WW3: it is therefore necessary to copy the exe folder so as not to overwrite the executables previously compiled.
-For this tutorial, it is necessary to compile WW3 twice: once with the OASACM_OASOCM switch and once with the switch_SANSOASIS (only necessary for the spinup simulation).
-In the models/ folder I therefore have two exe folders, one called exe_SANSOASIS and the other exe_OASACM_OASOCM containing the executables for the spinup simulation and for the coupled ocean-wave-atmosphere simulation, respectively.
+A list of programs have been compiled, and for this documentation, we will use those listed in the following table.
 
 .. table:: List of executables WW3 compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.
 
@@ -205,7 +193,24 @@ In the models/ folder I therefore have two exe folders, one called exe_SANSOASIS
    | ww3_ounf           | Create netcdf file                   | ww3_ounf.nml    |
    +--------------------+--------------------------------------+-----------------+
 
-.. _RST compile_CROCO:
+.. note::
+
+   * These executables, located in the exe folder, depend on the activated settings, so any changes to the settings require recompiling WW3. Therefore, it is essential to duplicate the exe folder to avoid overwriting previously compiled executables.
+
+   * For this tutorial, you need to compile WW3 twice: once with the OASACM_OASOCM switch and once with the NOOASIS switch (necessary only for the spinup simulation).
+
+   * In WW3/models/, you need to have two exe directories: one named exe_NOOASIS and the other exe_OASACM_OASOCM. These contain the executables for the spinup simulation and the coupled ocean-wave-atmosphere simulation, respectively :
+
+   .. code-block:: bash
+
+      ./w3_setup .. -c ${machine} -s NOASIS -q
+      ...
+      ./w3_setup .. -c ${machine} -s OASACM_OASOCM -q
+
+
+   * To check that WW3 has been correctly compiled, a number of tests are available in the WW3/regtests/ folder.
+
+.. _compilation_CROCO:
 
 CROCO
 ====================================
@@ -224,7 +229,7 @@ First, you need to go to the directory :
 
 In this directoy, there are :
 
-* clean_compilation_croco.sh: a script to clean the compiled directory
+* clean.sh: a script to clean the compiled directory
 
 * jobcomp : a script to launch the compilation adapted to your machine.
 

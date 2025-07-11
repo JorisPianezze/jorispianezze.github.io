@@ -1,9 +1,9 @@
-.. _RST Requirements:
+.. _requirements:
 
 Requirements
 *********************************************************
 
-To be able to use Meso-NH, WW3 and OASIS coupling's developments you need to have the following requirements :
+To utilize the developments in Meso-NH, WW3, CROCO, and OASIS coupling, you need to meet the following requirements:
 
 +--------------------+-----------------+
 | .. centered:: Hardware               |

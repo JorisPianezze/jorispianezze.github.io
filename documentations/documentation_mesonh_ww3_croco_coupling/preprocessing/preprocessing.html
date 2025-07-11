@@ -1,74 +1,120 @@
 
 
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<html lang="en" data-content_root="../">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pre-processing &mdash; Meso-NH/WW3/CROCO coupling 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
-    <title>5. Pre-processing &#8212; Meso-NH/WW3/CROCO coupling 2.0.0 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/cloud.css?v=f9ae72be" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
-    
-    <script src="../_static/documentation_options.js?v=51b770b3"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-
-    
-    
-     
-        <script src="../_static/jquery.cookie.js"></script>
-    
-
-    
-     
-        <script src="../_static/cloud.base.js"></script>
-    
-
-    
-     
-        <script src="../_static/cloud.js"></script>
-    
-
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Simulation" href="../simulation/simulation.html" />
-    <link rel="prev" title="4. Compilation" href="../compilation/compilation.html" /> 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head><body>
-    <div class="relbar-top">
-        
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../simulation/simulation.html" title="6. Simulation"
-             accesskey="N">next</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="../compilation/compilation.html" title="4. Compilation"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
+    <link rel="next" title="Simulation" href="../simulation/simulation.html" />
+    <link rel="prev" title="Compilation" href="../compilation/compilation.html" /> 
+</head>
 
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">5. </span>Pre-processing</a></li> 
-      </ul>
-    </div>
-    </div>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Meso-NH/WW3/CROCO coupling
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements/requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation/compilation.html">Compilation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Pre-processing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements-pre-processing">Requirements pre-processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tree-template">Tree template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#meso-nh-surfex">Meso-NH/SurfEx</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-the-horizontal-grid-prep-pgd">Prepare the horizontal grid : PREP_PGD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-the-vertical-grid-ic-and-lbc-prep-real-case">Prepare the vertical grid, IC and LBC : PREP_REAL_CASE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preparing-the-namelist-for-the-coupled-simulation-exseg1-nam">Preparing the namelist for the coupled simulation : EXSEG1.nam</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-of-necessary-files-for-mnh-1-input-mnh">List of necessary files for MNH : 1_input_mnh</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ww3">WW3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-files-containing-the-grid">Create the files containing the grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-the-grid-ww3-grid">Prepare the grid : ww3_grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prpare-the-forcing-wind-for-spinup-simulation-ww3-prnc">Prpare the forcing (wind) for spinup simulation : ww3_prnc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-the-lbc-ww3-bound">Prepare the LBC : ww3_bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-the-ic-spinup-ww3-shel">Prepare the IC : spinup (ww3_shel)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-namelist-for-the-coupled-simulation-ww3-shel-nml">Prepare namelist for the coupled simulation : ww3_shel.nml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-of-necessary-files-for-ww3-2-input-ww3">List of necessary files for WW3 : 2_input_ww3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#croco">CROCO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#download-croco-pytools">Download croco_pytools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-horizontal-grid">Create the horizontal grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-ic-and-lbc">Create the IC and LBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-the-namelist-for-the-coupled-simulation-croco-in">Prepare the namelist for the coupled simulation : croco.in</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-of-necessary-files-for-croco-3-input-croco">List of necessary files for CROCO : 3_input_croco</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#oasis">OASIS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-remap-files">Create remap files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prepare-the-namelist-for-the-coupled-simulation-namcouple">Prepare the namelist for the coupled simulation: namcouple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-of-necessary-files-in-the-directory-4-input-oasis">List of necessary files in the directory 4_input_oasis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/simulation.html">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../togofurther/togofurther.html">To go further</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Meso-NH/WW3/CROCO coupling</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Pre-processing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/preprocessing/preprocessing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="pre-processing">
-<h1><span class="section-number">5. </span>Pre-processing<a class="headerlink" href="#pre-processing" title="Link to this heading">¶</a></h1>
+<h1>Pre-processing<a class="headerlink" href="#pre-processing" title="Link to this heading"></a></h1>
 <section id="requirements-pre-processing">
-<span id="rst-requirements-pre-processing"></span><h2><span class="section-number">5.1. </span>Requirements pre-processing<a class="headerlink" href="#requirements-pre-processing" title="Link to this heading">¶</a></h2>
+<span id="rst-requirements-pre-processing"></span><h2>Requirements pre-processing<a class="headerlink" href="#requirements-pre-processing" title="Link to this heading"></a></h2>
 <p>This documentation has been tested with following python’s environment :</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">env_cpl_mnhww3croco</span>
 <span class="nt">channels</span><span class="p">:</span>
@@ -109,7 +155,7 @@
 </div>
 </section>
 <section id="tree-template">
-<span id="rst-tree-template"></span><h2><span class="section-number">5.2. </span>Tree template<a class="headerlink" href="#tree-template" title="Link to this heading">¶</a></h2>
+<span id="rst-tree-template"></span><h2>Tree template<a class="headerlink" href="#tree-template" title="Link to this heading"></a></h2>
 <p>All the files used in this section are available on my public Git repository called tree_tmpl_for_mnh_ww3_croco_coupling. To download it, do :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/JorisPianezze/tree_tmpl_for_mnh_ww3_croco_coupling.git
 </pre></div>
@@ -129,7 +175,7 @@ README.md<span class="w">            </span>!<span class="w"> </span>readme
 </div>
 </section>
 <section id="meso-nh-surfex">
-<span id="rst-preprocessing-mnh"></span><h2><span class="section-number">5.3. </span>Meso-NH/SurfEx<a class="headerlink" href="#meso-nh-surfex" title="Link to this heading">¶</a></h2>
+<span id="rst-preprocessing-mnh"></span><h2>Meso-NH/SurfEx<a class="headerlink" href="#meso-nh-surfex" title="Link to this heading"></a></h2>
 <p>In this section, we will use the scripts located in the 1_input_mnh folder of the Git repository (cf. <a class="reference internal" href="#rst-tree-template"><span class="std std-ref">Tree template</span></a> section).</p>
 <p>The initial and boundary conditions for Meso-NH/SurfEx can be created where you want. On the machine on which you are running the coupled simulation or elsewhere.
 To prepare the initial and boundary conditions for Meso-NH/SurfEx, it is necessary to use (at least), the following executables :</p>
@@ -139,7 +185,7 @@ To prepare the initial and boundary conditions for Meso-NH/SurfEx, it is necessa
 </ul>
 <p>The ocean-wave-atmosphere coupling only has an impact on the simulation (MESONH program). The initial and coupling files for Meso-NH are therefore obtained in the same way as for a forced simulation.</p>
 <section id="prepare-the-horizontal-grid-prep-pgd">
-<h3><span class="section-number">5.3.1. </span>Prepare the horizontal grid : PREP_PGD<a class="headerlink" href="#prepare-the-horizontal-grid-prep-pgd" title="Link to this heading">¶</a></h3>
+<h3>Prepare the horizontal grid : PREP_PGD<a class="headerlink" href="#prepare-the-horizontal-grid-prep-pgd" title="Link to this heading"></a></h3>
 <p>First you need to specify PREP_PGD_FILES directory. This directory contains the files needed to define the type of cover (ECOCLIMAP, SAND_HWSD_MOY, …) and the orography (gtopo30).
 If you don’t have it you can use the script get_pgd_files to download them.</p>
 <p>These files can also be downloaded on <a class="reference external" href="http://mesonh.aero.obs-mip.fr/mesonh56/Download">Meso-NH</a> website.</p>
@@ -183,7 +229,7 @@ YNCVARNAME        = ‘topo’ /</p>
 At the end of this stage you will find two files in your directory: netcdf file with the fields corresponding to your domain and a descriptive file containing the namelists used (in some cases this file is empty).</p>
 </section>
 <section id="prepare-the-vertical-grid-ic-and-lbc-prep-real-case">
-<h3><span class="section-number">5.3.2. </span>Prepare the vertical grid, IC and LBC : PREP_REAL_CASE<a class="headerlink" href="#prepare-the-vertical-grid-ic-and-lbc-prep-real-case" title="Link to this heading">¶</a></h3>
+<h3>Prepare the vertical grid, IC and LBC : PREP_REAL_CASE<a class="headerlink" href="#prepare-the-vertical-grid-ic-and-lbc-prep-real-case" title="Link to this heading"></a></h3>
 <p>To prepare the initial and boundary conditions, you first need to download the large-scale forcing fields you will be using: AROME, ARPEGE, IFS or GFS.
 An example of a ERA5 request via CDSAPI can be found in the 1_input_mnh folder (extract_era5_instantaneous_fields_for_mesonh_and_abl1d.py).</p>
 <p>To extract ERA5 fields for Meso-NH, do :</p>
@@ -209,7 +255,7 @@ To do this, you must put the name of the netcdf file corresponding to the initia
 <p>At the end of this step, the rstrt_MNH.nc file should have been created.</p>
 </section>
 <section id="preparing-the-namelist-for-the-coupled-simulation-exseg1-nam">
-<h3><span class="section-number">5.3.3. </span>Preparing the namelist for the coupled simulation : EXSEG1.nam<a class="headerlink" href="#preparing-the-namelist-for-the-coupled-simulation-exseg1-nam" title="Link to this heading">¶</a></h3>
+<h3>Preparing the namelist for the coupled simulation : EXSEG1.nam<a class="headerlink" href="#preparing-the-namelist-for-the-coupled-simulation-exseg1-nam" title="Link to this heading"></a></h3>
 <p>The final step in preparing the Meso-NH configuration is to adapt the EXSEG1.nam namelist to a coupled simulation.
 In the case of this documentation, you do not have to modify the namelists present in the 1_input_mnh folder. The namelists EXSEG1.nam_B1_cpl_mnh_croco and EXSEG1.nam_C1_cpl_mnh_ww3_croco are already adapted to a coupled ocean-atmosphere and ocean-waves-atmosphere simulation, respectively.</p>
 <p>Only the namelists to be added in the event of coupling are presented here (the other namelists are identical to a forced simulation):</p>
@@ -250,7 +296,7 @@ In the case of this documentation, you do not have to modify the namelists prese
 <p>The strings must be the same as those defined in the namcouple file (Section <a class="reference internal" href="#rst-preprocessing-oasis"><span class="std std-ref">OASIS</span></a>). If you do not wish to use the coupling with a wave model, you must set XTSTEP_CPL_WAVE=-1.0 or delete the namelist NAM_SFX_WAVE_CPL.</p>
 </section>
 <section id="list-of-necessary-files-for-mnh-1-input-mnh">
-<h3><span class="section-number">5.3.4. </span>List of necessary files for MNH : 1_input_mnh<a class="headerlink" href="#list-of-necessary-files-for-mnh-1-input-mnh" title="Link to this heading">¶</a></h3>
+<h3>List of necessary files for MNH : 1_input_mnh<a class="headerlink" href="#list-of-necessary-files-for-mnh-1-input-mnh" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>1_input_mnh
 <span class="w">   </span><span class="p">|</span><span class="w"> </span>--<span class="w"> </span>PGD.des/PGD.nc<span class="w">         </span>!<span class="w"> </span>from<span class="w"> </span>PREP_PGD<span class="w"> </span>program
 <span class="w">   </span><span class="p">|</span><span class="w"> </span>--<span class="w"> </span>PRC.des/PRC.nc<span class="w">         </span>!<span class="w"> </span>from<span class="w"> </span>PREP_REAL_CASE<span class="w"> </span>program
@@ -261,10 +307,10 @@ In the case of this documentation, you do not have to modify the namelists prese
 </section>
 </section>
 <section id="ww3">
-<span id="rst-preprocessing-ww3"></span><h2><span class="section-number">5.4. </span>WW3<a class="headerlink" href="#ww3" title="Link to this heading">¶</a></h2>
+<span id="rst-preprocessing-ww3"></span><h2>WW3<a class="headerlink" href="#ww3" title="Link to this heading"></a></h2>
 <p>In this section, we will use scripts located in the 2_input_ww3 folder.</p>
 <section id="create-the-files-containing-the-grid">
-<h3><span class="section-number">5.4.1. </span>Create the files containing the grid<a class="headerlink" href="#create-the-files-containing-the-grid" title="Link to this heading">¶</a></h3>
+<h3>Create the files containing the grid<a class="headerlink" href="#create-the-files-containing-the-grid" title="Link to this heading"></a></h3>
 <p>In order to have equivalent grids (coverage + resolution), it is possible to create the WW3 grid directly from the Meso-NH grid.
 This is the approach I have followed in this documentation. To do this, you need to adapt the path in the python script create_grid_for_ww3_from_pgd.py and then run it via :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>grid/
@@ -277,7 +323,7 @@ python<span class="w"> </span>create_grid_for_ww3_from_pgd.py
 </div>
 </section>
 <section id="prepare-the-grid-ww3-grid">
-<h3><span class="section-number">5.4.2. </span>Prepare the grid : ww3_grid<a class="headerlink" href="#prepare-the-grid-ww3-grid" title="Link to this heading">¶</a></h3>
+<h3>Prepare the grid : ww3_grid<a class="headerlink" href="#prepare-the-grid-ww3-grid" title="Link to this heading"></a></h3>
 <p>Once the files defining the grid for WW3 have been created, you need to use the ww3_grid program. This program uses the namelist ww3_grid.nml (you can find an example in 2_input_ww3).
 In this namelist you must add the names of the files created previously, for example :</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">CURV_NML</span>
@@ -309,7 +355,7 @@ This program has generated 3 files: mod_def.ww3, mask.ww3 and mapsta.ww3. These 
 Depending on the wind-wave parameterisation you are using, a ST4TABUHF2.bin file may also be generated at this stage: this file is also required by the other programs.</p>
 </section>
 <section id="prpare-the-forcing-wind-for-spinup-simulation-ww3-prnc">
-<h3><span class="section-number">5.4.3. </span>Prpare the forcing (wind) for spinup simulation : ww3_prnc<a class="headerlink" href="#prpare-the-forcing-wind-for-spinup-simulation-ww3-prnc" title="Link to this heading">¶</a></h3>
+<h3>Prpare the forcing (wind) for spinup simulation : ww3_prnc<a class="headerlink" href="#prpare-the-forcing-wind-for-spinup-simulation-ww3-prnc" title="Link to this heading"></a></h3>
 <p>Unlike Meso-NH/SurfEx and CROCO, a spinup simulation is required to prepare the initial condition for WW3. To prepare this simulation, you need the wind speed at 10m to force the wave model.
 To be consistent with the atmospheric fields used to initialise and force the Meso-NH lateral boundary condition, we will use the 10m wind speed from the ERA5.</p>
 <p>To extract the 10m wind speed from the ECMWF servers, you can use the CDSAPI requests located in the 2_input_ww3/era5 directory and run it via :</p>
@@ -337,7 +383,7 @@ This script uses functions contained in the eccodes library. You may need to ins
 <p>At the end of this step, the wind.ww3 file is created. This file has to be used in the spinup simulation.</p>
 </section>
 <section id="prepare-the-lbc-ww3-bound">
-<h3><span class="section-number">5.4.4. </span>Prepare the LBC : ww3_bound<a class="headerlink" href="#prepare-the-lbc-ww3-bound" title="Link to this heading">¶</a></h3>
+<h3>Prepare the LBC : ww3_bound<a class="headerlink" href="#prepare-the-lbc-ww3-bound" title="Link to this heading"></a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>To be update with ERA5.</p>
@@ -385,7 +431,7 @@ To do this, go back to the 2_input_ww3 directory and modify the paths in the run
 This program generated a file called nest.ww3 corresponding to the lateral boundary conditions for WW3. This file will be used in the spinup and coupling simulations.</p>
 </section>
 <section id="prepare-the-ic-spinup-ww3-shel">
-<h3><span class="section-number">5.4.5. </span>Prepare the IC : spinup (ww3_shel)<a class="headerlink" href="#prepare-the-ic-spinup-ww3-shel" title="Link to this heading">¶</a></h3>
+<h3>Prepare the IC : spinup (ww3_shel)<a class="headerlink" href="#prepare-the-ic-spinup-ww3-shel" title="Link to this heading"></a></h3>
 <p>To prepare the initial conditions for WW3, you need to run the WW3 forced simulation again, but now with the LBC file.</p>
 <p>To do this, you can go to A2_frc_ww3_spinup folder, modify the script run_ww3_shel.sh and the namelist ww3_shel.nml_A2_frc_ww3_spinup located in the 2_input_ww3 directory according to the period you are interested in.
 Simulations lasting a few days are sufficient to prepare your initial conditions. The length of time depends on your domain.</p>
@@ -436,7 +482,7 @@ You should see a signal propagating from the edges of the domain inwards and rea
 </div>
 </section>
 <section id="prepare-namelist-for-the-coupled-simulation-ww3-shel-nml">
-<h3><span class="section-number">5.4.6. </span>Prepare namelist for the coupled simulation : ww3_shel.nml<a class="headerlink" href="#prepare-namelist-for-the-coupled-simulation-ww3-shel-nml" title="Link to this heading">¶</a></h3>
+<h3>Prepare namelist for the coupled simulation : ww3_shel.nml<a class="headerlink" href="#prepare-namelist-for-the-coupled-simulation-ww3-shel-nml" title="Link to this heading"></a></h3>
 <p>Finally, you need to prepare the namelist for the coupled run. For the purposes of this documentation, the namelist ww3_shel.nml_C1_cpl_mnh_ww3_croco is already adapted to a coupled ocean-wave-atmosphere simulation.
 The information in this namelist concerning coupling is presented here:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">INPUT_NML</span>
@@ -471,7 +517,7 @@ Start and end date of the simulation.
 </div>
 </section>
 <section id="list-of-necessary-files-for-ww3-2-input-ww3">
-<h3><span class="section-number">5.4.7. </span>List of necessary files for WW3 : 2_input_ww3<a class="headerlink" href="#list-of-necessary-files-for-ww3-2-input-ww3" title="Link to this heading">¶</a></h3>
+<h3>List of necessary files for WW3 : 2_input_ww3<a class="headerlink" href="#list-of-necessary-files-for-ww3-2-input-ww3" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>2_input_ww3
 <span class="w">   </span><span class="p">|</span><span class="w"> </span>--<span class="w"> </span>mapsta.ww3<span class="w">             </span>!<span class="w"> </span>from<span class="w"> </span>ww3_grid<span class="w"> </span>program
 <span class="w">   </span><span class="p">|</span><span class="w"> </span>--<span class="w"> </span>mask.ww3<span class="w">               </span>!<span class="w"> </span>from<span class="w"> </span>ww3_grid<span class="w"> </span>program
@@ -486,14 +532,14 @@ Start and end date of the simulation.
 </section>
 </section>
 <section id="croco">
-<span id="rst-preprocessing-croco"></span><h2><span class="section-number">5.5. </span>CROCO<a class="headerlink" href="#croco" title="Link to this heading">¶</a></h2>
+<span id="rst-preprocessing-croco"></span><h2>CROCO<a class="headerlink" href="#croco" title="Link to this heading"></a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>A new python preprocessing tool for CROCO is under development. I will update this section when the first release of this tool will be available.</p>
 </div>
 <p>In this section, we will use the scripts located in the 3_input_croco directory.</p>
 <section id="download-croco-pytools">
-<h3><span class="section-number">5.5.1. </span>Download croco_pytools<a class="headerlink" href="#download-croco-pytools" title="Link to this heading">¶</a></h3>
+<h3>Download croco_pytools<a class="headerlink" href="#download-croco-pytools" title="Link to this heading"></a></h3>
 <p>To get croco_pytools, do:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>3_input_croco
 git<span class="w"> </span>clone<span class="w"> </span>git@gitlab.inria.fr:croco-ocean/croco_pytools.git
@@ -501,7 +547,7 @@ git<span class="w"> </span>clone<span class="w"> </span>git@gitlab.inria.fr:croc
 </div>
 </section>
 <section id="create-the-horizontal-grid">
-<h3><span class="section-number">5.5.2. </span>Create the horizontal grid<a class="headerlink" href="#create-the-horizontal-grid" title="Link to this heading">¶</a></h3>
+<h3>Create the horizontal grid<a class="headerlink" href="#create-the-horizontal-grid" title="Link to this heading"></a></h3>
 <p>To create the horizontal grid for CROCO, go to PREPRO directory. You need to compile and modify path in make_grid.py script.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>PREPRO
 make
@@ -525,7 +571,7 @@ python<span class="w"> </span>make_grid.py
 </div>
 </section>
 <section id="create-the-ic-and-lbc">
-<h3><span class="section-number">5.5.3. </span>Create the IC and LBC<a class="headerlink" href="#create-the-ic-and-lbc" title="Link to this heading">¶</a></h3>
+<h3>Create the IC and LBC<a class="headerlink" href="#create-the-ic-and-lbc" title="Link to this heading"></a></h3>
 <p>To initialise and force CROCO to the lateral boundary conditions, we use the Mercator-Ocean data that can be downloaded from the CMEMS servers. For that you need to create an account on <a class="reference external" href="http://marine.copernicus.eu/services-portfolio/access-to-products/">CMEMS</a> servers. After creating your account you have to install motu client. If you are using conda, you can install it using the following commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>motuclient
 conda<span class="w"> </span>activate<span class="w"> </span>env_motuclient
@@ -556,11 +602,11 @@ conda<span class="w"> </span>activate<span class="w"> </span>env_motuclient
 </div>
 </section>
 <section id="prepare-the-namelist-for-the-coupled-simulation-croco-in">
-<h3><span class="section-number">5.5.4. </span>Prepare the namelist for the coupled simulation : croco.in<a class="headerlink" href="#prepare-the-namelist-for-the-coupled-simulation-croco-in" title="Link to this heading">¶</a></h3>
+<h3>Prepare the namelist for the coupled simulation : croco.in<a class="headerlink" href="#prepare-the-namelist-for-the-coupled-simulation-croco-in" title="Link to this heading"></a></h3>
 <p>No information about OASIS must be defined in the namelist croco.in (located in the 3_input_croco directory) : CROCO reads the namcouple file to access the corresponding information. To modify this namelist, please refer to the CROCO documentation.</p>
 </section>
 <section id="list-of-necessary-files-for-croco-3-input-croco">
-<h3><span class="section-number">5.5.5. </span>List of necessary files for CROCO : 3_input_croco<a class="headerlink" href="#list-of-necessary-files-for-croco-3-input-croco" title="Link to this heading">¶</a></h3>
+<h3>List of necessary files for CROCO : 3_input_croco<a class="headerlink" href="#list-of-necessary-files-for-croco-3-input-croco" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>3_input_croco
 <span class="w">   </span><span class="p">|</span><span class="w"> </span>--<span class="w"> </span>croco_grd.nc
 <span class="w">   </span><span class="p">|</span><span class="w"> </span>--<span class="w"> </span>croco_ini.nc
@@ -572,9 +618,9 @@ conda<span class="w"> </span>activate<span class="w"> </span>env_motuclient
 </section>
 </section>
 <section id="oasis">
-<span id="rst-preprocessing-oasis"></span><h2><span class="section-number">5.6. </span>OASIS<a class="headerlink" href="#oasis" title="Link to this heading">¶</a></h2>
+<span id="rst-preprocessing-oasis"></span><h2>OASIS<a class="headerlink" href="#oasis" title="Link to this heading"></a></h2>
 <section id="create-remap-files">
-<h3><span class="section-number">5.6.1. </span>Create remap files<a class="headerlink" href="#create-remap-files" title="Link to this heading">¶</a></h3>
+<h3>Create remap files<a class="headerlink" href="#create-remap-files" title="Link to this heading"></a></h3>
 <p>First you need to get create_rmp_files tool from my public Git repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/JorisPianezze/create_rmp_files_for_oasis.git
 </pre></div>
@@ -600,12 +646,12 @@ It is necessary to repeat the operation for each run.sh script.</p>
 </div>
 </section>
 <section id="prepare-the-namelist-for-the-coupled-simulation-namcouple">
-<h3><span class="section-number">5.6.2. </span>Prepare the namelist for the coupled simulation: namcouple<a class="headerlink" href="#prepare-the-namelist-for-the-coupled-simulation-namcouple" title="Link to this heading">¶</a></h3>
+<h3>Prepare the namelist for the coupled simulation: namcouple<a class="headerlink" href="#prepare-the-namelist-for-the-coupled-simulation-namcouple" title="Link to this heading"></a></h3>
 <p>In this section, the namcouple namelist located in the 4_input_oasis folder will be used. For the purposes of this documentation, you do not need to modify the namelist; the following paragraphs are for your information.</p>
 <p>The namcouple file is the OASIS coupler configuration file containing all the information relating to exchanges between models. It follows a precise syntax which is clearly explained in the OASIS3-MCT user manual. For example, it does not accept blank lines and there is no syntax check on this file: the slightest error means a crash without any indication.</p>
 </section>
 <section id="list-of-necessary-files-in-the-directory-4-input-oasis">
-<h3><span class="section-number">5.6.3. </span>List of necessary files in the directory 4_input_oasis<a class="headerlink" href="#list-of-necessary-files-in-the-directory-4-input-oasis" title="Link to this heading">¶</a></h3>
+<h3>List of necessary files in the directory 4_input_oasis<a class="headerlink" href="#list-of-necessary-files-in-the-directory-4-input-oasis" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>4_input_oasis
 <span class="w">   </span><span class="p">|</span><span class="w"> </span>--<span class="w"> </span>rst_*.nc<span class="w">       </span>!<span class="w"> </span>restart<span class="w"> </span>files
 <span class="w">   </span><span class="p">|</span><span class="w"> </span>--<span class="w"> </span>rmp*.nc<span class="w">        </span>!<span class="w"> </span>remap<span class="w"> </span>files
@@ -617,122 +663,34 @@ It is necessary to repeat the operation for each run.sh script.</p>
 </section>
 
 
-            <div class="clearer"></div>
+           </div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-<div class="sphinx-toc sphinxglobaltoc">
-<h3><a href="../index.html">Table of Contents</a></h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../introduction/introduction.html">1. Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../requirements/requirements.html">2. Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../installation/installation.html">3. Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../compilation/compilation.html">4. Compilation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Pre-processing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#requirements-pre-processing">5.1. Requirements pre-processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tree-template">5.2. Tree template</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#meso-nh-surfex">5.3. Meso-NH/SurfEx</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#prepare-the-horizontal-grid-prep-pgd">5.3.1. Prepare the horizontal grid : PREP_PGD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prepare-the-vertical-grid-ic-and-lbc-prep-real-case">5.3.2. Prepare the vertical grid, IC and LBC : PREP_REAL_CASE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#preparing-the-namelist-for-the-coupled-simulation-exseg1-nam">5.3.3. Preparing the namelist for the coupled simulation : EXSEG1.nam</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#list-of-necessary-files-for-mnh-1-input-mnh">5.3.4. List of necessary files for MNH : 1_input_mnh</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#ww3">5.4. WW3</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#create-the-files-containing-the-grid">5.4.1. Create the files containing the grid</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prepare-the-grid-ww3-grid">5.4.2. Prepare the grid : ww3_grid</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prpare-the-forcing-wind-for-spinup-simulation-ww3-prnc">5.4.3. Prpare the forcing (wind) for spinup simulation : ww3_prnc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prepare-the-lbc-ww3-bound">5.4.4. Prepare the LBC : ww3_bound</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prepare-the-ic-spinup-ww3-shel">5.4.5. Prepare the IC : spinup (ww3_shel)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prepare-namelist-for-the-coupled-simulation-ww3-shel-nml">5.4.6. Prepare namelist for the coupled simulation : ww3_shel.nml</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#list-of-necessary-files-for-ww3-2-input-ww3">5.4.7. List of necessary files for WW3 : 2_input_ww3</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#croco">5.5. CROCO</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#download-croco-pytools">5.5.1. Download croco_pytools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#create-the-horizontal-grid">5.5.2. Create the horizontal grid</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#create-the-ic-and-lbc">5.5.3. Create the IC and LBC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prepare-the-namelist-for-the-coupled-simulation-croco-in">5.5.4. Prepare the namelist for the coupled simulation : croco.in</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#list-of-necessary-files-for-croco-3-input-croco">5.5.5. List of necessary files for CROCO : 3_input_croco</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#oasis">5.6. OASIS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#create-remap-files">5.6.1. Create remap files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#prepare-the-namelist-for-the-coupled-simulation-namcouple">5.6.2. Prepare the namelist for the coupled simulation: namcouple</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#list-of-necessary-files-in-the-directory-4-input-oasis">5.6.3. List of necessary files in the directory 4_input_oasis</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../simulation/simulation.html">6. Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../togofurther/togofurther.html">7. To go further</a></li>
-</ul>
-</div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/preprocessing/preprocessing.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-        </div>
-      </div>
-    
-    
-        <div class="sidebar-toggle-group no-js">
-            
-            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
-                 «
-                <span class="show-for-small">hide menu</span>
-                
-            </button>
-            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
-                
-                <span class="show-for-small">menu</span>
-                <span class="hide-for-small">sidebar</span>
-                 »
-            </button>
-        </div>
-    
-      <div class="clearer"></div>
-    </div>
-    <div class="relbar-bottom">
-        
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../simulation/simulation.html" title="6. Simulation"
-             >next</a> &nbsp; &nbsp;</li>
-        <li class="right" >
-          <a href="../compilation/compilation.html" title="4. Compilation"
-             >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">Meso-NH/WW3/CROCO coupling 2.0.0 documentation</a> &#187;</li>
-
-        <li class="nav-item nav-item-this"><a href=""><span class="section-number">5. </span>Pre-processing</a></li> 
-      </ul>
-    </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../compilation/compilation.html" class="btn btn-neutral float-left" title="Compilation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../simulation/simulation.html" class="btn btn-neutral float-right" title="Simulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
-    <div class="footer" role="contentinfo">
-    &#169; Copyright 2025, J. Pianezze.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
-    </div>
-    <!-- cloud_sptheme 1.4 -->
-  </body>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, J. Pianezze.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>
