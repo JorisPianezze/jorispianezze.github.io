@@ -1,96 +1,123 @@
+.. _pre-processing:
+
 Pre-processing
 *********************************************************
 
-.. _RST requirements_pre-processing:
+During the pre-processing steps, you will choose the horizontal and vertical grids and prepare the initial and boundary conditions for the different models.
 
+.. note::
 
-Requirements pre-processing
+   I recommend performing the steps :ref:`preprocessing_MNH`, :ref:`preprocessing_WW3`, and :ref:`preprocessing_OASIS` on the machine where you will run the simulation
+   Depending on your machine and external access, I recommend doing the step :ref:`preprocessing_CROCO` remotely and transferring the files.
+
+.. _python_requirements:
+
+Requirements
 ====================================
 
 This documentation has been tested with following python's environment :
 
 .. code-block:: yaml
 
-   name: env_cpl_mnhww3croco
+   name: environment
    channels:
-     - defaults
+     - conda-forge
    dependencies:
-     - python=3.11.5
-     - numpy=1.26.0
+     - python=3.9
+     - setuptools>60,<=74
+     - numpy=1.23.5
      - netcdf4=1.6.2
      - matplotlib=3.7.2
+     - cartopy=0.21.0
+     - scipy=1.9.3
+     - wxpython=4.2.0
+     - traits=6.4.1
+     - traitsui=7.4.2
+     - dask=2022.11.1
+     - geopandas=0.12.1
+     - regionmask=0.9.0
+     - pyinterp=2022.10.1
+     - gcc>=8.3.0
+     - gfortran>=8.3.0
+     - netcdf-fortran=4.6.0
+     - cdsapi
+     - pyqt=5.15.9
+     - copernicusmarine=2.0.1
+     - xarray=2024.3.0
 
 .. note::
 
-   You can copy/paste these lines in a file called env_cpl_mnhww3croco.yml.
+   You can copy/paste these lines in a file called :file:`environment.yml` or find this file in following git repository.
 
 To install it with :command:`conda`, do
 
 .. code-block:: bash
    
-   conda env create -f env_cpl_mnhww3croco.yml
+   mamba env create -f environment.yml
 
 .. note::
 
    Insallation of python's environment has to be done one time.
 
-.. tip::
-
-   To accelerate the installation of your conda's environment you can use mamba, example :
-   
-.. code-block:: bash
-   
-   mamba env create -f env_cpl_mnhww3croco.yml
-
 To activate it, do
 
 .. code-block:: bash
 
-   conda activate env_cpl_mnhww3croco
+   mamba activate environment
    
 To deactivate it, do
 
 .. code-block:: bash
 
-   conda deactivate
+   mamba deactivate
 
+.. _get_config_template:
 
-.. _RST tree_template:
-
-
-Tree template
+Get config template
 ====================================
 
-All the files used in this section are available on my public Git repository called tree_tmpl_for_mnh_ww3_croco_coupling. To download it, do :
+All the files used in this section are available on a public Git repository. To download it, do :
 
 .. code-block:: bash
 
-   git clone https://github.com/JorisPianezze/tree_tmpl_for_mnh_ww3_croco_coupling.git
+   git clone https://github.com/JorisPianezze/config_tmpl_for_mesonh_ww3_croco_coupling.git
 
-A lot of files are needed for a coupled ocean-wave-atmosphere simulation, so I recommend organising your folders as legibly as possible. For this reason, I suggest to use this type of tree structure :
+To be consistent with models directory :ref:`installation`, I recommend to rename this directory as :
 
 .. code-block:: bash
 
-   1_input_mnh          ! scripts and files for Meso-NH
-   2_input_ww3          ! scripts and files for WW3
-   3_input_croco        ! scripts and files for CROCO
-   4_input_oasis        ! scripts and files for OASIS
-   A1_frc_mnh           ! example of a MNH forced simulation
-   A2_frc_ww3_spinup    ! spinup simulation for WW3
-   B1_cpl_mnh_croco     ! example of a MNH/CROCO coupled simulation
-   C1_cpl_mnh_ww3_croco ! example of a MNH/WW3/CROCO coupled simulation
-   env.sh               ! environment variables and modules
+   mv config_tmpl_for_mesonh_ww3_croco_coupling config_YOURCASESTUDY
+
+.. note::
+
+   Depending on the machine you are using, you may have to put this directory on the work directory.
+
+A lot of files are needed for a coupled ocean-wave-atmosphere simulation, so I recommend organising your folders as following the structure of the config_YOURCASESTUDY directory :
+
+.. code-block:: bash
+
+   1_input_MNH          ! scripts and files for Meso-NH
+   2_input_WW3          ! scripts and files for WW3
+   3_input_CROCO        ! scripts and files for CROCO
+   4_input_OASIS        ! scripts and files for OASIS
+   A1_frc_MNH           ! example of a MNH forced simulation
+   A2_frc_WW3_spinup    ! spinup simulation for WW3
+   B1_cpl_MNH_CROCO     ! example of a MNH/CROCO coupled simulation
+   C1_cpl_MNH_WW3_CROCO ! example of a MNH/WW3/CROCO coupled simulation
    README.md            ! readme
 
-.. _RST preprocessing_MNH:
+.. _preprocessing_MNH:
 
-Meso-NH/SurfEx
+Meso-NH
 ====================================
 
-In this section, we will use the scripts located in the 1_input_mnh folder of the Git repository (cf. :ref:`RST tree_template` section).
+In this section, we will use the scripts located in the 1_input_MNH folder of the Git repository (cf. :ref:`get_config_template` section).
 
-The initial and boundary conditions for Meso-NH/SurfEx can be created where you want. On the machine on which you are running the coupled simulation or elsewhere.
-To prepare the initial and boundary conditions for Meso-NH/SurfEx, it is necessary to use (at least), the following executables :
+.. note::
+
+   The initial and boundary conditions for Meso-NH can be created where you want. On the machine on which you are running the coupled simulation or elsewhere.
+
+To prepare the initial and boundary conditions for Meso-NH, it is necessary to use (at least), the following executables :
 
 * PREP_PGD is used to prepare the physiographic data file: definition of the horizontal grid (number of points and grid resolution), type of coverage, etc ...
 
@@ -224,7 +251,7 @@ Only the namelists to be added in the event of coupling are presented here (the 
 
 .. note:: See :ref:`RST details_MNH` section to have detailled information about available coupling fields.
 
-The strings must be the same as those defined in the namcouple file (Section :ref:`RST preprocessing_OASIS`). If you do not wish to use the coupling with a wave model, you must set XTSTEP_CPL_WAVE=-1.0 or delete the namelist NAM_SFX_WAVE_CPL.
+The strings must be the same as those defined in the namcouple file (Section :ref:`preprocessing_OASIS`). If you do not wish to use the coupling with a wave model, you must set XTSTEP_CPL_WAVE=-1.0 or delete the namelist NAM_SFX_WAVE_CPL.
 
 List of necessary files for MNH : 1_input_mnh
 -----------------------------------------------------------------------
@@ -237,7 +264,107 @@ List of necessary files for MNH : 1_input_mnh
       | -- rstrt_MNH.nc           ! from python script
       | -- EXSEG1.nam             ! namelist for the coupled simulation
 
-.. _RST preprocessing_WW3:
+.. _preprocessing_CROCO:
+
+CROCO
+====================================
+
+.. warning:: A new python preprocessing tool for CROCO is under development. I will update this section when the first release of this tool will be available.
+
+In this section, we will use the scripts located in the 3_input_croco directory.
+
+Download croco_pytools
+-----------------------------------------------------------------------
+
+To get croco_pytools, do:
+
+.. code-block:: bash
+
+   cd 3_input_croco
+   git clone git@gitlab.inria.fr:croco-ocean/croco_pytools.git
+
+Create the horizontal grid
+-----------------------------------------------------------------------
+
+To create the horizontal grid for CROCO, go to PREPRO directory. You need to compile and modify path in make_grid.py script.
+
+.. code-block:: bash
+
+   cd PREPRO
+   make
+   python make_grid.py
+
+.. note:: I needed to change NETCDFLIB line in Makedefs by NETCDFLIB= -L/usr/lib/x86_64-linux-gnu -lnetcdff -lnetcdf
+
+.. note:: You can get coastlines data here :
+
+.. code-block:: bash
+
+   wget https://www.ngdc.noaa.gov/mgg/shorelines/data/gshhs/latest/gshhg-shp-2.3.7.zip
+   
+.. note:: etopo2.nc can be downloaded here : https://www.ncei.noaa.gov/products/etopo-global-relief-model
+
+Create the IC and LBC
+-----------------------------------------------------------------------
+
+To initialise and force CROCO to the lateral boundary conditions, we use the Mercator-Ocean data that can be downloaded from the CMEMS servers. For that you need to create an account on `CMEMS <http://marine.copernicus.eu/services-portfolio/access-to-products/>`_ servers. After creating your account you have to install motu client. If you are using conda, you can install it using the following commands:
+
+.. code-block:: bash
+
+   conda install motuclient
+   conda activate env_motuclient
+
+.. note:: A conda environment environment_motuclient.yml is available in the 3_input_croco directory to install motuclien in a conda container.
+
+Then yo can download GLORYS by using this script (you need to put your username and password and chose the date to extract) :
+
+.. code-block:: bash
+
+   ./download_glorys.sh
+
+At the end of this extraction, you will have a netcdf file with the fields corresponding to those chosen in the extraction script. If you use the script in this documentation directly, the extracted file is called raw_motu_mercator_Y2020M09.nc.
+
+To prepare the IC you have to adapt the path in the make_ini.py script and do :
+
+.. code-block:: bash
+
+   python make_ini.py
+
+At the end of this step, you will have a netcdf file called croco_ini.nc.
+
+To prepare the LBC you have to adapt the path in the make_bry.py script and do :
+
+.. code-block:: bash
+
+   python make_bry.py
+
+At the end of this step, you will have a netcdf file called croco_bry.nc.
+
+Once the times have been checked, you need to transfer these files to belenos and go to 3_input_croco to run the create_restart_file_from_ini_CROCO_file.py script to create the rstrt_CROCO.nc file.
+
+.. code-block:: bash
+
+   python create_restart_file_from_ini_CROCO_file.py
+
+Prepare the namelist for the coupled simulation : croco.in
+-----------------------------------------------------------------------
+
+No information about OASIS must be defined in the namelist croco.in (located in the 3_input_croco directory) : CROCO reads the namcouple file to access the corresponding information. To modify this namelist, please refer to the CROCO documentation.
+
+List of necessary files for CROCO : 3_input_croco
+-----------------------------------------------------------------------
+
+.. code-block:: bash
+
+   3_input_croco
+      | -- croco_grd.nc
+      | -- croco_ini.nc
+      | -- croco_bry.nc  
+      | -- rstrt_CROCO.nc
+      | -- croco.in
+
+
+.. _preprocessing_WW3:
 
 WW3
 ====================================
@@ -519,106 +646,7 @@ List of necessary files for WW3 : 2_input_ww3
       | -- rstrt_WW3.nc           ! from python script
       | -- ww3_shel.nml           ! namelist for the coupled simulation
 
-.. _RST preprocessing_CROCO:
-
-CROCO
-====================================
-
-.. warning:: A new python preprocessing tool for CROCO is under development. I will update this section when the first release of this tool will be available.
-
-In this section, we will use the scripts located in the 3_input_croco directory.
-
-Download croco_pytools
------------------------------------------------------------------------
-
-To get croco_pytools, do:
-
-.. code-block:: bash
-
-   cd 3_input_croco
-   git clone git@gitlab.inria.fr:croco-ocean/croco_pytools.git
-
-Create the horizontal grid
------------------------------------------------------------------------
-
-To create the horizontal grid for CROCO, go to PREPRO directory. You need to compile and modify path in make_grid.py script.
-
-.. code-block:: bash
-
-   cd PREPRO
-   make
-   python make_grid.py
-
-.. note:: I needed to change NETCDFLIB line in Makedefs by NETCDFLIB= -L/usr/lib/x86_64-linux-gnu -lnetcdff -lnetcdf
-
-.. note:: You can get coastlines data here :
-
-.. code-block:: bash
-
-   wget https://www.ngdc.noaa.gov/mgg/shorelines/data/gshhs/latest/gshhg-shp-2.3.7.zip
-   
-.. note:: etopo2.nc can be downloaded here : https://www.ncei.noaa.gov/products/etopo-global-relief-model
-
-Create the IC and LBC
------------------------------------------------------------------------
-
-To initialise and force CROCO to the lateral boundary conditions, we use the Mercator-Ocean data that can be downloaded from the CMEMS servers. For that you need to create an account on `CMEMS <http://marine.copernicus.eu/services-portfolio/access-to-products/>`_ servers. After creating your account you have to install motu client. If you are using conda, you can install it using the following commands:
-
-.. code-block:: bash
-
-   conda install motuclient
-   conda activate env_motuclient
-
-.. note:: A conda environment environment_motuclient.yml is available in the 3_input_croco directory to install motuclien in a conda container.
-
-Then yo can download GLORYS by using this script (you need to put your username and password and chose the date to extract) :
-
-.. code-block:: bash
-
-   ./download_glorys.sh
-
-At the end of this extraction, you will have a netcdf file with the fields corresponding to those chosen in the extraction script. If you use the script in this documentation directly, the extracted file is called raw_motu_mercator_Y2020M09.nc.
-
-To prepare the IC you have to adapt the path in the make_ini.py script and do :
-
-.. code-block:: bash
-
-   python make_ini.py
-
-At the end of this step, you will have a netcdf file called croco_ini.nc.
-
-To prepare the LBC you have to adapt the path in the make_bry.py script and do :
-
-.. code-block:: bash
-
-   python make_bry.py
-
-At the end of this step, you will have a netcdf file called croco_bry.nc.
-
-Once the times have been checked, you need to transfer these files to belenos and go to 3_input_croco to run the create_restart_file_from_ini_CROCO_file.py script to create the rstrt_CROCO.nc file.
-
-.. code-block:: bash
-
-   python create_restart_file_from_ini_CROCO_file.py
-
-Prepare the namelist for the coupled simulation : croco.in
------------------------------------------------------------------------
-
-No information about OASIS must be defined in the namelist croco.in (located in the 3_input_croco directory) : CROCO reads the namcouple file to access the corresponding information. To modify this namelist, please refer to the CROCO documentation.
-
-List of necessary files for CROCO : 3_input_croco
------------------------------------------------------------------------
-
-.. code-block:: bash
-
-   3_input_croco
-      | -- croco_grd.nc
-      | -- croco_ini.nc
-      | -- croco_bry.nc  
-      | -- rstrt_CROCO.nc
-      | -- croco.in
-
-.. _RST preprocessing_OASIS:
+.. _preprocessing_OASIS:
 
 OASIS
 ====================================

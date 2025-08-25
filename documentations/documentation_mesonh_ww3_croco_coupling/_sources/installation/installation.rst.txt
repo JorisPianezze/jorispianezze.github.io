@@ -8,7 +8,7 @@ However, I recommend dedicating a specific directory for your case study, partic
 
 .. note::
 
-   The :ref:`installation` and :ref:`compilation` steps must be performed on the machines where you will run the simulations
+   The :ref:`installation` and :ref:`compilation` steps must be performed on the machines where you will run the simulations.
 
 .. _get_models_template:
 
@@ -82,18 +82,6 @@ To download Meso-NH you have to set :code:`download_mesonh=true` in :file:`model
 .. note::
 
    This version of Meso-NH already contains NetCDF and oasis3-mct_5.0 libraries and you can compile it automatically when you compile Meso-NH but I recommend to compile NETCDF and OASIS separately to be indepedent of Meso-NH.
-   
-.. _install_WW3:
-
-WW3
-=============================
-
-To download WW3 you have to set :code:`download_ww3=true` in :file:`models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh` and then execute this file :
-
-.. code-block:: bash
-
-   cd models_YOURCASESTUDY
-   ./download_oasis_mesonh_ww3_croco_models.sh
 
 .. _install_CROCO:
 
@@ -101,6 +89,18 @@ CROCO
 =============================
 
 To download CROCO you have to set :code:`download_croco=true` in :file:`models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh` and then execute this file :
+
+.. code-block:: bash
+
+   cd models_YOURCASESTUDY
+   ./download_oasis_mesonh_ww3_croco_models.sh
+
+.. _install_WW3:
+
+WW3
+=============================
+
+To download WW3 you have to set :code:`download_ww3=true` in :file:`models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh` and then execute this file :
 
 .. code-block:: bash
 

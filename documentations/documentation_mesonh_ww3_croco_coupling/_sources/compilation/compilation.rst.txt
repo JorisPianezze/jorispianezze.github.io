@@ -3,7 +3,7 @@
 Compilation
 *********************************************************
 
-First you need to compile :ref:`compilation_NETCDF` and :ref:`compilation_OASIS` libraries because :ref:`compilation_MESONH`, :ref:`compilation_WW3` and :ref:`compilation_CROCO` will use these libraries during their compilation.
+First you need to compile :ref:`compilation_NETCDF` and :ref:`compilation_OASIS` libraries because :ref:`compilation_MESONH`, :ref:`compilation_CROCO` and :ref:`compilation_WW3` will use these libraries during their compilation.
 
 .. note::
 
@@ -135,80 +135,6 @@ Many programs have been compiled. In this documentation, we will focus on those 
    | DIAG               | Compute diagnostics after simulation | DIAG1.nam       |
    +--------------------+--------------------------------------+-----------------+    
    
-.. _compilation_WW3:
-
-WW3
-====================================
-
-The steps for compiling WW3 are detailed in the WW3 manual (ww3_dir/manual/), but they are also outlined here for enhanced clarity.
-Regardless of the computer you are using, you can follow the same procedure to compile WW3. Next, you need to prepare the link and comp files required for compiling WW3 by using the following command:
-
-.. code-block:: bash
-
-   cd models_YOURCASESTUDY
-   source environment.sh
-   cd WW3-v7.14/model/bin/
-   ./w3_setup .. -c ${machine} -s OASACM -q
-
-At this stage, the :file:`comp` and :file:`link` files are created and the :file:`switch_OASACM` is copied into the :file:`switch` file.
-Note that it is in the switch file that you must define the numerical schema, physical parameters, ... you want to use. The OASACM and OASOCM switches are used to activate coupling with an atmospheric model and an ocean model respectively (see WW3 manual).
-
-For the aim of this documentation you need to create two new swicthes switch_OASACM_OASOCM and switch_NOOASIS by example. The first one will have an additional key OASOCM and the second one will not have COU OASIS OASACM keys. switch_NOOASIS will be used to create executables for WW3 spinup simulation.
-
-Next, you can choose to compile all WW3 programs with the w3_make command:
-
-.. code-block:: bash
-
-   ./w3_make
-
-or you can compile a selected list of program with the following command : 
-
-.. code-block:: bash
- 
-   ./w3_make ww3_grid ww3_bound ww3_prnc ww3_shel ww3_ounf
-
-To recompile everything you need to do :
-
-.. code-block:: bash
-
-   ./w3_clean
-   ./w3_new
-   ./w3_make
-
-A list of programs have been compiled, and for this documentation, we will use those listed in the following table.
-
-.. table:: List of executables WW3 compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.
-
-   +--------------------+--------------------------------------+-----------------+
-   | Executable name    + Function                             + Namelist        |
-   +====================+======================================+=================+
-   | ww3_grid           | Prepare grid                         | ww3_grid.nml    |
-   +--------------------+--------------------------------------+-----------------+
-   | ww3_bound          | Prepare LBC                          | ww3_bound.nml   |
-   +--------------------+--------------------------------------+-----------------+
-   | ww3_prnc           | Prepare forcing (wind in our case)   | ww3_prnc.nml    |
-   +--------------------+--------------------------------------+-----------------+
-   | ww3_shel           | Run simulation                       | ww3_shel.nml    |
-   +--------------------+--------------------------------------+-----------------+    
-   | ww3_ounf           | Create netcdf file                   | ww3_ounf.nml    |
-   +--------------------+--------------------------------------+-----------------+
-
-.. note::
-
-   * These executables, located in the exe folder, depend on the activated settings, so any changes to the settings require recompiling WW3. Therefore, it is essential to duplicate the exe folder to avoid overwriting previously compiled executables.
-
-   * For this tutorial, you need to compile WW3 twice: once with the OASACM_OASOCM switch and once with the NOOASIS switch (necessary only for the spinup simulation).
-
-   * In WW3/models/, you need to have two exe directories: one named exe_NOOASIS and the other exe_OASACM_OASOCM. These contain the executables for the spinup simulation and the coupled ocean-wave-atmosphere simulation, respectively :
-
-   .. code-block:: bash
-
-      ./w3_setup .. -c ${machine} -s NOASIS -q
-      ...
-      ./w3_setup .. -c ${machine} -s OASACM_OASOCM -q
-
-
-   * To check that WW3 has been correctly compiled, a number of tests are available in the WW3/regtests/ folder.
 
 .. _compilation_CROCO:
 
@@ -251,7 +177,7 @@ The cpp keys OA_COUPLING and OW_COUPLING are used to activate coupling with an a
 
 In param.h, you also must indicate the number of points you have for the CROCO domain.
 
-.. tip:: To find out these points, run a ncdump -h command on the file rstrt_SAVE.nc for example, see the section :ref:`RST preprocessing_MNH`.
+.. tip:: To find out these points, run a ncdump -h command on the file rstrt_SAVE.nc for example, see the section :ref:`preprocessing_MNH`.
 
 .. code-block:: fortran
 
@@ -292,4 +218,74 @@ In the croco folder, I therefore have two folders exe_YOURCCONFIG_Xcore_CPLOA an
    +====================+======================================+=================+
    | croco              | Run simulation                       | croco.in        |
    +--------------------+--------------------------------------+-----------------+
+   
+.. _compilation_WW3:
+
+WW3
+====================================
+
+The steps for compiling WW3 are detailed in the WW3 manual (ww3_dir/manual/), but they are also outlined here for enhanced clarity.
+Regardless of the computer you are using, you can follow the same procedure to compile WW3. Next, you need to prepare the link and comp files required for compiling WW3 by using the following command:
+
+.. code-block:: bash
+
+   cd models_YOURCASESTUDY
+   source environment.sh
+   cd WW3-v7.14/model/bin/
+   ./w3_setup .. -c ${machine} -s OASACM -q
+
+At this stage, the :file:`comp` and :file:`link` files are created and the :file:`switch_OASACM` is copied into the :file:`switch` file.
+Note that it is in the switch file that you must define the numerical schema, physical parameters, ... you want to use. The OASACM and OASOCM switches are used to activate coupling with an atmospheric model and an ocean model respectively (see WW3 manual).
+
+For the aim of this documentation you need to create two new swicthes switch_OASACM_OASOCM and switch_NOOASIS by example. The first one will have an additional key OASOCM and the second one will not have COU OASIS OASACM keys. switch_NOOASIS will be used to create executables for WW3 spinup simulation.
+
+Next, you can choose to compile following WW3 programs with the w3_make command:
+
+.. code-block:: bash
+ 
+   ./w3_make ww3_grid ww3_bound ww3_bounc ww3_prnc ww3_shel ww3_ounf
+
+To recompile everything you need to do :
+
+.. code-block:: bash
+
+   ./w3_clean
+   ./w3_new
+   ./w3_make
+
+A list of programs have been compiled, and for this documentation, we will use those listed in the following table.
+
+.. table:: List of executables WW3 compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.
+
+   +--------------------+--------------------------------------+-----------------+
+   | Executable name    + Function                             + Namelist        |
+   +====================+======================================+=================+
+   | ww3_grid           | Prepare grid                         | ww3_grid.nml    |
+   +--------------------+--------------------------------------+-----------------+
+   | ww3_bound          | Prepare LBC (read txt files)         | ww3_bound.nml   |
+   | ww3_bounc          | Prepare LBC (read nc files)          | ww3_bounc.nml   |
+   +--------------------+--------------------------------------+-----------------+
+   | ww3_prnc           | Prepare forcing (wind in our case)   | ww3_prnc.nml    |
+   +--------------------+--------------------------------------+-----------------+
+   | ww3_shel           | Run simulation                       | ww3_shel.nml    |
+   +--------------------+--------------------------------------+-----------------+    
+   | ww3_ounf           | Create netcdf file                   | ww3_ounf.nml    |
+   +--------------------+--------------------------------------+-----------------+
+
+.. note::
+
+   * These executables, located in the exe folder, depend on the activated settings, so any changes to the settings require recompiling WW3. Therefore, it is essential to duplicate the exe folder to avoid overwriting previously compiled executables.
+
+   * For this tutorial, you need to compile WW3 twice: once with the OASACM_OASOCM switch and once with the NOOASIS switch (necessary only for the spinup simulation).
+
+   * In WW3/models/, you need to have two exe directories: one named exe_NOOASIS and the other exe_OASACM_OASOCM. These contain the executables for the spinup simulation and the coupled ocean-wave-atmosphere simulation, respectively :
+
+   .. code-block:: bash
+
+      ./w3_setup .. -c ${machine} -s NOOASIS -q
+      ...
+      ./w3_setup .. -c ${machine} -s OASACM_OASOCM -q
+
+
+   * To check that WW3 has been correctly compiled, a number of tests are available in the WW3/regtests/ folder.
 

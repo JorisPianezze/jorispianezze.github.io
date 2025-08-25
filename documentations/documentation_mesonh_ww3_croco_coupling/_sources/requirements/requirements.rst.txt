@@ -24,3 +24,7 @@ To utilize the developments in Meso-NH, WW3, CROCO, and OASIS coupling, you need
 +--------------------+---------------------+
 | Preprocessing      | Python3             |
 +--------------------+---------------------+
+
+.. note::
+
+   The list of python's packages is presented in :ref:`python_requirements` section.

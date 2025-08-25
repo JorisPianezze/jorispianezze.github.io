@@ -50,8 +50,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#netcdf">NetCDF</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#oasis">OASIS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#meso-nh">Meso-NH</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ww3">WW3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#croco">CROCO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ww3">WW3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#check-files-and-directories-tree">Check files and directories tree</a></li>
 </ul>
 </li>
@@ -91,7 +91,7 @@
 However, I recommend dedicating a specific directory for your case study, particularly if you plan to test new versions of models, compilers, or libraries.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <a class="reference internal" href="#installation"><span class="std std-ref">Installation</span></a> and <a class="reference internal" href="../compilation/compilation.html#compilation"><span class="std std-ref">Compilation</span></a> steps must be performed on the machines where you will run the simulations</p>
+<p>The <a class="reference internal" href="#installation"><span class="std std-ref">Installation</span></a> and <a class="reference internal" href="../compilation/compilation.html#compilation"><span class="std std-ref">Compilation</span></a> steps must be performed on the machines where you will run the simulations.</p>
 </div>
 <section id="get-models-template">
 <span id="id2"></span><h2>Get models template<a class="headerlink" href="#get-models-template" title="Link to this heading"></a></h2>
@@ -146,17 +146,17 @@ However, I recommend dedicating a specific directory for your case study, partic
 <p>This version of Meso-NH already contains NetCDF and oasis3-mct_5.0 libraries and you can compile it automatically when you compile Meso-NH but I recommend to compile NETCDF and OASIS separately to be indepedent of Meso-NH.</p>
 </div>
 </section>
-<section id="ww3">
-<span id="install-ww3"></span><h2>WW3<a class="headerlink" href="#ww3" title="Link to this heading"></a></h2>
-<p>To download WW3 you have to set <code class="code docutils literal notranslate"><span class="pre">download_ww3=true</span></code> in <code class="file docutils literal notranslate"><span class="pre">models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh</span></code> and then execute this file :</p>
+<section id="croco">
+<span id="install-croco"></span><h2>CROCO<a class="headerlink" href="#croco" title="Link to this heading"></a></h2>
+<p>To download CROCO you have to set <code class="code docutils literal notranslate"><span class="pre">download_croco=true</span></code> in <code class="file docutils literal notranslate"><span class="pre">models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh</span></code> and then execute this file :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY
 ./download_oasis_mesonh_ww3_croco_models.sh
 </pre></div>
 </div>
 </section>
-<section id="croco">
-<span id="install-croco"></span><h2>CROCO<a class="headerlink" href="#croco" title="Link to this heading"></a></h2>
-<p>To download CROCO you have to set <code class="code docutils literal notranslate"><span class="pre">download_croco=true</span></code> in <code class="file docutils literal notranslate"><span class="pre">models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh</span></code> and then execute this file :</p>
+<section id="ww3">
+<span id="install-ww3"></span><h2>WW3<a class="headerlink" href="#ww3" title="Link to this heading"></a></h2>
+<p>To download WW3 you have to set <code class="code docutils literal notranslate"><span class="pre">download_ww3=true</span></code> in <code class="file docutils literal notranslate"><span class="pre">models_YOURCASESTUDY/download_oasis_mesonh_ww3_croco_models.sh</span></code> and then execute this file :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY
 ./download_oasis_mesonh_ww3_croco_models.sh
 </pre></div>

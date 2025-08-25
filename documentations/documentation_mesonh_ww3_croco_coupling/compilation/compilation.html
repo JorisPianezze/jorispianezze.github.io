@@ -50,8 +50,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#netcdf">NetCDF</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#oasis">OASIS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#meso-nh">Meso-NH</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ww3">WW3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#croco">CROCO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ww3">WW3</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../preprocessing/preprocessing.html">Pre-processing</a></li>
@@ -85,7 +85,7 @@
              
   <section id="compilation">
 <span id="id1"></span><h1>Compilation<a class="headerlink" href="#compilation" title="Link to this heading"></a></h1>
-<p>First you need to compile <a class="reference internal" href="#compilation-netcdf"><span class="std std-ref">NetCDF</span></a> and <a class="reference internal" href="#compilation-oasis"><span class="std std-ref">OASIS</span></a> libraries because <a class="reference internal" href="#compilation-mesonh"><span class="std std-ref">Meso-NH</span></a>, <a class="reference internal" href="#compilation-ww3"><span class="std std-ref">WW3</span></a> and <a class="reference internal" href="#compilation-croco"><span class="std std-ref">CROCO</span></a> will use these libraries during their compilation.</p>
+<p>First you need to compile <a class="reference internal" href="#compilation-netcdf"><span class="std std-ref">NetCDF</span></a> and <a class="reference internal" href="#compilation-oasis"><span class="std std-ref">OASIS</span></a> libraries because <a class="reference internal" href="#compilation-mesonh"><span class="std std-ref">Meso-NH</span></a>, <a class="reference internal" href="#compilation-croco"><span class="std std-ref">CROCO</span></a> and <a class="reference internal" href="#compilation-ww3"><span class="std std-ref">WW3</span></a> will use these libraries during their compilation.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For <a class="reference internal" href="#compilation-croco"><span class="std std-ref">CROCO</span></a>’s compilation you need to know the numbers of horizontal and vertical points of your domain before compile it.</p>
@@ -208,83 +208,6 @@ make<span class="w"> </span>installmaster
 </tbody>
 </table>
 </section>
-<section id="ww3">
-<span id="compilation-ww3"></span><h2>WW3<a class="headerlink" href="#ww3" title="Link to this heading"></a></h2>
-<p>The steps for compiling WW3 are detailed in the WW3 manual (ww3_dir/manual/), but they are also outlined here for enhanced clarity.
-Regardless of the computer you are using, you can follow the same procedure to compile WW3. Next, you need to prepare the link and comp files required for compiling WW3 by using the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY
-<span class="nb">source</span><span class="w"> </span>environment.sh
-<span class="nb">cd</span><span class="w"> </span>WW3-v7.14/model/bin/
-./w3_setup<span class="w"> </span>..<span class="w"> </span>-c<span class="w"> </span><span class="si">${</span><span class="nv">machine</span><span class="si">}</span><span class="w"> </span>-s<span class="w"> </span>OASACM<span class="w"> </span>-q
-</pre></div>
-</div>
-<p>At this stage, the <code class="file docutils literal notranslate"><span class="pre">comp</span></code> and <code class="file docutils literal notranslate"><span class="pre">link</span></code> files are created and the <code class="file docutils literal notranslate"><span class="pre">switch_OASACM</span></code> is copied into the <code class="file docutils literal notranslate"><span class="pre">switch</span></code> file.
-Note that it is in the switch file that you must define the numerical schema, physical parameters, … you want to use. The OASACM and OASOCM switches are used to activate coupling with an atmospheric model and an ocean model respectively (see WW3 manual).</p>
-<p>For the aim of this documentation you need to create two new swicthes switch_OASACM_OASOCM and switch_NOOASIS by example. The first one will have an additional key OASOCM and the second one will not have COU OASIS OASACM keys. switch_NOOASIS will be used to create executables for WW3 spinup simulation.</p>
-<p>Next, you can choose to compile all WW3 programs with the w3_make command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_make
-</pre></div>
-</div>
-<p>or you can compile a selected list of program with the following command :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_make<span class="w"> </span>ww3_grid<span class="w"> </span>ww3_bound<span class="w"> </span>ww3_prnc<span class="w"> </span>ww3_shel<span class="w"> </span>ww3_ounf
-</pre></div>
-</div>
-<p>To recompile everything you need to do :</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_clean
-./w3_new
-./w3_make
-</pre></div>
-</div>
-<p>A list of programs have been compiled, and for this documentation, we will use those listed in the following table.</p>
-<table class="docutils align-default" id="id3">
-<caption><span class="caption-text">List of executables WW3 compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
-<thead>
-<tr class="row-odd"><th class="head" rowspan="2"><p>Executable name</p></th>
-<th class="head" rowspan="2"><p>Function</p></th>
-<th class="head" rowspan="2"><p>Namelist</p></th>
-</tr>
-<tr class="row-even"></tr>
-</thead>
-<tbody>
-<tr class="row-odd"><td><p>ww3_grid</p></td>
-<td><p>Prepare grid</p></td>
-<td><p>ww3_grid.nml</p></td>
-</tr>
-<tr class="row-even"><td><p>ww3_bound</p></td>
-<td><p>Prepare LBC</p></td>
-<td><p>ww3_bound.nml</p></td>
-</tr>
-<tr class="row-odd"><td><p>ww3_prnc</p></td>
-<td><p>Prepare forcing (wind in our case)</p></td>
-<td><p>ww3_prnc.nml</p></td>
-</tr>
-<tr class="row-even"><td><p>ww3_shel</p></td>
-<td><p>Run simulation</p></td>
-<td><p>ww3_shel.nml</p></td>
-</tr>
-<tr class="row-odd"><td><p>ww3_ounf</p></td>
-<td><p>Create netcdf file</p></td>
-<td><p>ww3_ounf.nml</p></td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<ul class="simple">
-<li><p>These executables, located in the exe folder, depend on the activated settings, so any changes to the settings require recompiling WW3. Therefore, it is essential to duplicate the exe folder to avoid overwriting previously compiled executables.</p></li>
-<li><p>For this tutorial, you need to compile WW3 twice: once with the OASACM_OASOCM switch and once with the NOOASIS switch (necessary only for the spinup simulation).</p></li>
-<li><p>In WW3/models/, you need to have two exe directories: one named exe_NOOASIS and the other exe_OASACM_OASOCM. These contain the executables for the spinup simulation and the coupled ocean-wave-atmosphere simulation, respectively :</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_setup<span class="w"> </span>..<span class="w"> </span>-c<span class="w"> </span><span class="si">${</span><span class="nv">machine</span><span class="si">}</span><span class="w"> </span>-s<span class="w"> </span>NOASIS<span class="w"> </span>-q
-...
-./w3_setup<span class="w"> </span>..<span class="w"> </span>-c<span class="w"> </span><span class="si">${</span><span class="nv">machine</span><span class="si">}</span><span class="w"> </span>-s<span class="w"> </span>OASACM_OASOCM<span class="w"> </span>-q
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>To check that WW3 has been correctly compiled, a number of tests are available in the WW3/regtests/ folder.</p></li>
-</ul>
-</div>
-</section>
 <section id="croco">
 <span id="compilation-croco"></span><h2>CROCO<a class="headerlink" href="#croco" title="Link to this heading"></a></h2>
 <p>Whatever the computers, you can follow the same procedure to compile CROCO.</p>
@@ -317,7 +240,7 @@ Note that it is in the switch file that you must define the numerical schema, ph
 <p>In param.h, you also must indicate the number of points you have for the CROCO domain.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>To find out these points, run a ncdump -h command on the file rstrt_SAVE.nc for example, see the section <a class="reference internal" href="../preprocessing/preprocessing.html#rst-preprocessing-mnh"><span class="std std-ref">Meso-NH/SurfEx</span></a>.</p>
+<p>To find out these points, run a ncdump -h command on the file rstrt_SAVE.nc for example, see the section <a class="reference internal" href="../preprocessing/preprocessing.html#preprocessing-mnh"><span class="std std-ref">Meso-NH</span></a>.</p>
 </div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="cp"># elif defined  YOURCASESTUDY</span>
 <span class="w">      </span><span class="k">parameter</span><span class="w"> </span><span class="p">(</span><span class="n">LLm0</span><span class="o">=</span><span class="mi">38</span><span class="p">,</span><span class="w">  </span><span class="n">MMm0</span><span class="o">=</span><span class="mi">38</span><span class="p">,</span><span class="w">  </span><span class="n">N</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span><span class="w">     </span><span class="c">! YOURCASESTUDY</span>
@@ -345,8 +268,8 @@ Note that it is in the switch file that you must define the numerical schema, ph
 <p>Only one compiled program is used in this documentation (cf following table).
 This executable depends on the settings activated, so if you want to change the settings you have to recompile CROCO: it is therefore necessary to copy the exe compilation folder so as not to overwrite the previously compiled executables.
 In the croco folder, I therefore have two folders exe_YOURCCONFIG_Xcore_CPLOA and exe_YOURCONFIG_Xcore_CPLOA_CPLOW containing the executables for the coupled ocean-atmosphere and ocean-wave-atmosphere simulations, respectively.</p>
-<table class="docutils align-default" id="id4">
-<caption><span class="caption-text">Executable CROCO compiled and used in this documentation.</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Executable CROCO compiled and used in this documentation.</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head" rowspan="2"><p>Executable name</p></th>
 <th class="head" rowspan="2"><p>Function</p></th>
@@ -361,6 +284,82 @@ In the croco folder, I therefore have two folders exe_YOURCCONFIG_Xcore_CPLOA an
 </tr>
 </tbody>
 </table>
+</section>
+<section id="ww3">
+<span id="compilation-ww3"></span><h2>WW3<a class="headerlink" href="#ww3" title="Link to this heading"></a></h2>
+<p>The steps for compiling WW3 are detailed in the WW3 manual (ww3_dir/manual/), but they are also outlined here for enhanced clarity.
+Regardless of the computer you are using, you can follow the same procedure to compile WW3. Next, you need to prepare the link and comp files required for compiling WW3 by using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>models_YOURCASESTUDY
+<span class="nb">source</span><span class="w"> </span>environment.sh
+<span class="nb">cd</span><span class="w"> </span>WW3-v7.14/model/bin/
+./w3_setup<span class="w"> </span>..<span class="w"> </span>-c<span class="w"> </span><span class="si">${</span><span class="nv">machine</span><span class="si">}</span><span class="w"> </span>-s<span class="w"> </span>OASACM<span class="w"> </span>-q
+</pre></div>
+</div>
+<p>At this stage, the <code class="file docutils literal notranslate"><span class="pre">comp</span></code> and <code class="file docutils literal notranslate"><span class="pre">link</span></code> files are created and the <code class="file docutils literal notranslate"><span class="pre">switch_OASACM</span></code> is copied into the <code class="file docutils literal notranslate"><span class="pre">switch</span></code> file.
+Note that it is in the switch file that you must define the numerical schema, physical parameters, … you want to use. The OASACM and OASOCM switches are used to activate coupling with an atmospheric model and an ocean model respectively (see WW3 manual).</p>
+<p>For the aim of this documentation you need to create two new swicthes switch_OASACM_OASOCM and switch_NOOASIS by example. The first one will have an additional key OASOCM and the second one will not have COU OASIS OASACM keys. switch_NOOASIS will be used to create executables for WW3 spinup simulation.</p>
+<p>Next, you can choose to compile following WW3 programs with the w3_make command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_make<span class="w"> </span>ww3_grid<span class="w"> </span>ww3_bound<span class="w"> </span>ww3_bounc<span class="w"> </span>ww3_prnc<span class="w"> </span>ww3_shel<span class="w"> </span>ww3_ounf
+</pre></div>
+</div>
+<p>To recompile everything you need to do :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_clean
+./w3_new
+./w3_make
+</pre></div>
+</div>
+<p>A list of programs have been compiled, and for this documentation, we will use those listed in the following table.</p>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">List of executables WW3 compiled and used in this documentation. IC corresponds to Initial Condition and LBC to Lateral Boundary Condition.</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head" rowspan="2"><p>Executable name</p></th>
+<th class="head" rowspan="2"><p>Function</p></th>
+<th class="head" rowspan="2"><p>Namelist</p></th>
+</tr>
+<tr class="row-even"></tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p>ww3_grid</p></td>
+<td><p>Prepare grid</p></td>
+<td><p>ww3_grid.nml</p></td>
+</tr>
+<tr class="row-even"><td><p>ww3_bound
+ww3_bounc</p></td>
+<td><p>Prepare LBC (read txt files)
+Prepare LBC (read nc files)</p></td>
+<td><p>ww3_bound.nml
+ww3_bounc.nml</p></td>
+</tr>
+<tr class="row-odd"><td><p>ww3_prnc</p></td>
+<td><p>Prepare forcing (wind in our case)</p></td>
+<td><p>ww3_prnc.nml</p></td>
+</tr>
+<tr class="row-even"><td><p>ww3_shel</p></td>
+<td><p>Run simulation</p></td>
+<td><p>ww3_shel.nml</p></td>
+</tr>
+<tr class="row-odd"><td><p>ww3_ounf</p></td>
+<td><p>Create netcdf file</p></td>
+<td><p>ww3_ounf.nml</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>These executables, located in the exe folder, depend on the activated settings, so any changes to the settings require recompiling WW3. Therefore, it is essential to duplicate the exe folder to avoid overwriting previously compiled executables.</p></li>
+<li><p>For this tutorial, you need to compile WW3 twice: once with the OASACM_OASOCM switch and once with the NOOASIS switch (necessary only for the spinup simulation).</p></li>
+<li><p>In WW3/models/, you need to have two exe directories: one named exe_NOOASIS and the other exe_OASACM_OASOCM. These contain the executables for the spinup simulation and the coupled ocean-wave-atmosphere simulation, respectively :</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./w3_setup<span class="w"> </span>..<span class="w"> </span>-c<span class="w"> </span><span class="si">${</span><span class="nv">machine</span><span class="si">}</span><span class="w"> </span>-s<span class="w"> </span>NOOASIS<span class="w"> </span>-q
+...
+./w3_setup<span class="w"> </span>..<span class="w"> </span>-c<span class="w"> </span><span class="si">${</span><span class="nv">machine</span><span class="si">}</span><span class="w"> </span>-s<span class="w"> </span>OASACM_OASOCM<span class="w"> </span>-q
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To check that WW3 has been correctly compiled, a number of tests are available in the WW3/regtests/ folder.</p></li>
+</ul>
+</div>
 </section>
 </section>
 
