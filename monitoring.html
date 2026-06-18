@@ -1,11 +1,12 @@
-<!DOCTYPE html">
-<html lang=en">
+<!DOCTYPE html>
+<html lang="en">
 
 <!-- =================================================== -->
 <head>
-   <meta charset="utf-8" >
-   <title>Joris PIANEZZE's home page</title>
-   <link href="style.css" rel="stylesheet" >
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Monitoring — Joris Pianezze</title>
+   <link href="style.css" rel="stylesheet">
    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -31,18 +32,27 @@
 </header>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-<main class="monitoring-container">
+<main class="page-container">
 
-<div>
-   <h2 style="text-align: center;">Status of FLEXPART workflow for MAP-IO</h2>
-   <img width="100%" src="monitoring/monitoring_FLEXPART_workflow.png">
-</div>
+   <div class="page-header">
+      <p class="page-eyebrow">Operational</p>
+      <h1 class="page-title">Monitoring</h1>
+      <p class="page-subtitle">Status plots for ongoing MAP-IO workflows.</p>
+   </div>
 
-<div>
-   <h2 style="text-align: center;">Status of WEB workflow for MAP-IO</h2>
-   <img width="100%" src="monitoring/monitoring_WEBMAPIO_workflow.png">
-</div>
+   <div class="monitoring-grid">
+
+      <div class="monitoring-block">
+         <p class="monitoring-label">FLEXPART workflow — MAP-IO</p>
+         <img src="monitoring/monitoring_FLEXPART_workflow.png" alt="Status of FLEXPART workflow for MAP-IO">
+      </div>
+
+      <div class="monitoring-block">
+         <p class="monitoring-label">WEB workflow — MAP-IO</p>
+         <img src="monitoring/monitoring_WEBMAPIO_workflow.png" alt="Status of WEB workflow for MAP-IO">
+      </div>
+
+   </div>
 
 </main>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
