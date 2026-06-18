@@ -1,11 +1,12 @@
-<!DOCTYPE html">
-<html lang=en">
+<!DOCTYPE html>
+<html lang="en">
 
 <!-- =================================================== -->
 <head>
-   <meta charset="utf-8" >
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Joris PIANEZZE's home page</title>
-   <link href="style.css" rel="stylesheet" >
+   <link href="style.css" rel="stylesheet">
    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -18,7 +19,6 @@
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <header>
-
    <h3 class="header-title"><a href="index.html">Joris Pianezze</a></h3>
    <nav class="header-nav">
       <a href="index.html" class="active">Home</a>
@@ -27,72 +27,74 @@
       <a href="monitoring.html">Monitoring</a>
       <a href="contact.html">Contact</a>
    </nav>
-
 </header>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <main class="home">
-   <section class="photo_job">
-	   <p><img class="photo" src="photos/JorisPianezze.jpg"></p>
-      <hr style="width:80%">
-      <p>
-         <h2>Joris Pianezze</h2>
-	      <!-- <a href="https://www.cnrs.fr"><img alt="CNRS" src="logos/CNRS.png"  width="40" height="40" />Research Engineer</a> -->
-         <p><a href="https://www.cnrs.fr" class="contact">CNRS</a> Research Engineer</p>
-         <p><a href="https://www.aero.obs-mip.fr" class="contact">Laboratoire d'aérologie</a></p>
-         <p>Toulouse, France</p>
-	   </p>
-      <p class="logos">
-         <a href="https://www.researchgate.net/profile/Joris-Pianezze"> <img alt="ResearchGate" src="logos/researchgate-icon-474x512.png"  width="30" height="30" style="margin:10px 10px 10px 10px" /></a>
-         <a href="https://orcid.org/0000-0003-2357-6398">               <img alt="ORCID"        src="logos/orcid_16x16.webp"               width="30" height="30" style="margin:10px 10px 10px 10px" /></a>
-         <a href="https://www.linkedin.com/in/joris-pianezze-38a562112"><img alt="LinkdIn"      src="logos/LI-In-Bug.png"                  width="30" height="30" style="margin:10px 10px 10px 10px" /></a>
-         <a href="https://github.com/JorisPianezze">                    <img alt="Github"       src="logos/github-mark.png"                width="30" height="30" style="margin:10px 10px 10px 10px" /></a>
-      </p>
-	   <hr style="width:80%">
+
+   <section class="hero-section">
+      <div class="hero-photo">
+         <img class="photo" src="photos/JorisPianezze.jpg" alt="Joris Pianezze">
+      </div>
+      <div class="hero-content">
+         <h1>Joris Pianezze</h1>
+         <p class="hero-role">
+            <a href="https://www.cnrs.fr" class="contact">CNRS</a> Research Engineer
+            &mdash; <a href="https://www.aero.obs-mip.fr" class="contact">Laboratoire d'aérologie</a>, Toulouse
+         </p>
+         <p class="hero-bio">
+            Specialised in the development of numerical models, I work
+            on the improvement, implementation and analysis of coupled ocean-wave-atmosphere simulations.
+            In particular, I am involved in the development of the
+            <a href="https://www.croco-ocean.org">CROCO</a> and
+            <a href="http://mesonh.cnrs.fr">Meso-NH</a> community codes.
+         </p>
+         <p class="hero-sub">
+            This website shares tools and documentation with colleagues and with the wider community working with these models.
+         </p>
+         <div class="social-buttons">
+            <a href="https://www.researchgate.net/profile/Joris-Pianezze">
+               <img alt="ResearchGate" src="logos/researchgate-icon-474x512.png" width="20" height="20"> ResearchGate
+            </a>
+            <a href="https://orcid.org/0000-0003-2357-6398">
+               <img alt="ORCID" src="logos/orcid_16x16.webp" width="20" height="20"> ORCID
+            </a>
+            <a href="https://www.linkedin.com/in/joris-pianezze-38a562112">
+               <img alt="LinkedIn" src="logos/LI-In-Bug.png" width="20" height="20"> LinkedIn
+            </a>
+            <a href="https://github.com/JorisPianezze">
+               <img alt="Github" src="logos/github-mark.png" width="20" height="20"> GitHub
+            </a>
+         </div>
+      </div>
    </section>
-   <section class="presentation">
-      <p>
-      Specialised in the development of numerical models, I work
-	   on the improvement, implementation and analysis of coupled ocean-wave-atmosphere simulations.
-	   In particular, I am involved in the development of the <a href="https://www.croco-ocean.org">CROCO</a> and <a href="http://mesonh.aero.obs-mip.fr">Meso-NH</a> community codes.
-	   </p><br>
-	   <p>
-      The aim of this website is to share tools and documentations with colleagues but also with a wider community working with these tools.
-	   </p>
+
+   <section class="explore">
+      <h3>Explore</h3>
+      <div class="explore-grid">
+         <a href="tools.html" class="explore-card">
+            <div class="explore-card-icon">🛠️</div>
+            <h4>Tools</h4>
+            <p>Open-source scripts and utilities.</p>
+         </a>
+         <a href="documentations.html" class="explore-card">
+            <div class="explore-card-icon">📖</div>
+            <h4>Documentations</h4>
+            <p>Technical guides and tutorials.</p>
+         </a>
+         <a href="monitoring.html" class="explore-card">
+            <div class="explore-card-icon">📊</div>
+            <h4>Monitoring</h4>
+            <p>Plots to verify operational simulations.</p>
+         </a>
+         <a href="contact.html" class="explore-card">
+            <div class="explore-card-icon">✉️</div>
+            <h4>Contact</h4>
+            <p>Get in touch.</p>
+         </a>
+      </div>
    </section>
-
-<!-- 
-<section class="explore">
-
-   <h3>Explore</h3>
-
-   <div class="explore-grid">
-
-      <a href="tools.html" class="explore-card">
-         <h4>Tools</h4>
-         <p>Open-source scripts and utilities.</p>
-      </a>
-
-      <a href="documentations.html" class="explore-card">
-         <h4>Documentations</h4>
-         <p>Technical guides and tutorials.</p>
-      </a>
-
-      <a href="monitoring.html" class="explore-card">
-         <h4>Monitoring</h4>
-         <p>Plots to verify operational simulations.</p>
-      </a>
-
-      <a href="contact.html" class="explore-card">
-         <h4>Contact</h4>
-         <p>Get in touch.</p>
-      </a>
-
-   </div>
-
-</section>
--->
 
 </main>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
