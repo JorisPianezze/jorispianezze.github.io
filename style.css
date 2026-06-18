@@ -166,68 +166,133 @@ p {
 .logos { padding-top: 20px; }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*                      tools                                */
+/*              tools & documentations (shared)              */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-.tools-container {
-  display          : flex;
-  flex-wrap        : wrap;
-  justify-content  : space-around;
-  background-color : #f0f0f0;
-  padding-left     : 20%;
-  padding-right    : 20%;
+.page-container {
+  min-height: calc(100vh - 60px - 70px);
+  background-color: #f0f0f0;
+  padding: 0 20% 80px;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*                      documentations                       */
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-.documentations-container {
-  display          : flex;
-  flex-wrap        : wrap;
-  justify-content  : space-around;
-  background-color : #f0f0f0;
-  padding-left     : 20%;
-  padding-right    : 20%;
+.page-header {
+  padding: 52px 0 36px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 40px;
 }
 
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/*                      article for                          */
-/*                tools and documentations                   */
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-.article {
-    flex-grow: 1;
-    flex-basis: 21%;
-    padding: 0px;
-    margin:20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.page-eyebrow {
+  font-size: 0.75em !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #888 !important;
+  margin-bottom: 6px !important;
 }
 
-.article-title {
-   padding: 10px;
+.page-title {
+  font-size: 2em;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
 }
 
-.article-content {
-   padding: 10px;
+.page-subtitle {
+  font-size: 1.05em !important;
+  color: #666 !important;
+  margin: 0 !important;
 }
 
-.article-link {
-   padding: 5px;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   font-size: 1.5em;
-   background-color: #a93226 ;
-   color: white;
-   border-radius: 10px;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* card grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
 
-.article-link a {
-   color: white;
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: #2c3e50;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  text-decoration: none;
+}
+
+/* image zone with zoom on hover */
+.card-image {
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+  background: #eee;
+  flex-shrink: 0;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+  display: block;
+}
+
+.card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 20px 20px 12px;
+  flex: 1;
+}
+
+.card-title {
+  font-size: 1.05em;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+}
+
+.card-desc {
+  font-size: 0.92em !important;
+  color: #666 !important;
+  line-height: 1.55;
+  margin: 0 0 14px 0 !important;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 0.72em !important;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #fff !important;
+}
+
+.tag-python  { background: #3572A5; }
+.tag-fortran { background: #4d41b1; }
+.tag-sphinx  { background: #546e7a; }
+.tag-host    { background: #555;    }
+
+.card-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #f0f0f0;
+  font-size: 0.88em !important;
+  color: #546e7a !important;
+  font-weight: 600;
+  letter-spacing: 0.2px;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -289,6 +354,7 @@ p {
 .map          {margin-right  : 0%;}
 footer        {padding-left  : 20px;
                padding-right : 20px;}
+.page-container { padding-left: 6%; padding-right: 6%; }
 
 }
 
