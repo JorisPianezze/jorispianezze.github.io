@@ -47,8 +47,6 @@ header {
 .burger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .burger-btn.open span:nth-child(2) { opacity: 0; }
 .burger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  height           : 60px;
-}
 
 .header-title {
    padding-left: 20%;
@@ -406,7 +404,7 @@ p {
 
   .burger-btn { display: flex; }
 
-  .header-title { padding-left: 16px; }
+  .header-title { padding-left: 20px; }
 
   .header-nav {
     display: none;
