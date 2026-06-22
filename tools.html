@@ -20,13 +20,16 @@
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <header>
    <h3 class="header-title"><a href="index.html">Joris Pianezze</a></h3>
-   <nav class="header-nav">
+   <nav class="header-nav" id="main-nav">
       <a href="index.html">Home</a>
       <a href="tools.html" class="active">Tools</a>
       <a href="documentations.html">Documentations</a>
       <a href="monitoring.html">Monitoring</a>
       <a href="contact.html">Contact</a>
    </nav>
+   <button class="burger-btn" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+   </button>
 </header>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
@@ -89,6 +92,19 @@
 </footer>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+<script>
+   const burger = document.getElementById('burger');
+   const nav    = document.getElementById('main-nav');
+   burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      nav.classList.toggle('open');
+   });
+   // Ferme le menu au clic sur un lien
+   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      burger.classList.remove('open');
+      nav.classList.remove('open');
+   }));
+</script>
 </body>
 <!-- =================================================== -->
 
